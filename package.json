@@ -2,7 +2,6 @@
   "name": "blueprintnotincluded-backend",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
   "scripts": {
     "tsc": "tsc -b",
     "dev": "ts-node-dev --respawn --transpile-only ./app/server.ts",
@@ -25,14 +24,15 @@
     "fixHtmlLabels": "ts-node-dev --expose_gc --max_old_space_size=4096 --transpile-only ./app/api/batch/fix-html-labels.ts",
     "addInfoIcons": "ts-node-dev --expose_gc --max_old_space_size=4096 --transpile-only ./app/api/batch/add-info-icons.ts",
     "testCanvas": "ts-node-dev --expose_gc --max_old_space_size=4096 --transpile-only ./app/api/batch/test-canvas.ts",
-    "postinstall": "cd frontend && npm install"
+    "postinstall": "cd frontend && rm -rf node_modules && npm install --force",
+    "rebuild": "npm rebuild canvas --update-binary && cd frontend && npm rebuild canvas --update-binary"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
     "@types/jsdom": "^16.2.3",
     "adm-zip": "^0.5.10",
-    "canvas": "^2.6.1",
+    "canvas": "^2.11.2",
     "crypto-js": "^3.1.9-1",
     "csharp-binary-stream": "^1.0.2",
     "dotenv": "^8.2.0",
@@ -73,7 +73,11 @@
     "fs-extra": "^11.1.1"
   },
   "engines": {
-    "node": "^14.18",
-    "npm": "^6.14"
+    "node": ">=20.0.0",
+    "npm": ">=8.0.0"
+  },
+  "resolutions": {
+    "rxjs": "^6.6.7",
+    "loader-utils": "^2.0.4"
   }
 }

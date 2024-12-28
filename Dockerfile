@@ -1,4 +1,18 @@
-FROM --platform=amd64 node:16 as build-frontend
+FROM --platform=amd64 node:20 as build-frontend
+
+# Install system dependencies for canvas
+RUN apt-get update && apt-get install -y \
+    pkg-config \
+    libcairo2-dev \
+    libpango1.0-dev \
+    libjpeg-dev \
+    libgif-dev \
+    librsvg2-dev \
+    build-essential \
+    python3
+
+# Update npm to latest version
+RUN npm install -g npm@latest
 
 # Set the working directory
 WORKDIR /app
@@ -9,22 +23,33 @@ COPY ./lib /app/lib
 
 # Generate the lib packages
 WORKDIR /app/lib
-RUN npm install
+RUN npm install --force
 
 WORKDIR /app/bpni
 
 # Install all the backend dependencies
-RUN npm install
+RUN npm install --force
+RUN npm run rebuild
 
 # Generate the build of the application
 RUN npm run build
 
-# Copy the build output to replace the default nginx contents.
+# Stage 2: Build backend
+FROM --platform=amd64 node:20 as build
 
-# Stage 1: Compile and Build angular codebase
+# Install system dependencies for canvas
+RUN apt-get update && apt-get install -y \
+    pkg-config \
+    libcairo2-dev \
+    libpango1.0-dev \
+    libjpeg-dev \
+    libgif-dev \
+    librsvg2-dev \
+    build-essential \
+    python3
 
-# Use official node image as the base image
-FROM --platform=amd64 node:14 as build
+# Update npm to latest version
+RUN npm install -g npm@latest
 
 # Set the working directory
 WORKDIR /app
@@ -37,11 +62,12 @@ WORKDIR /app/bpni
 
 # Generate the lib packages
 WORKDIR /app/bpni/lib
-RUN npm install
+RUN npm install --force
 
 # Install all the backend dependencies
 WORKDIR /app/bpni
-RUN npm install
+RUN npm install --force
+RUN npm run rebuild
 
 # Generate the build of the application
 RUN npm run tsc
@@ -52,9 +78,7 @@ COPY --from=build-frontend /app/bpni/dist/blueprintnotincluded /app/bpni/app/pub
 # Expose port 3000
 EXPOSE 3000
 
-#RUN npm run dev
 ENTRYPOINT npm run dev
-
 
 ENV SITE_URL=http://localhost:3000
 ENV ENV_NAME=development

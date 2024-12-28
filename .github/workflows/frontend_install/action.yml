@@ -1,3 +1,6 @@
+name: "Install Frontend Dependencies"
+description: "Installs Node.js and dependencies for the frontend application"
+
 inputs:
   name:
     description: "Install frontend"
@@ -6,9 +9,9 @@ runs:
   using: "composite"
   steps:
     - name: Set up Node.js
-      uses: actions/setup-node@v1
+      uses: actions/setup-node@v3
       with:
-        node-version: 14.18
+        node-version: 20
     - name: Install frontend Node.js dependencies
       working-directory: frontend
       shell: bash

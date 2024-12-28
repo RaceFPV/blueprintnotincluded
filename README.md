@@ -29,13 +29,13 @@ Visit http://localhost:3000
 
 ## Image reconstruction
 Export iamges from oniextract2020
-Copy assets/manual/ into assets/images
+Copy export/images/ into /frontend/src/assets/images
+zip assets/database/database.json
+copy zip to frontend/src/assets/database
 `npm run fixHtmlLabels -- database.json`
 `npm run addInfoIcons -- database.json`
 `npm run generateIcons`
 `npm run generateGroups`
 `npm run generateWhite`
 `npm run generateRepack`
-zip assets/database/database.json
-copy zip to frontend/src/assets/database
 copy assets/database/database-repack.json to frontend/src/assets/database.json

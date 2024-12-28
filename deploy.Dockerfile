@@ -1,4 +1,18 @@
-FROM --platform=amd64 node:14-alpine as extract
+FROM --platform=amd64 node:20-alpine as extract
+
+# Install system dependencies for canvas
+RUN apt-get update && apt-get install -y \
+    pkg-config \
+    libcairo2-dev \
+    libpango1.0-dev \
+    libjpeg-dev \
+    libgif-dev \
+    librsvg2-dev \
+    build-essential \
+    python3
+
+# Update npm to latest version
+RUN npm install -g npm@latest
 
 WORKDIR /bpni
 
@@ -32,7 +46,22 @@ COPY ./lib ../lib
 COPY ./frontend ./
 RUN npm run build -- --output-path=../build/app/public/
 
-FROM --platform=amd64 node:14-alpine as serve-prod
+FROM --platform=amd64 node:20-alpine as serve-prod
+
+# Install system dependencies for canvas
+RUN apt-get update && apt-get install -y \
+    pkg-config \
+    libcairo2-dev \
+    libpango1.0-dev \
+    libjpeg-dev \
+    libgif-dev \
+    librsvg2-dev \
+    build-essential \
+    python3
+
+# Update npm to latest version
+RUN npm install -g npm@latest
+
 WORKDIR /bpni
 COPY package*.json ./
 RUN npm ci --omit=dev --ignore-scripts && npm cache clean --force
