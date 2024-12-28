@@ -21,6 +21,10 @@ WORKDIR /app
 COPY ./frontend /app/bpni
 COPY ./lib /app/lib
 
+# Copy all assets including manual directory
+COPY ./assets /app/bpni/assets
+COPY ./assets/manual /app/bpni/assets/manual
+
 # Generate the lib packages
 WORKDIR /app/lib
 RUN npm install --force
@@ -29,7 +33,6 @@ WORKDIR /app/bpni
 
 # Install all the backend dependencies
 RUN npm install --force
-RUN npm run rebuild
 
 # Generate the build of the application
 RUN npm run build
@@ -67,16 +70,25 @@ RUN npm install --force
 # Install all the backend dependencies
 WORKDIR /app/bpni
 RUN npm install --force
-RUN npm run rebuild
 
 # Generate the build of the application
 RUN npm run tsc
 
-# Copy over frontend
+# Copy over frontend and assets
 COPY --from=build-frontend /app/bpni/dist/blueprintnotincluded /app/bpni/app/public
+COPY --from=build-frontend /app/bpni/assets /app/bpni/assets
+COPY --from=build-frontend /app/bpni/assets/manual /app/bpni/assets/manual
+
+# Ensure database.json and manual assets are copied
+COPY ./assets/database/database.json /app/bpni/assets/database/
+COPY ./assets/manual /app/bpni/assets/manual
 
 # Expose port 3000
 EXPOSE 3000
+
+# Debug: List contents of assets directories
+RUN ls -la /app/bpni/assets
+RUN ls -la /app/bpni/assets/manual
 
 ENTRYPOINT npm run dev
 

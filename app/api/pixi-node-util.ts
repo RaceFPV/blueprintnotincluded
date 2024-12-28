@@ -75,16 +75,45 @@ export class PixiNodeUtil implements PixiUtil {
   }
 
   async getImageFromCanvas(path: string) {
-    console.log('loading image from file : ' + path)
-    let image = await loadImage(path);
-    let ressource = new NodeCanvasResource(image);
-    let bt = new PIXI.BaseTexture(ressource);
-    return bt;
+    const originalPath = path;
+    const frontendPath = path.replace(/^assets\//, 'frontend/src/assets/');
+    
+    try {
+      console.log('loading image from file : ' + originalPath);
+      let image = await loadImage(originalPath);
+      let ressource = new NodeCanvasResource(image);
+      let bt = new PIXI.BaseTexture(ressource);
+      return bt;
+    } catch (err) {
+      try {
+        console.log('loading image from frontend path: ' + frontendPath);
+        let image = await loadImage(frontendPath);
+        let ressource = new NodeCanvasResource(image);
+        let bt = new PIXI.BaseTexture(ressource);
+        return bt;
+      } catch (err2) {
+        throw new Error(`Could not load image from either ${originalPath} or ${frontendPath}`);
+      }
+    }
   }
 
   async getImageWhite(path: string) {
-    console.log('reading ' + path);
-    let data: Jimp | null = await Jimp.read(path);
+    const originalPath = path;
+    const frontendPath = path.replace(/^assets\//, 'frontend/src/assets/');
+    
+    let data: Jimp | null;
+    try {
+      console.log('reading ' + originalPath);
+      data = await Jimp.read(originalPath);
+    } catch (err) {
+      try {
+        console.log('reading from frontend path: ' + frontendPath);
+        data = await Jimp.read(frontendPath);
+      } catch (err2) {
+        throw new Error(`Could not read image from either ${originalPath} or ${frontendPath}`);
+      }
+    }
+
     let width = data.getWidth();
     let height = data.getHeight();
 
