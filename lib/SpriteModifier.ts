@@ -13,6 +13,9 @@ export interface BSpriteModifier {
   container?: any;
 }
 
+console.log('[SpriteModifier] Module loaded');
+process.stdout.write('[SpriteModifier] Module loaded\n');
+
 export class SpriteModifier {
   private static instance: SpriteModifier;
   private static spriteModifiers: Map<string, SpriteModifier> = new Map();
