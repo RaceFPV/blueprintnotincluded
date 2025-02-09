@@ -12,7 +12,12 @@ import { ComponentMenuComponent } from "../components/component-menu/component-m
 import {} from "pixi.js-legacy";
 declare var PIXI: any;
 
-export class DrawPixi implements PixiUtil {
+export class DrawPixi extends PixiUtil {
+  constructor(options: any = {}) {
+    super(options);
+    // Additional initialization
+  }
+
   getUtilityGraphicsBack() {
     return this.utilityGraphicsBack;
   }

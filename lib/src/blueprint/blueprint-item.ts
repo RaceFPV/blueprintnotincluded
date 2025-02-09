@@ -31,7 +31,9 @@ export class BlueprintItem
   public get temperatureScale() { return DrawHelpers.temperatureToScale(this.temperature); }
   public set temperatureScale(value: number) { this.temperature = DrawHelpers.scaleToTemperature(value); }
 
-  get header() { return this.oniItem.name; }
+  get header() { 
+    return this.oniItem?.name || this.id || 'Unknown'; 
+  }
 
   public buildableElements: BuildableElement[] = [];
 
@@ -88,7 +90,15 @@ export class BlueprintItem
   constructor(id: string = 'Vacuum')
   {
     this.id = id;
-    this.oniItem = OniItem.getOniItem(this.id);
+    const item = OniItem.getOniItem(id);
+    if (!item) {
+        console.warn(`[BlueprintItem] Creating item with unknown id: ${id}`);
+        // Create a default OniItem for unknown items
+        this.oniItem = new OniItem(id);
+        this.oniItem.cleanUp();
+    } else {
+        this.oniItem = item;
+    }
   }
 
   getName(): string
@@ -145,29 +155,37 @@ export class BlueprintItem
 
   public importOniBuilding(building: OniBuilding)
   {
+      const oniItem = OniItem.getOniItem(building.id);
+      if (!oniItem) {
+          throw new Error(`Failed to load OniItem for building: ${building.id}`);
+      }
+      this.oniItem = oniItem;
       this.position = new Vector2(
-          building.location_x == null ? 0 : building.location_x,
-          building.location_y == null ? 0 : building.location_y
+          building.location_x ?? 0,
+          building.location_y ?? 0
       );
       
-      switch (building.rotationOrientation)
-      {
-        case 'R90':
-          this.changeOrientation(Orientation.R90);
-          break;
-        case 'R180':
-          this.changeOrientation(Orientation.R180);
-          break;
-        case 'R270':
-          this.changeOrientation(Orientation.R270);
-          break;
-        case 'FlipH':
-          this.changeOrientation(Orientation.FlipH);
-          break;
-        case 'FlipV':
-          this.changeOrientation(Orientation.FlipV);
-          break;
+      // Convert rotation string to Orientation enum
+      switch (building.rotationOrientation) {
+          case 'R90':
+              this.orientation = Orientation.R90;
+              break;
+          case 'R180':
+              this.orientation = Orientation.R180;
+              break;
+          case 'R270':
+              this.orientation = Orientation.R270;
+              break;
+          case 'FlipH':
+              this.orientation = Orientation.FlipH;
+              break;
+          case 'FlipV':
+              this.orientation = Orientation.FlipV;
+              break;
+          default:
+              this.orientation = Orientation.Neutral;
       }
+      this.changeOrientation(this.orientation);
 
       this.setElement(building.element, 0);
       this.temperature = Math.floor(building.temperature);

@@ -9,6 +9,7 @@ import { PixiUtil } from "../drawing/pixi-util";
 import { Vector2 } from "../vector2";
 import { BuildableElement } from "../b-export/b-element";
 import { ZIndex } from "../enums/z-index";
+import * as PIXI from 'pixi.js-legacy';
 
 export class BlueprintItemWire extends BlueprintItem 
 {
@@ -127,6 +128,12 @@ export class BlueprintItemWire extends BlueprintItem
     }
   }
 
+  drawWireCircle(graphics: PIXI.Graphics, color: number, x: number, y: number, radius: number) {
+    graphics
+        .beginFill(color)
+        .drawCircle(x, y, radius)
+        .endFill();
+  }
 
   public toMdbBuilding(): MdbBuilding {
     let returnValue = super.toMdbBuilding();

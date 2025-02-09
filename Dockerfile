@@ -77,6 +77,7 @@ RUN npm run tsc
 # Copy over frontend and assets
 COPY --from=build-frontend /app/bpni/dist/blueprintnotincluded /app/bpni/app/public
 COPY --from=build-frontend /app/bpni/assets /app/bpni/assets
+COPY --from=build-frontend /app/bpni/assets/images /app/bpni/assets/images
 COPY --from=build-frontend /app/bpni/assets/manual /app/bpni/assets/manual
 
 # Ensure database.json and manual assets are copied
@@ -85,10 +86,6 @@ COPY ./assets/manual /app/bpni/assets/manual
 
 # Expose port 3000
 EXPOSE 3000
-
-# Debug: List contents of assets directories
-RUN ls -la /app/bpni/assets
-RUN ls -la /app/bpni/assets/manual
 
 ENTRYPOINT npm run dev
 

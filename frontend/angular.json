@@ -36,7 +36,17 @@
               "node_modules/primeflex/primeflex.css",
               "node_modules/@fortawesome/fontawesome-free/css/all.min.css"
             ],
-            "scripts": ["node_modules/pixi.js-legacy/dist/pixi-legacy.min.js"]
+            "scripts": [
+              {
+                "input": "node_modules/pixi.js-legacy/dist/pixi-legacy.js",
+                "bundleName": "pixi",
+                "inject": true
+              }
+            ],
+            "allowedCommonJsDependencies": [
+              "js-yaml",
+              "csharp-binary-stream"
+            ]
           },
           "configurations": {
             "production": {

@@ -59,6 +59,10 @@ export class ComponentMenuComponent
   visualizationMenuItems: MenuItem[];
   toolMenuItems: MenuItem[];
   languagesMenuItems: MenuItem[];
+  items: any[] = [];
+
+  // Move interface outside the class
+  private validItems: MenuItem[] = [];
 
   static debugFps: number = 0;
   public getFps() {
@@ -515,6 +519,28 @@ export class ComponentMenuComponent
       summary: $localize`Logout Successful`,
       detail: null,
     });
+  }
+
+  showItems(items: MenuItem[]) {
+    if (!items) {
+      console.warn('Attempted to show undefined items');
+      return;
+    }
+
+    // Filter out any undefined items and ensure each has an id
+    this.validItems = items.filter(item => {
+      if (!item) {
+        console.warn('Found undefined item in menu');
+        return false;
+      }
+      if (!item.id) {
+        console.warn('Found item without id:', item);
+        return false;
+      }
+      return true;
+    });
+
+    this.items = this.validItems;
   }
 }
 

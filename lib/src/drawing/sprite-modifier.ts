@@ -54,6 +54,29 @@ export class SpriteModifier
   public static init()
   {
     SpriteModifier.spriteModifiersMap = new Map<string, SpriteModifier>();
+    // Add default sprite modifiers
+    SpriteModifier.addSpriteModifier(new SpriteModifier('element_tile_back'));
+    SpriteModifier.addSpriteModifier(new SpriteModifier('gas_tile_front'));
+    SpriteModifier.addSpriteModifier(new SpriteModifier('liquid_tile_front'));
+    SpriteModifier.addSpriteModifier(new SpriteModifier('vacuum_tile_front'));
+    SpriteModifier.addSpriteModifier(new SpriteModifier('info_back'));
+    // Add info front modifiers
+    for (let i = 0; i < 12; i++) {
+      SpriteModifier.addSpriteModifier(new SpriteModifier(`info_front_${i}`));
+    }
+  }
+
+  public static addSpriteModifier(spriteModifier: SpriteModifier) {
+    SpriteModifier.spriteModifiersMap.set(spriteModifier.spriteModifierId, spriteModifier);
+  }
+
+  public static getSpriteModifier(id: string): SpriteModifier {
+    const modifier = SpriteModifier.spriteModifiersMap.get(id);
+    if (!modifier) {
+      console.error(`Sprite modifier not found: ${id}`);
+      throw new Error(`SpriteModifier.getSpriteModifer : Sprite Modifier not found : ${id}`);
+    }
+    return modifier;
   }
 
   public static load(spriteModifiers: BSpriteModifier[])
@@ -66,23 +89,6 @@ export class SpriteModifier
 
       SpriteModifier.spriteModifiersMap.set(spriteModifier.spriteModifierId, spriteModifier);
     }
-  }
-
-  public static getSpriteModifer(spriteModifierId: string): SpriteModifier
-  {
-      let returnValue = SpriteModifier.spriteModifiersMap.get(spriteModifierId);
-      
-      /* TODO everything should have a modifier
-      if (returnValue == null) 
-      {
-          returnValue = new SpriteModifier(spriteModifierId);
-          returnValue.cleanUp();
-          SpriteModifier.spriteModifiersMap.set(spriteModifierId, returnValue);
-      }
-      */
-
-      if (returnValue != undefined) return returnValue;
-      else throw new Error('SpriteModifier.getSpriteModifer : Sprite Modifier not found : ' + spriteModifierId);
   }
 }
 

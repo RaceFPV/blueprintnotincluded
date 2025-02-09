@@ -76,8 +76,9 @@ export class OniItem {
   zIndex: ZIndex = ZIndex.Building;
   overlay: Overlay = Overlay.Base;
 
-  constructor(id: string) {
-    this.id = id;
+  constructor(id: string = 'Unknown') {
+    this.id = id || 'Unknown';
+    this.name = id || 'Unknown';
     this.cleanUp();
   }
 
@@ -220,10 +221,10 @@ export class OniItem {
     elementOniItem.isElement = true;
     elementOniItem.zIndex = ZIndex.GasFront;
     elementOniItem.spriteGroup = new SpriteModifierGroup();
-    elementOniItem.spriteGroup.spriteModifiers.push(SpriteModifier.getSpriteModifer('element_tile_back'));
-    elementOniItem.spriteGroup.spriteModifiers.push(SpriteModifier.getSpriteModifer('gas_tile_front'));
-    elementOniItem.spriteGroup.spriteModifiers.push(SpriteModifier.getSpriteModifer('liquid_tile_front'));
-    elementOniItem.spriteGroup.spriteModifiers.push(SpriteModifier.getSpriteModifer('vacuum_tile_front'));
+    elementOniItem.spriteGroup.spriteModifiers.push(SpriteModifier.getSpriteModifier('element_tile_back'));
+    elementOniItem.spriteGroup.spriteModifiers.push(SpriteModifier.getSpriteModifier('gas_tile_front'));
+    elementOniItem.spriteGroup.spriteModifiers.push(SpriteModifier.getSpriteModifier('liquid_tile_front'));
+    elementOniItem.spriteGroup.spriteModifiers.push(SpriteModifier.getSpriteModifier('vacuum_tile_front'));
     elementOniItem.cleanUp();
     OniItem.oniItemsMap.set(elementOniItem.id, elementOniItem);
 
@@ -232,8 +233,8 @@ export class OniItem {
     infoOniItem.iconUrl = 'assets/images/ui/manual/info-indicator-icon.png';
     infoOniItem.zIndex = ZIndex.BuildingUse;
     infoOniItem.spriteGroup = new SpriteModifierGroup();
-    infoOniItem.spriteGroup.spriteModifiers.push(SpriteModifier.getSpriteModifer('info_back'));
-    for (let i = 0; i < 12; i++) infoOniItem.spriteGroup.spriteModifiers.push(SpriteModifier.getSpriteModifer('info_front_' + i));
+    infoOniItem.spriteGroup.spriteModifiers.push(SpriteModifier.getSpriteModifier('info_back'));
+    for (let i = 0; i < 12; i++) infoOniItem.spriteGroup.spriteModifiers.push(SpriteModifier.getSpriteModifier('info_front_' + i));
     infoOniItem.cleanUp();
     OniItem.oniItemsMap.set(infoOniItem.id, infoOniItem);
 
@@ -247,25 +248,43 @@ export class OniItem {
     return overlay == this.overlay
   }
 
-  public getCategoryFromItem(): BuildMenuCategory {
-    if (BuildMenuItem.buildMenuItems != null)
-      for (let buildMenuItem of BuildMenuItem.buildMenuItems)
-        if (buildMenuItem.buildingId == this.id)
-          return BuildMenuCategory.getCategory(buildMenuItem.category);
+  public getCategoryFromItem(): BuildMenuCategory | undefined {
+    try {
+        if (!BuildMenuItem.buildMenuItems) {
+            console.warn('[OniItem] BuildMenuItems is null');
+            return undefined;
+        }
+        
+        if (!this.id) {
+            console.warn('[OniItem] Attempted to get category for item with no id');
+            return undefined;
+        }
 
-    throw new Error('OniItem.getCategoryFromItem : Building not found');
+        for (let buildMenuItem of BuildMenuItem.buildMenuItems) {
+            if (buildMenuItem?.buildingId === this.id) {
+                return BuildMenuCategory.getCategory(buildMenuItem.category);
+            }
+        }
+
+        console.warn(`[OniItem] No category found for building: ${this.id}`);
+        return undefined;
+    } catch (error) {
+        console.warn(`[OniItem] Error getting category for ${this.id}:`, error);
+        return undefined;
+    }
   }
 
-  public static getOniItem(id: string): OniItem {
-    let returnValue = OniItem.oniItemsMap.get(id);
-    /*
-    if (returnValue == null)
-    {
-      returnValue = new OniItem(id);
-      returnValue.cleanUp();
+  public static getOniItem(id: string): OniItem | undefined {
+    if (!id) {
+        console.warn('[OniItem] Attempted to get item with null/undefined id');
+        return undefined;
     }
-*/
+    
+    let returnValue = OniItem.oniItemsMap.get(id);
     if (returnValue != undefined) return returnValue;
-    else throw new Error('OniItem.getOniItem : OniItem id not found : ' + id);
+    
+    // Log missing item but don't throw
+    console.log(`[OniItem] Item not found: ${id}, skipping`);
+    return undefined;
   }
 }

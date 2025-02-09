@@ -381,6 +381,20 @@ export class BlueprintService implements IObsBlueprintChange {
       })
       .subscribe();
   }
+
+  uiItemChanged(item: any) {
+    if (!item) {
+        console.warn('Invalid UI item');
+        return;
+    }
+
+    if (!item.id) {
+        console.warn('UI item missing ID:', item);
+        return;
+    }
+
+    // Rest of the handler
+  }
 }
 
 export class SaveBlueprintMessage {

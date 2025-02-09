@@ -6,6 +6,7 @@ import { UserModel, User, UserJwt } from "./models/user";
 import { UpdateBasedOn } from "./batch/update-based-on";
 import { BatchUtils } from "./batch/batch-utils";
 import { use } from "passport";
+import { ParsedQs } from 'qs';
 
 export class BlueprintController {
 
@@ -168,8 +169,9 @@ export class BlueprintController {
     else
     {
       // TODO checks here
-      let id = req.params.id;
-      let userId = req.query.userId;
+      const id = req.params.id as string;
+      const query = typeof req.query.q === 'string' ? req.query.q : undefined;
+      const isPublic = req.query.public === 'true';
 
       BlueprintModel.model.find({_id: id})
       .then((blueprints) => {
@@ -178,7 +180,7 @@ export class BlueprintController {
           let blueprint = blueprints[0];
 
           let likedByMe = false;
-          if (userId != null && blueprint.likes != null && blueprint.likes.indexOf(userId) != -1) likedByMe = true;
+          if (query != null && blueprint.likes != null && blueprint.likes.indexOf(query) != -1) likedByMe = true;
 
           let nbLikes = 0;
           if (blueprint.likes != null ) nbLikes = blueprint.likes.length;
@@ -209,8 +211,9 @@ export class BlueprintController {
     else
     {
       // TODO checks here
-      let id = req.params.id;
-      let userId = req.query.userId;
+      const id = req.params.id as string;
+      const query = typeof req.query.q === 'string' ? req.query.q : undefined;
+      const isPublic = req.query.public === 'true';
 
       BlueprintModel.model.find({_id: id})
       .then((blueprints) => {
@@ -242,8 +245,9 @@ export class BlueprintController {
     else
     {
       // TODO checks here
-      let id = req.params.id;
-      let userId = req.query.userId;
+      const id = req.params.id as string;
+      const query = typeof req.query.q === 'string' ? req.query.q : undefined;
+      const isPublic = req.query.public === 'true';
 
       BlueprintModel.model.find({_id: id})
       .then((blueprints) => {
@@ -276,8 +280,8 @@ export class BlueprintController {
     if (BlueprintModel.model == null) res.status(503).send();
     else
     {
-      let filterUserId: string;
-      let filterName: string;
+      let filterUserId: string | undefined;
+      let filterName: string | undefined;
       let getDuplicates: boolean;
       let dateFilter: Date = new Date();
 
@@ -286,12 +290,12 @@ export class BlueprintController {
       if (userJwt != null) userId = userJwt._id;
 
       try {
-        let dateInt = parseInt(req.query.olderthan);
+        const dateInt = typeof req.query.olderthan === 'string' ? parseInt(req.query.olderthan) : Date.now();
         dateFilter.setTime(dateInt);
 
-        filterUserId = req.query.filterUserId;
-        filterName = req.query.filterName;
-        getDuplicates = req.query.getDuplicates;
+        filterUserId = typeof req.query.filterUserId === 'string' ? req.query.filterUserId : undefined;
+        filterName = typeof req.query.filterName === 'string' ? req.query.filterName : undefined;
+        getDuplicates = req.query.getDuplicates === 'true';
 
       }
       catch (error) {

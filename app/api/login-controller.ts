@@ -39,6 +39,7 @@ export class LoginController {
           res.json({
             "token" : token
           });
+          user.lastLoginDate = new Date();
         } else {
           // If user is not found
           res.status(401).json();
@@ -62,7 +63,8 @@ export class LoginController {
       // Generate reset token
       const resetToken = randomBytes(32).toString('hex');
       user.resetToken = resetToken;
-      user.resetTokenExpiration = new Date(Date.now() + 3600000); // 1 hour
+      const resetTokenExpiration = new Date(Date.now() + 3600000);
+      user.resetTokenExpiration = resetTokenExpiration;
 
       await user.save();
       console.log('Reset token generated for user:', user.username);
@@ -88,7 +90,7 @@ export class LoginController {
     try {
       const user = await UserModel.model.findOne({
         resetToken: token,
-        resetTokenExpiration: { $gt: Date.now() }
+        resetTokenExpiration: { $gt: new Date() }
       });
 
       if (!user) {

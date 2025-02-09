@@ -1,4 +1,4 @@
-const { loadImage } = require('canvas');
+import { Canvas, loadImage } from 'canvas';
 const PIXI = require('../pixi-shim');
 require('../pixi-shim/lib/pixi-shim-node.js');
 
@@ -12,13 +12,14 @@ class NodeCanvasResource extends resources.BaseImageResource {
   }
 }
 
-export class PixiNodeUtil implements PixiUtil {
+export class PixiNodeUtil extends PixiUtil {
 
   pixiApp: PIXI.Application;
   pixiGraphicsBack: PIXI.Graphics;
   pixiGraphicsFront: PIXI.Graphics;
 
   constructor(options: any) {
+    super(options);
     this.pixiApp = new PIXI.Application(options);
     this.pixiGraphicsFront = this.getNewGraphics();
     this.pixiGraphicsBack = this.getNewGraphics();
@@ -43,8 +44,11 @@ export class PixiNodeUtil implements PixiUtil {
   getSpriteFrom(ressource: any) {
     return PIXI.Sprite.from(ressource);
   }
-  getNewBaseTexture(url: string) {
-    throw new Error('This should not be called on node : all textures should be preloaded')
+  getNewBaseTexture(url: string): PIXI.BaseTexture {
+    throw new Error('This should not be called on node: all textures should be preloaded');
+    // TypeScript needs a return statement even though this will never be reached
+    const canvas = new Canvas(1, 1);  // Now Canvas is properly imported
+    return new PIXI.BaseTexture(new NodeCanvasResource(canvas));
   }
   getNewTexture(baseTex: any, rectangle: any) {
     return new PIXI.Texture(baseTex, rectangle);
@@ -66,7 +70,7 @@ export class PixiNodeUtil implements PixiUtil {
     return this.pixiGraphicsFront;
   }
 
-  async initTextures() {
+  async initTextures(): Promise<void> {
     for (let k of ImageSource.keys) {
       let imageUrl = ImageSource.getUrl(k)!;
       let brt = await this.getImageFromCanvas(imageUrl);
@@ -183,9 +187,11 @@ export class PixiNodeUtil implements PixiUtil {
     graphics.drawRect(0, 0, 200, 200);
     graphics.endFill();
 
+    // Instead of using this directly, create a new PixiUtil instance
+    const pixiUtil = new PixiUtil();
     angularBlueprint.blueprintItems.map((item) => {
       item.updateTileables(angularBlueprint);
-      item.drawPixi(exportCamera, this);
+      item.drawPixi(exportCamera, pixiUtil);
     });
 
     let brt = this.getNewBaseRenderTexture({ width: thumbnailSize, height: thumbnailSize });

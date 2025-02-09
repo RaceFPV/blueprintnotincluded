@@ -13,7 +13,7 @@ export class SpriteModifierGroup {
     this.groupName = original.groupName;
 
     for (let spriteName of original.spriteNames) {
-      let spriteModifier = SpriteModifier.getSpriteModifer(spriteName);
+      let spriteModifier = SpriteModifier.getSpriteModifier(spriteName);
       if (spriteModifier != null) this.spriteModifiers.push(spriteModifier);
     }
   }

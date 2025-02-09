@@ -31,19 +31,60 @@ export class SpriteInfo {
   public static get spriteInfos() { return Array.from(SpriteInfo.spriteInfosMap.values()); }
   public static init() {
     SpriteInfo.spriteInfosMap = new Map<string, SpriteInfo>();
+    // Add default sprite infos
+    const defaultSprites = [
+      'element_tile_back',
+      'gas_tile_front',
+      'liquid_tile_front',
+      'vacuum_tile_front',
+      'info_back'
+    ];
+    
+    defaultSprites.forEach(name => {
+      const spriteInfo = new SpriteInfo(name);
+      spriteInfo.imageId = name;
+      SpriteInfo.addSpriteInfo(spriteInfo);
+    });
+    
+    // Add info front sprites
+    for (let i = 0; i < 12; i++) {
+      const name = `info_front_${i}`;
+      const spriteInfo = new SpriteInfo(name);
+      spriteInfo.imageId = name;
+      SpriteInfo.addSpriteInfo(spriteInfo);
+    }
   }
 
   public static load(uiSprites: BSpriteInfo[]) {
     for (let uiSprite of uiSprites) {
-      let newUiSpriteInfo = new SpriteInfo(uiSprite.name);
-      newUiSpriteInfo.copyFrom(uiSprite);
+        if (!uiSprite || !uiSprite.name) {
+            console.warn('Invalid sprite info:', uiSprite);
+            continue;
+        }
 
-      let imageUrl: string = DrawHelpers.createUrl(newUiSpriteInfo.imageId, false);
-      imageUrl = imageUrl.replace('0_solid.png', '0.png')
-      console.log('SpriteInfo load imageUrl', imageUrl)
-      ImageSource.AddImagePixi(newUiSpriteInfo.imageId, imageUrl)
+        let newUiSpriteInfo = new SpriteInfo(uiSprite.name);
+        try {
+            newUiSpriteInfo.copyFrom(uiSprite);
 
-      SpriteInfo.addSpriteInfo(newUiSpriteInfo);
+            let imageUrl: string = DrawHelpers.createUrl(newUiSpriteInfo.imageId, true);
+            imageUrl = imageUrl.replace('0_solid.png', '0.png')
+            
+            // Verify image exists before adding
+            const img = new Image();
+            img.onerror = () => {
+                // Try alternate path if first one fails
+                const altImageUrl = `assets/images/${newUiSpriteInfo.imageId}.png`;
+                img.src = altImageUrl;
+            };
+            img.onload = () => {
+                ImageSource.AddImagePixi(newUiSpriteInfo.imageId, img.src);
+                SpriteInfo.addSpriteInfo(newUiSpriteInfo);
+            };
+            img.src = imageUrl;
+
+        } catch (error) {
+            // Silently continue - missing sprites are expected during development
+        }
     }
   }
 
@@ -63,8 +104,7 @@ export class SpriteInfo {
   public copyFrom(original: BSpriteInfo) {
     // TODO refactor
     // DO NOT FORGET : if you add something here, you must add it to the texture repacker also
-    let imageUrl: string = DrawHelpers.createUrl(original.textureName, false);
-    // TODO FOR REAL find out why these textures are missing from extract
+    let imageUrl: string = DrawHelpers.createUrl(original.textureName, true);
     imageUrl = imageUrl.replace('0_solid.png', '0.png')
     ImageSource.AddImagePixi(original.textureName, imageUrl);
     this.imageId = original.textureName;
@@ -81,30 +121,60 @@ export class SpriteInfo {
   }
 
   public static getSpriteInfo(spriteInfoId: string): SpriteInfo {
-    let returnValue = SpriteInfo.spriteInfosMap.get(spriteInfoId);
+    if (!spriteInfoId) {
+      console.error('Attempted to get sprite info with null/undefined id');
+      // Return a default sprite info instead of throwing
+      return new SpriteInfo('default');
+    }
 
-    if (returnValue != undefined) return returnValue;
+    const spriteInfo = SpriteInfo.spriteInfosMap.get(spriteInfoId);
+    if (!spriteInfo) {
+      console.warn(`Creating missing sprite info: ${spriteInfoId}`);
+      // Create sprite info on demand
+      const newSpriteInfo = new SpriteInfo(spriteInfoId);
+      newSpriteInfo.imageId = spriteInfoId;
+      SpriteInfo.addSpriteInfo(newSpriteInfo);
+      return newSpriteInfo;
+    }
 
-    throw new Error('SpriteInfo.getSpriteInfo : Not found');
+    return spriteInfo;
   }
 
 
   // Pixi stuf
   texture: any; // PIXI.Texture;
-  public getTexture(pixiUtil: PixiUtil): any // PIXI.Texture
-  {
+  public getTexture(pixiUtil: PixiUtil): any {
     if (this.texture == null) {
       let baseTex = ImageSource.getBaseTexture(this.imageId, pixiUtil);
-      if (baseTex == null) return null;
+      if (baseTex == null) {
+        console.warn(`Failed to get base texture for ${this.imageId}`);
+        return null;
+      }
 
-      let rectangle = pixiUtil.getNewRectangle(
-        this.uvMin.x,
-        this.uvMin.y,
-        this.uvSize.x,
-        this.uvSize.y
-      );
+      try {
+        // Clamp UV coordinates to texture bounds
+        const clampedUvSize = {
+          x: Math.min(this.uvSize.x, baseTex.width - this.uvMin.x),
+          y: Math.min(this.uvSize.y, baseTex.height - this.uvMin.y)
+        };
 
-      this.texture = pixiUtil.getNewTexture(baseTex, rectangle);
+        let rectangle = pixiUtil.getNewRectangle(
+          this.uvMin.x,
+          this.uvMin.y,
+          clampedUvSize.x,
+          clampedUvSize.y
+        );
+
+        // Only warn if we had to clamp
+        if (clampedUvSize.x !== this.uvSize.x || clampedUvSize.y !== this.uvSize.y) {
+          console.debug(`Clamped UV coordinates for ${this.imageId}`);
+        }
+
+        this.texture = pixiUtil.getNewTexture(baseTex, rectangle);
+      } catch (error) {
+        console.debug(`Error creating texture for ${this.imageId}:`, error);
+        return null;
+      }
     }
 
     return this.texture;

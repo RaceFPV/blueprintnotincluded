@@ -22,11 +22,22 @@ export class BSpriteInfo
     returnValue.isIcon = source.isIcon;
     returnValue.isInputOutput = source.isInputOutput;
 
-    returnValue.uvMin = Vector2.cloneNullToZero(source.uvMin);
+    returnValue.uvMin = source.uvMin ? new Vector2(source.uvMin.x, source.uvMin.y) : Vector2.zero();
     returnValue.uvSize = Vector2.cloneNullToZero(source.uvSize);
     returnValue.realSize = Vector2.cloneNullToZero(source.realSize);
     returnValue.pivot = Vector2.cloneNullToZero(source.pivot);
 
     return returnValue;
+  }
+
+  public copyFrom(source: BSpriteInfo): void {
+    let returnValue = new BSpriteInfo();
+    returnValue.uvMin = source.uvMin ? new Vector2(source.uvMin.x, source.uvMin.y) : Vector2.zero();
+    returnValue.textureName = source.textureName;
+    returnValue.isIcon = source.isIcon;
+    returnValue.isInputOutput = source.isInputOutput;
+    returnValue.uvSize = Vector2.cloneNullToZero(source.uvSize);
+    returnValue.realSize = Vector2.cloneNullToZero(source.realSize);
+    returnValue.pivot = Vector2.cloneNullToZero(source.pivot);
   }
 }
