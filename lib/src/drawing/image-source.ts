@@ -2,71 +2,76 @@ import { PixiUtil } from "./pixi-util";
 
 export class ImageSource
 {
-    imageId: string;
-    imageUrl: string;
+    private static imageSourcesMapPixi: Map<string, ImageSource> = new Map();
+    private static imageMap: Map<string, string> = new Map();
+    private static baseTextureMap: Map<string, any> = new Map();
+    private baseTexture: any; // PIXI.BaseTexture | undefined;
 
-    constructor(imageId: string, imageUrl: string)
+    constructor(public imageId: string, public imageUrl: string)
     {
         this.imageId = imageId;
         this.imageUrl = imageUrl;
     }
 
     // PIXI stuff
-    private static imageSourcesMapPixi: Map<string, ImageSource>;
     public static get keys() { return Array.from(ImageSource.imageSourcesMapPixi.keys()); }
-    private baseTexture: any; // PIXI.BaseTexture | undefined;
     public static init()
     { 
-      ImageSource.imageSourcesMapPixi = new Map<string, ImageSource>();
+      ImageSource.imageSourcesMapPixi = new Map();
+      ImageSource.imageMap = new Map();
+      ImageSource.baseTextureMap = new Map();
     }
 
-    public static AddImagePixi(imageId: string, imageUrl: string)
+    public static AddImagePixi(id: string, url: string)
     {
-      let newImageSource = new ImageSource(imageId, imageUrl);
-      ImageSource.imageSourcesMapPixi.set(newImageSource.imageId, newImageSource);
+      const newImageSource = new ImageSource(id, url);
+      ImageSource.imageSourcesMapPixi.set(id, newImageSource);
+      ImageSource.imageMap.set(id, url);
     }
 
     public static isTextureLoaded(imageId: string): boolean {
-      let imageSource: ImageSource | undefined = ImageSource.imageSourcesMapPixi.get(imageId);
-
-      if (imageSource == null) return false;
-
+      const imageSource = ImageSource.imageSourcesMapPixi.get(imageId);
+      if (!imageSource) return false;
       return imageSource.baseTexture != null;
     }
 
-    public static getBaseTexture(imageId: string, pixiUtil: PixiUtil): any // PIXI.BaseTexture | undefined
+    public static getBaseTexture(id: string, pixiUtil: PixiUtil): any
     {
-      let imageSource: ImageSource | undefined = ImageSource.imageSourcesMapPixi.get(imageId);
-
-      if (imageSource == null) return undefined;
-
-      if (imageSource.baseTexture == null) {
-        imageSource.baseTexture = pixiUtil.getNewBaseTexture(imageSource.imageUrl);
+      // First try to get preloaded base texture
+      const baseTexture = ImageSource.baseTextureMap.get(id);
+      if (baseTexture) {
+        return baseTexture;
       }
-     
-      return imageSource.baseTexture;
+
+      // Fall back to creating new base texture
+      const imageUrl = ImageSource.imageMap.get(id);
+      if (!imageUrl) {
+        console.warn(`No image URL found for ${id}`);
+        return null;
+      }
+      
+      const newBaseTexture = pixiUtil.getNewBaseTexture(imageUrl);
+      ImageSource.baseTextureMap.set(id, newBaseTexture);
+      return newBaseTexture;
     }
 
-    public static setBaseTexture(imageId: string, baseTexture: any /*PIXI.BaseTexture*/)
+    public static setBaseTexture(id: string, baseTexture: any)
     {
-      let imageSource: ImageSource | undefined = ImageSource.imageSourcesMapPixi.get(imageId);
-
-      if (imageSource == null) return;
-
-      if (imageSource.baseTexture == null) {
-        imageSource.baseTexture = baseTexture;
-      }
+      ImageSource.baseTextureMap.set(id, baseTexture);
     }
 
-    public static getUrl(imageId: string) {
-      let imageSource: ImageSource | undefined = ImageSource.imageSourcesMapPixi.get(imageId);
-      if (imageSource == null) throw new Error('ImageSource.getUrl : imageId not found : ' + imageId);
+    public static getUrl(imageId: string): string {
+      const imageSource = ImageSource.imageSourcesMapPixi.get(imageId);
+      if (!imageSource) {
+        throw new Error('ImageSource.getUrl : imageId not found : ' + imageId);
+      }
       return imageSource.imageUrl;
     }
 
     public static setUrl(imageId: string, imageUrl: string) {
-      let imageSource: ImageSource | undefined = ImageSource.imageSourcesMapPixi.get(imageId);
-
-      if (imageSource != null) imageSource.imageUrl = imageUrl;
+      const imageSource = ImageSource.imageSourcesMapPixi.get(imageId);
+      if (imageSource) {
+        imageSource.imageUrl = imageUrl;
+      }
     }
 }

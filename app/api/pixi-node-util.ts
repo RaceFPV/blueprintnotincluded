@@ -25,6 +25,7 @@ class NodeCanvasResource extends resources.BaseImageResource {
 }
 
 export class PixiNodeUtil extends PixiUtil {
+  private static imageCache: Map<string, any> = new Map();
 
   pixiApp: PIXI.Application;
   pixiGraphicsBack: PIXI.Graphics;
@@ -53,8 +54,14 @@ export class PixiNodeUtil extends PixiUtil {
   getNewContainer() {
     return new PIXI.Container();
   }
-  getSpriteFrom(ressource: any) {
-    return PIXI.Sprite.from(ressource);
+  getSpriteFrom(resource: any) {
+    if (!resource) {
+      console.warn('Attempted to create sprite from null resource');
+      // Return a 1x1 transparent sprite instead of failing
+      const emptyTexture = new PIXI.Texture(new PIXI.BaseTexture(new NodeCanvasResource(new Canvas(1, 1))));
+      return new PIXI.Sprite(emptyTexture);
+    }
+    return PIXI.Sprite.from(resource);
   }
   getNewBaseTexture(url: string): PIXI.BaseTexture {
     throw new Error('This should not be called on node: all textures should be preloaded');
@@ -83,34 +90,58 @@ export class PixiNodeUtil extends PixiUtil {
   }
 
   async initTextures(): Promise<void> {
+    console.log('Starting texture initialization...');
+    const total = ImageSource.keys.length;
+    let processed = 0;
+
     for (let k of ImageSource.keys) {
-      let imageUrl = ImageSource.getUrl(k)!;
-      let brt = await this.getImageFromCanvas(imageUrl);
-      ImageSource.setBaseTexture(k, brt);
+      try {
+        let imageUrl = ImageSource.getUrl(k);
+        if (!imageUrl) {
+          console.warn(`No URL found for texture: ${k}`);
+          continue;
+        }
+
+        let brt = await this.getImageFromCanvas(imageUrl);
+        if (brt) {
+          ImageSource.setBaseTexture(k, brt);
+        }
+        
+        processed++;
+        if (processed % 10 === 0) { // Log progress every 10 textures
+          console.log(`Processed ${processed}/${total} textures`);
+        }
+      } catch (error) {
+        console.warn(`Failed to initialize texture ${k}:`, error);
+        continue; // Skip this texture but continue with others
+      }
     }
+    console.log(`Texture initialization complete. Processed ${processed}/${total} textures`);
   }
 
   async getImageFromCanvas(path: string) {
-    const originalPath = path;
-    const frontendPath = path.replace(/^assets\//, 'frontend/src/assets/');
+    // Try different possible paths
+    const paths = [
+      path,
+      path.replace(/^assets\/images\/ui\//, 'assets/images/'),
+      path.replace(/^assets\//, 'frontend/src/assets/'),
+      path.replace(/^assets\/images\/ui\//, 'frontend/src/assets/images/')
+    ];
     
-    try {
-      console.log('loading image from file : ' + originalPath);
-      let image = await loadImage(originalPath);
-      let ressource = new NodeCanvasResource(image);
-      let bt = new PIXI.BaseTexture(ressource);
-      return bt;
-    } catch (err) {
+    for (const tryPath of paths) {
       try {
-        console.log('loading image from frontend path: ' + frontendPath);
-        let image = await loadImage(frontendPath);
-        let ressource = new NodeCanvasResource(image);
-        let bt = new PIXI.BaseTexture(ressource);
-        return bt;
-      } catch (err2) {
-        throw new Error(`Could not load image from either ${originalPath} or ${frontendPath}`);
+        const image = await loadImage(tryPath);
+        const resource = new NodeCanvasResource(image);
+        return new PIXI.BaseTexture(resource);
+      } catch (err) {
+        // Continue silently to next path
+        continue;
       }
     }
+    
+    // If we get here, none of the paths worked - return a 1x1 transparent texture
+    console.warn(`Could not load image: ${path}`);
+    return new PIXI.BaseTexture(new NodeCanvasResource(new Canvas(1, 1)));
   }
 
   async getImageWhite(path: string) {
@@ -220,5 +251,51 @@ export class PixiNodeUtil extends PixiUtil {
 
     //console.log(base64)
     return base64;
+  }
+
+  async getImage(path: string): Promise<any> {
+    // Check cache first
+    if (PixiNodeUtil.imageCache.has(path)) {
+      return PixiNodeUtil.imageCache.get(path);
+    }
+
+    try {
+      // Only try loading from assets/images path
+      const imagePath = path.includes('assets/images') ? path : `assets/images/${path}`;
+      console.log('Loading image:', imagePath);
+      
+      const image = await loadImage(imagePath);
+      PixiNodeUtil.imageCache.set(path, image);
+      return image;
+    } catch (error) {
+      console.error(`Failed to load image: ${path}`, error);
+      throw error;
+    }
+  }
+
+  // Add method to clear cache (useful for cleanup)
+  static clearImageCache() {
+    PixiNodeUtil.imageCache.clear();
+  }
+
+  public async createBaseTexture(base64Image: string): Promise<any> {
+    try {
+      // Remove the data URL prefix if present
+      const base64Data = base64Image.replace(/^data:image\/png;base64,/, '');
+      const imageBuffer = Buffer.from(base64Data, 'base64');
+      
+      // Load image directly with node-canvas
+      const image = await loadImage(imageBuffer);
+      const canvas = new Canvas(image.width, image.height);
+      const ctx = canvas.getContext('2d');
+      ctx.drawImage(image, 0, 0);
+      
+      // Create PIXI base texture from canvas
+      const resource = new NodeCanvasResource(canvas);
+      return new PIXI.BaseTexture(resource);
+    } catch (error) {
+      console.error('Error creating base texture:', error);
+      throw error;
+    }
   }
 }

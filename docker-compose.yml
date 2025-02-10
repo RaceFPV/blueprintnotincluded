@@ -4,6 +4,9 @@ services:
     image: racefpv/bpni:latest
     container_name: bpni
     build: .
+    volumes:
+      - ./assets:/app/bpni/assets
+      - ./frontend/src/assets:/app/bpni/frontend/src/assets
     environment:
       - ENV_NAME=development
       - BROWSE_INCREMENT=100

@@ -3,11 +3,13 @@ import { BSpriteInfo } from "../b-export/b-sprite-info";
 import { DrawHelpers } from "./draw-helpers";
 import { ImageSource } from "./image-source";
 import { PixiUtil } from "./pixi-util";
+import fs from 'fs';
+import { BExport } from "../b-export/b-export";
 
 export class SpriteInfo {
   public spriteInfoId: string;
   public imageId: string = '';
-
+  
   // New stuff
   public uvMin: Vector2 = new Vector2();
   public uvSize: Vector2 = new Vector2();
@@ -102,12 +104,11 @@ export class SpriteInfo {
   }
 
   public copyFrom(original: BSpriteInfo) {
-    // TODO refactor
-    // DO NOT FORGET : if you add something here, you must add it to the texture repacker also
     let imageUrl: string = DrawHelpers.createUrl(original.textureName, true);
     imageUrl = imageUrl.replace('0_solid.png', '0.png')
     ImageSource.AddImagePixi(original.textureName, imageUrl);
     this.imageId = original.textureName;
+    
     let uvMin = Vector2.clone(original.uvMin); if (uvMin == null) uvMin = new Vector2();
     this.uvMin = uvMin;
     let uvSize = Vector2.clone(original.uvSize); if (uvSize == null) uvSize = new Vector2();
@@ -123,25 +124,46 @@ export class SpriteInfo {
   public static getSpriteInfo(spriteInfoId: string): SpriteInfo {
     if (!spriteInfoId) {
       console.error('Attempted to get sprite info with null/undefined id');
-      // Return a default sprite info instead of throwing
       return new SpriteInfo('default');
     }
 
     const spriteInfo = SpriteInfo.spriteInfosMap.get(spriteInfoId);
     if (!spriteInfo) {
-      console.warn(`Creating missing sprite info: ${spriteInfoId}`);
-      // Create sprite info on demand
-      const newSpriteInfo = new SpriteInfo(spriteInfoId);
-      newSpriteInfo.imageId = spriteInfoId;
-      SpriteInfo.addSpriteInfo(newSpriteInfo);
-      return newSpriteInfo;
+      // Look up the sprite info in the database
+      try {
+        const rawdata = fs.readFileSync('./assets/database/database.json').toString();
+        const database: BExport = JSON.parse(rawdata);
+        
+        const databaseSprite = database.uiSprites.find(s => s.name === spriteInfoId);
+        if (!databaseSprite) {
+          if (process.env.DEBUG) {
+            console.warn(`No sprite info found in database for: ${spriteInfoId}`);
+          }
+          return new SpriteInfo('default');
+        }
+
+        // Only log if DEBUG and has valid UV coordinates
+        if (process.env.DEBUG && 
+            databaseSprite.uvSize && 
+            databaseSprite.uvSize.x > 0 && 
+            databaseSprite.uvSize.y > 0) {
+          console.log(`Found valid sprite: ${spriteInfoId}`);
+        }
+        
+        const newSpriteInfo = new SpriteInfo(spriteInfoId);
+        newSpriteInfo.copyFrom(databaseSprite);
+        SpriteInfo.addSpriteInfo(newSpriteInfo);
+        return newSpriteInfo;
+      } catch (error) {
+        console.error(`Error loading sprite info for ${spriteInfoId}:`, error);
+        return new SpriteInfo('default');
+      }
     }
 
     return spriteInfo;
   }
 
-
-  // Pixi stuf
+  // Pixi stuff
   texture: any; // PIXI.Texture;
   public getTexture(pixiUtil: PixiUtil): any {
     if (this.texture == null) {
@@ -152,36 +174,22 @@ export class SpriteInfo {
       }
 
       try {
-        // Clamp UV coordinates to texture bounds
-        const clampedUvSize = {
-          x: Math.min(this.uvSize.x, baseTex.width - this.uvMin.x),
-          y: Math.min(this.uvSize.y, baseTex.height - this.uvMin.y)
-        };
-
         let rectangle = pixiUtil.getNewRectangle(
           this.uvMin.x,
           this.uvMin.y,
-          clampedUvSize.x,
-          clampedUvSize.y
+          this.uvSize.x,
+          this.uvSize.y
         );
-
-        // Only warn if we had to clamp
-        if (clampedUvSize.x !== this.uvSize.x || clampedUvSize.y !== this.uvSize.y) {
-          console.debug(`Clamped UV coordinates for ${this.imageId}`);
-        }
-
         this.texture = pixiUtil.getNewTexture(baseTex, rectangle);
       } catch (error) {
         console.debug(`Error creating texture for ${this.imageId}:`, error);
         return null;
       }
     }
-
     return this.texture;
   }
 
-  public getTextureWithBleed(bleed: number, realBleed: Vector2 = new Vector2(), pixiUtil: PixiUtil): any // PIXI.Texture
-  {
+  public getTextureWithBleed(bleed: number, realBleed: Vector2 = new Vector2(), pixiUtil: PixiUtil): any {
     let baseTex = ImageSource.getBaseTexture(this.imageId, pixiUtil);
     if (baseTex == null) return null;
 
@@ -201,5 +209,36 @@ export class SpriteInfo {
     realBleed.y = this.uvMin.y - rectangle.y;
 
     return pixiUtil.getNewTexture(baseTex, rectangle);
+  }
+
+  public getTextureFromMainTexture(pixiUtil: PixiUtil, mainTextureName: string): any {
+    if (this.texture == null) {
+      // Validate sprite info
+      if (!this.uvSize || this.uvSize.x <= 0 || this.uvSize.y <= 0) {
+        if (process.env.DEBUG) {
+          console.warn(`Invalid UV size for ${this.imageId}`);
+        }
+        return null;
+      }
+
+      let baseTex = ImageSource.getBaseTexture(mainTextureName, pixiUtil);
+      if (baseTex == null) return null;
+
+      try {
+        let rectangle = pixiUtil.getNewRectangle(
+          this.uvMin.x,
+          this.uvMin.y,
+          this.uvSize.x,
+          this.uvSize.y
+        );
+        this.texture = pixiUtil.getNewTexture(baseTex, rectangle);
+      } catch (error) {
+        if (process.env.DEBUG) {
+          console.debug(`Error creating texture for ${this.imageId}:`, error);
+        }
+        return null;
+      }
+    }
+    return this.texture;
   }
 }

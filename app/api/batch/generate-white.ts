@@ -48,70 +48,102 @@ export class GenerateWhite {
   }
 
   async generateWhite(database: BExport) {
+    try {
+      let pixiNodeUtil = new PixiNodeUtil({ forceCanvas: true, preserveDrawingBuffer: true });
 
-    let pixiNodeUtil = new PixiNodeUtil({ forceCanvas: true, preserveDrawingBuffer: true });
+      let sourceSpriteModifiers = database.spriteModifiers.filter((s) => { 
+        return s.tags.indexOf(SpriteTag.solid) != -1; 
+      });
 
-    let sourceSpriteModifiers = database.spriteModifiers.filter((s) => { return s.tags.indexOf(SpriteTag.solid) != -1; })
+      let sourceTextures: string[] = [];
 
-    let sourceTextures: string[] = [];
+      for (let sourceSpriteModifier of sourceSpriteModifiers) {
+        try {
+          let sourceSpriteInfo = database.uiSprites.find((s) => { 
+            return s.name == sourceSpriteModifier.spriteInfoName; 
+          });
+          
+          if (!sourceSpriteInfo) {
+            console.warn(`Warning: Skipping sprite modifier - spriteInfoName not found: ${sourceSpriteModifier.spriteInfoName}`);
+            continue;
+          }
 
-    for (let sourceSpriteModifier of sourceSpriteModifiers) {
-      let sourceSpriteInfo = database.uiSprites.find((s) => { return s.name == sourceSpriteModifier.spriteInfoName; })
-      if (sourceSpriteInfo == undefined) throw new Error('GenerateWhite.generateWhite : spriteInfoName not found : ' + sourceSpriteModifier.spriteInfoName);
+          if (sourceTextures.indexOf(sourceSpriteInfo.textureName) == -1) {
+            sourceTextures.push(sourceSpriteInfo.textureName);
+          }
 
-      if (sourceTextures.indexOf(sourceSpriteInfo.textureName) == -1) sourceTextures.push(sourceSpriteInfo.textureName);
+          let spriteModifierWhite = BSpriteModifier.clone(sourceSpriteModifier);
+          spriteModifierWhite.name = spriteModifierWhite.name + '_white';
+          spriteModifierWhite.spriteInfoName = spriteModifierWhite.spriteInfoName + '_white';
+          spriteModifierWhite.tags.push(SpriteTag.white);
+          database.spriteModifiers.push(spriteModifierWhite);
 
-      let spriteModifierWhite = BSpriteModifier.clone(sourceSpriteModifier);
-      spriteModifierWhite.name = spriteModifierWhite.name + '_white';
-      spriteModifierWhite.spriteInfoName = spriteModifierWhite.spriteInfoName + '_white';
-      spriteModifierWhite.tags.push(SpriteTag.white);
-      database.spriteModifiers.push(spriteModifierWhite);
+          let spriteInfoWhite: BSpriteInfo | undefined = undefined;
+          for (let spriteInfo of database.uiSprites) {
+            if (spriteInfo.name == sourceSpriteModifier.spriteInfoName) {
+              spriteInfoWhite = BSpriteInfo.clone(spriteInfo);
+            }
+          }
 
-      let spriteInfoWhite: BSpriteInfo | undefined = undefined;
-      for (let spriteInfo of database.uiSprites)
-        if (spriteInfo.name == sourceSpriteModifier.spriteInfoName)
-          spriteInfoWhite = BSpriteInfo.clone(spriteInfo);
+          if (spriteInfoWhite != undefined) {
+            spriteInfoWhite.name = spriteModifierWhite.spriteInfoName;
+            spriteInfoWhite.textureName = spriteInfoWhite.textureName + '_white';
+            database.uiSprites.push(spriteInfoWhite);
+          }
 
-      if (spriteInfoWhite != undefined) {
-        spriteInfoWhite.name = spriteModifierWhite.spriteInfoName;
-        spriteInfoWhite.textureName = spriteInfoWhite.textureName + '_white';
-        database.uiSprites.push(spriteInfoWhite)
+          for (let building of database.buildings) {
+            if (building.sprites.spriteNames.indexOf(sourceSpriteModifier.name) != -1) {
+              building.sprites.spriteNames.push(spriteModifierWhite.name);
+            }
+          }
+        } catch (error) {
+          console.warn(`Warning: Error processing sprite modifier ${sourceSpriteModifier.name}:`, error);
+          continue;
+        }
       }
 
-      for (let building of database.buildings)
-        if (building.sprites.spriteNames.indexOf(sourceSpriteModifier.name) != -1)
-          building.sprites.spriteNames.push(spriteModifierWhite.name);
-    }
+      for (let sourceTexture of sourceTextures) {
+        try {
+          if (!ImageSource.isTextureLoaded(sourceTexture)) {
+            let imageUrl = ImageSource.getUrl(sourceTexture);
+            let brt = await pixiNodeUtil.getImageWhite(imageUrl);
+            ImageSource.setBaseTexture(sourceTexture, brt);
+          }
 
-    for (let sourceTexture of sourceTextures) {
+          let baseTexture = ImageSource.getBaseTexture(sourceTexture, pixiNodeUtil);
+          let texture = pixiNodeUtil.getNewTextureWhole(baseTexture);
+          let brt = pixiNodeUtil.getNewBaseRenderTexture({ width: texture.width, height: texture.height });
+          let rt = pixiNodeUtil.getNewRenderTexture(brt);
+          let sprite = pixiNodeUtil.getSpriteFrom(texture);
 
-      if (!ImageSource.isTextureLoaded(sourceTexture)) {
-        let imageUrl = ImageSource.getUrl(sourceTexture);
-        let brt = await pixiNodeUtil.getImageWhite(imageUrl);
-        ImageSource.setBaseTexture(sourceTexture, brt);
+          pixiNodeUtil.pixiApp.renderer.render(sprite, rt);
+          let base64: string = pixiNodeUtil.pixiApp.renderer.plugins.extract.canvas(rt).toDataURL();
+          let white = await jimp.read(Buffer.from(base64.replace(/^data:image\/png;base64,/, ""), 'base64'));
+          let whitePath = './assets/images/' + sourceTexture + '_white.png';
+          console.log('saving white to ' + whitePath);
+          white.write(whitePath);
+
+          // Free memory
+          brt.destroy();
+          brt = null;
+          rt.destroy();
+          rt = null;
+          sprite.destroy();
+          sprite = null;
+          global.gc && global.gc();
+        } catch (error) {
+          console.warn(`Warning: Error processing texture ${sourceTexture}:`, error);
+          continue;
+        }
       }
 
-      let baseTexture = ImageSource.getBaseTexture(sourceTexture, pixiNodeUtil);
-
-      let texture = pixiNodeUtil.getNewTextureWhole(baseTexture);
-
-      let brt = pixiNodeUtil.getNewBaseRenderTexture({ width: texture.width, height: texture.height });
-      let rt = pixiNodeUtil.getNewRenderTexture(brt);
-
-      let sprite = pixiNodeUtil.getSpriteFrom(texture);
-
-      pixiNodeUtil.pixiApp.renderer.render(sprite, rt);
-      let base64: string = pixiNodeUtil.pixiApp.renderer.plugins.extract.canvas(rt).toDataURL();
-      let white = await jimp.read(Buffer.from(base64.replace(/^data:image\/png;base64,/, ""), 'base64'));
-      let whitePath = './assets/images/' + sourceTexture + '_white.png';
-      console.log('saving white to ' + whitePath);
-      white.write(whitePath);
-
+      let data = JSON.stringify(database, null, 2);
+      fs.writeFileSync('./assets/database/database-white.json', data);
+      console.log('done generating white');
+    } catch (error) {
+      console.error('Error in generateWhite:', error);
+      throw error;
     }
-
-    let data = JSON.stringify(database, null, 2);
-    fs.writeFileSync('./assets/database/database-white.json', data);
-    console.log('done generating white');
   }
 
 }

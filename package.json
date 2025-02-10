@@ -15,7 +15,7 @@
     "serve:prod": "(cd build && node ./app/server.js)",
     "seed": "node --expose_gc ./build/app/api/batch/extract-export.js",
     "extract": "tsc && node --expose_gc ./build/app/api/batch/extract-export.js",
-    "extract:clean": "rm -rf export && rm -rf assets/images && rm -rf assets/images/ui && rm -rf frontend/src/assets/images && rm -rf frontend/src/assets/images/ui && rm -rf build && mkdir -p assets/images/ui && mkdir -p frontend/src/assets/images/ui && npm run extract",
+    "extract:clean": "rm -rf export assets/images assets/database frontend/src/assets/images frontend/src/assets/database build && mkdir -p assets/images/ui assets/database frontend/src/assets/images/ui frontend/src/assets/database && npm run extract",
     "extract:debug": "tsc && node --expose_gc --inspect-brk ./build/app/api/batch/extract-export.js",
     "updateBasedOn": "tsc && node ./build/api/batch/update-based-on.js",
     "updatePositionCorrection": "tsc && node ./build/api/batch/update-position-correction.js",
