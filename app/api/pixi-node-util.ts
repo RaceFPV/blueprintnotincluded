@@ -1,4 +1,16 @@
 import { Canvas, loadImage } from 'canvas';
+import { JSDOM } from 'jsdom';
+
+// Set up JSDOM environment before requiring PIXI
+const dom = new JSDOM('<!DOCTYPE html>');
+global.window = dom.window as any;
+global.document = dom.window.document;
+global.navigator = dom.window.navigator;
+global.Image = dom.window.Image;
+global.HTMLCanvasElement = dom.window.HTMLCanvasElement;
+global.HTMLImageElement = dom.window.HTMLImageElement;
+
+// Now require PIXI after environment is set up
 const PIXI = require('../pixi-shim');
 require('../pixi-shim/lib/pixi-shim-node.js');
 
