@@ -6,6 +6,7 @@ import { MdbBuilding } from "../io/mdb/mdb-building";
 import { CameraService } from "../drawing/camera-service";
 import { PixiUtil } from "../drawing/pixi-util";
 import { BuildableElement } from "../b-export/b-element";
+import * as PIXI from 'pixi.js-legacy';
 export declare class BlueprintItemWire extends BlueprintItem {
     static defaultConnections: number;
     private connections_;
@@ -22,6 +23,7 @@ export declare class BlueprintItemWire extends BlueprintItem {
     modulateBuildCandidateTint(camera: CameraService): void;
     private updateDrawPartVisibilityBasedOnConnections;
     drawPixi(camera: CameraService, pixiUtil: PixiUtil): void;
+    drawWireCircle(graphics: PIXI.Graphics, color: number, x: number, y: number, radius: number): void;
     toMdbBuilding(): MdbBuilding;
     toBniBuilding(): BniBuilding;
     updateTileables(blueprint: Blueprint): void;

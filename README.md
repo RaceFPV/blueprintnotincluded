@@ -28,7 +28,7 @@ Run the image and backend
 Visit http://localhost:3000
 
 ## Image reconstruction
-Export iamges from oniextract2020
+Export images from oniextract2020
 Copy export/images/ into /frontend/src/assets/images
 zip assets/database/database.json
 copy zip to frontend/src/assets/database

@@ -380,14 +380,19 @@ export class GenerateGroups {
             const spriteInfo = SpriteInfo.getSpriteInfo(spriteModifier.spriteInfoName);
             if (spriteInfo.spriteInfoId === 'default') continue;
 
-            // Less restrictive filtering - only exclude connection sprites
+            // Debug output to see what sprites we're processing
+            console.log(`Processing sprite for ${oniItem.id}:`, {
+              name: spriteModifier.spriteInfoName,
+              tags: spriteModifier.tags,
+              hasTexture: !!spriteInfo.getTextureFromMainTexture(pixiNodeUtil, buildingInDatabase.textureName)
+            });
+
+            // Modified sprite filtering - only exclude connection sprites
             if (spriteModifier.tags.indexOf(SpriteTag.connection) === -1) {
               spritesToGroup.push(spriteModifier);
             }
           } catch (error) {
-            if (process.env.DEBUG) {
-              console.warn(`Error processing sprite modifier in ${oniItem.id}:`, error);
-            }
+            console.warn(`Error processing sprite modifier in ${oniItem.id}:`, error);
           }
         }
 
@@ -409,20 +414,30 @@ export class GenerateGroups {
 
           let indexDrawPart = 0;
           for (let spriteModifier of oniItem.spriteGroup.spriteModifiers) {
-            if (spriteModifier.tags.indexOf(SpriteTag.solid) == -1 ||
-              spriteModifier.tags.indexOf(SpriteTag.tileable) != -1 ||
-              spriteModifier.tags.indexOf(SpriteTag.connection) != -1) continue;
+            if (spriteModifier.tags.indexOf(SpriteTag.connection) !== -1) {
+              console.log(`Skipping connection sprite for ${oniItem.id}: ${spriteModifier.spriteInfoName}`);
+              continue;
+            }
 
             let spriteInfo = SpriteInfo.getSpriteInfo(spriteModifier.spriteInfoName);
             
-            // Use the main texture instead of individual sprite
+            // Debug the texture loading
             let texture = spriteInfo.getTextureFromMainTexture(pixiNodeUtil, buildingInDatabase.textureName);
             if (!texture) {
-              if (process.env.DEBUG) {
-                console.warn(`Failed to get texture for ${spriteModifier.spriteInfoName} from ${buildingInDatabase.textureName}`);
-              }
+              console.warn(`Failed to get texture for ${oniItem.id} - ${spriteModifier.spriteInfoName} from ${buildingInDatabase.textureName}`);
               continue;
             }
+
+            console.log(`Adding sprite to container for ${oniItem.id}:`, {
+              spriteInfo: spriteModifier.spriteInfoName,
+              textureSize: {
+                width: texture.width,
+                height: texture.height
+              },
+              uvMin: spriteInfo.uvMin,
+              uvSize: spriteInfo.uvSize,
+              realSize: spriteInfo.realSize
+            });
 
             let sprite = pixiNodeUtil.getSpriteFrom(texture);
             
@@ -458,7 +473,11 @@ export class GenerateGroups {
 
           container.calculateBounds();
           let bounds = container.getBounds();
-          console.log(`Container bounds for ${oniItem.id}:`, bounds);
+          console.log(`Container bounds for ${oniItem.id}:`, {
+            bounds,
+            childCount: container.children.length,
+            spritesAttempted: spritesToGroup.length
+          });
 
           // Make sure the bounds are valid
           if (bounds.width <= 0 || bounds.height <= 0) {

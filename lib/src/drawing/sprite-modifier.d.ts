@@ -17,7 +17,8 @@ export declare class SpriteModifier {
     static get spriteModifiers(): SpriteModifier[];
     private static spriteModifiersMap;
     static init(): void;
+    static addSpriteModifier(spriteModifier: SpriteModifier): void;
+    static getSpriteModifier(id: string): SpriteModifier;
     static load(spriteModifiers: BSpriteModifier[]): void;
-    static getSpriteModifer(spriteModifierId: string): SpriteModifier;
 }
 //# sourceMappingURL=sprite-modifier.d.ts.map

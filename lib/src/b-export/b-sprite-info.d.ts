@@ -9,5 +9,6 @@ export declare class BSpriteInfo {
     realSize: Vector2;
     pivot: Vector2;
     static clone(source: BSpriteInfo): BSpriteInfo;
+    copyFrom(source: BSpriteInfo): void;
 }
 //# sourceMappingURL=b-sprite-info.d.ts.map

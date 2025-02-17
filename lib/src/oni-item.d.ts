@@ -46,7 +46,7 @@ export declare class OniItem {
     buildLocationRule: BuildLocationRule;
     zIndex: ZIndex;
     overlay: Overlay;
-    constructor(id: string);
+    constructor(id?: string);
     copyFrom(original: BBuilding): void;
     getRealOverlay(overlay: Overlay): Overlay;
     cleanUp(): void;
@@ -56,7 +56,7 @@ export declare class OniItem {
     static load(buildings: BBuilding[]): void;
     isOverlayPrimary(overlay: Overlay): boolean;
     isOverlaySecondary(overlay: Overlay): boolean;
-    getCategoryFromItem(): BuildMenuCategory;
-    static getOniItem(id: string): OniItem;
+    getCategoryFromItem(): BuildMenuCategory | undefined;
+    static getOniItem(id: string): OniItem | undefined;
 }
 //# sourceMappingURL=oni-item.d.ts.map

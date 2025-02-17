@@ -24,5 +24,6 @@ export declare class SpriteInfo {
     texture: any;
     getTexture(pixiUtil: PixiUtil): any;
     getTextureWithBleed(bleed: number, realBleed: Vector2 | undefined, pixiUtil: PixiUtil): any;
+    getTextureFromMainTexture(pixiUtil: PixiUtil, mainTextureName: string): any;
 }
 //# sourceMappingURL=sprite-info.d.ts.map
