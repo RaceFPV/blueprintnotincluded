@@ -82,8 +82,8 @@ def process_all_sprites(database_path, image_folder, output_folder):
 
 
 if __name__ == "__main__":
-    database_path = "../assets/database/database.json"  # Path to database
-    image_folder = "../assets/images"  # Folder containing sprite sheets
+    database_path = "database.json"  # Path to database
+    image_folder = "images"  # Folder containing sprite sheets
     output_folder = "icons"  # Folder to store extracted sprites
     
     process_all_sprites(database_path, image_folder, output_folder)

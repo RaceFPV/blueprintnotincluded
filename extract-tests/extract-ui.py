@@ -92,8 +92,8 @@ def process_all_sprites(database_path, image_folder, output_folder):
         print(f"Error during processing: {str(e)}")
 
 if __name__ == "__main__":
-    database_path = "../assets/database/database.json"
-    image_folder = "../assets/images"
-    output_folder = "output"
+    database_path = "database.json"
+    image_folder = "images"
+    output_folder = "ui-output"
     
     process_all_sprites(database_path, image_folder, output_folder)
