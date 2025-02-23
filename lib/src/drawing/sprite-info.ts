@@ -3,7 +3,6 @@ import { BSpriteInfo } from "../b-export/b-sprite-info";
 import { DrawHelpers } from "./draw-helpers";
 import { ImageSource } from "./image-source";
 import { PixiUtil } from "./pixi-util";
-import fs from 'fs';
 import { BExport } from "../b-export/b-export";
 
 export class SpriteInfo {
@@ -57,45 +56,17 @@ export class SpriteInfo {
     }
   }
 
-  public static load(uiSprites: BSpriteInfo[]) {
-    for (let uiSprite of uiSprites) {
-        if (!uiSprite || !uiSprite.name) {
-            console.warn('Invalid sprite info:', uiSprite);
-            continue;
-        }
-
-        let newUiSpriteInfo = new SpriteInfo(uiSprite.name);
-        try {
-            newUiSpriteInfo.copyFrom(uiSprite);
-
-            let imageUrl: string = DrawHelpers.createUrl(newUiSpriteInfo.imageId, true);
-            imageUrl = imageUrl.replace('0_solid.png', '0.png')
-            
-            // Verify image exists before adding
-            const img = new Image();
-            img.onerror = () => {
-                // Try alternate path if first one fails
-                const altImageUrl = `assets/images/${newUiSpriteInfo.imageId}.png`;
-                img.src = altImageUrl;
-            };
-            img.onload = () => {
-                ImageSource.AddImagePixi(newUiSpriteInfo.imageId, img.src);
-                SpriteInfo.addSpriteInfo(newUiSpriteInfo);
-            };
-            img.src = imageUrl;
-
-        } catch (error) {
-            // Silently continue - missing sprites are expected during development
-        }
-    }
+  public static load(spriteInfos: BSpriteInfo[]) {
+    // Use existing method that properly converts BSpriteInfo to SpriteInfo
+    SpriteInfo.addSpriteInfoArray(spriteInfos);
   }
 
-  // TODO should this be here?
+  // This method already exists and handles the conversion correctly
   public static addSpriteInfoArray(sourceArray: BSpriteInfo[]) {
     for (let sOriginal of sourceArray) {
-      let spriteInfo = new SpriteInfo(sOriginal.name);
-      spriteInfo.copyFrom(sOriginal);
-      SpriteInfo.addSpriteInfo(spriteInfo);
+        let spriteInfo = new SpriteInfo(sOriginal.name);
+        spriteInfo.copyFrom(sOriginal);
+        SpriteInfo.addSpriteInfo(spriteInfo);
     }
   }
 
@@ -129,35 +100,11 @@ export class SpriteInfo {
 
     const spriteInfo = SpriteInfo.spriteInfosMap.get(spriteInfoId);
     if (!spriteInfo) {
-      // Look up the sprite info in the database
-      try {
-        const rawdata = fs.readFileSync('./assets/database/database.json').toString();
-        const database: BExport = JSON.parse(rawdata);
-        
-        const databaseSprite = database.uiSprites.find(s => s.name === spriteInfoId);
-        if (!databaseSprite) {
-          if (process.env.DEBUG) {
-            console.warn(`No sprite info found in database for: ${spriteInfoId}`);
-          }
-          return new SpriteInfo('default');
-        }
-
-        // Only log if DEBUG and has valid UV coordinates
-        if (process.env.DEBUG && 
-            databaseSprite.uvSize && 
-            databaseSprite.uvSize.x > 0 && 
-            databaseSprite.uvSize.y > 0) {
-          console.log(`Found valid sprite: ${spriteInfoId}`);
-        }
-        
-        const newSpriteInfo = new SpriteInfo(spriteInfoId);
-        newSpriteInfo.copyFrom(databaseSprite);
-        SpriteInfo.addSpriteInfo(newSpriteInfo);
-        return newSpriteInfo;
-      } catch (error) {
-        console.error(`Error loading sprite info for ${spriteInfoId}:`, error);
-        return new SpriteInfo('default');
+      // Instead of reading from filesystem, return default
+      if (process.env.DEBUG) {
+        console.warn(`No sprite info found for: ${spriteInfoId}`);
       }
+      return new SpriteInfo('default');
     }
 
     return spriteInfo;

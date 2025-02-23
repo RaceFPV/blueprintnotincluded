@@ -12,10 +12,12 @@ import * as path from 'path';
 
 export class GenerateGroups {
   private assetsImagesDir: string;
+  private frontendImagesDir: string;
 
   constructor(databasePath: string, assetsImagesDir: string) {
     console.log('Running batch GenerateGroups')
     this.assetsImagesDir = assetsImagesDir;
+    this.frontendImagesDir = path.join(assetsImagesDir, '../../frontend/src/assets/images');
 
     // initialize configuration
     dotenv.config();
@@ -521,9 +523,25 @@ export class GenerateGroups {
           let base64: string = pixiNodeUtil.pixiApp.renderer.plugins.extract.canvas(rt).toDataURL();
 
           let group = await Jimp.read(Buffer.from(base64.replace(/^data:image\/png;base64,/, ""), 'base64'));
-          let groupePath = './assets/images/' + textureName + '.png';
-          console.log('saving group to ' + groupePath);
-          group.write(groupePath);
+          
+          // Save to both locations
+          const assetsPath = path.join(this.assetsImagesDir, textureName + '.png');
+          const frontendPath = path.join(this.frontendImagesDir, textureName + '.png');
+
+          console.log('Saving group images:', {
+            assets: assetsPath,
+            frontend: frontendPath
+          });
+
+          // Ensure frontend directory exists
+          fs.mkdirSync(path.dirname(frontendPath), { recursive: true });
+
+          await group.writeAsync(assetsPath);
+          await group.writeAsync(frontendPath);
+
+          // Register the image with ImageSource
+          ImageSource.AddImagePixi(textureName, base64);
+          ImageSource.setBaseTexture(textureName, brt);
 
           // Free memory
           brt.destroy();
@@ -541,7 +559,10 @@ export class GenerateGroups {
 
       let data = JSON.stringify(database, null, 2);
       fs.writeFileSync('./assets/database/database-groups.json', data);
-      console.log('done generating groups');
+      // Also copy to frontend
+      fs.copyFileSync('./assets/database/database-groups.json', './frontend/src/assets/database.json');
+
+      console.log('Done generating groups');
     } catch (error) {
       console.error('Error in generateGroups:', error);
       throw error;

@@ -9,15 +9,12 @@ export class GenerateIcons {
 
   constructor(databasePath: string) {
     console.log('Running batch GenerateIcons')
-
-    // initialize configuration
     dotenv.config();
-    console.log(process.env.ENV_NAME);
 
-    // Read database
     let rawdata = fs.readFileSync(databasePath).toString();
     this.json = JSON.parse(rawdata);
 
+    // Initialize all required data
     ImageSource.init();
 
     let elements: BuildableElement[] = this.json.elements;
@@ -34,7 +31,7 @@ export class GenerateIcons {
 
     let uiSprites: BSpriteInfo[] = this.json.uiSprites;
     SpriteInfo.init();
-    SpriteInfo.load(uiSprites)
+    SpriteInfo.load(uiSprites);
 
     let spriteModifiers: BSpriteModifier[] = this.json.spriteModifiers;
     SpriteModifier.init();
@@ -50,59 +47,101 @@ export class GenerateIcons {
       let pixiNodeUtil = new PixiNodeUtil({ forceCanvas: true, preserveDrawingBuffer: true });
       await pixiNodeUtil.initTextures();
 
-      console.log('start generating icons');
-      // Get all sprites that are either icons or UI-related
-      for (let k of SpriteInfo.keys.filter(s => {
-        const sprite = SpriteInfo.getSpriteInfo(s);
-        return sprite.isIcon || // Include all icons
-               sprite.isInputOutput || // Include input/output sprites
-               s.includes('_ui_'); // Include anything with _ui_ in the name
-      })) {
-        let uiSpriteInfo = SpriteInfo.getSpriteInfo(k);
-        console.log('generating icon/ui for ' + k);
+      console.log('Generating category icons...');
+      
+      // Only process category icons
+      const categoryIcons = this.json.buildMenuCategories
+        .filter(cat => cat.categoryIcon && cat.categoryIcon.includes('icon_category'));
 
-        let texture = uiSpriteInfo.getTexture(pixiNodeUtil);
-        let uiSprite = pixiNodeUtil.getSpriteFrom(texture);
+      console.log(`Found ${categoryIcons.length} category icons to process`);
+      let processed = 0;
 
-        let size = Math.max(texture.width, texture.height)
+      for (let category of categoryIcons) {
+        try {
+          // Create output directories
+          const uiDir = './assets/images/ui';
+          const frontendUiDir = './frontend/src/assets/images/ui';
+          fs.mkdirSync(uiDir, { recursive: true });
+          fs.mkdirSync(frontendUiDir, { recursive: true });
 
-        let container = pixiNodeUtil.getNewContainer();
-        container.addChild(uiSprite);
+          // Find sprite info for this category
+          const sprite = this.json.uiSprites.find(s => 
+            s.textureName === category.categoryIcon && s.isIcon
+          );
 
-        uiSprite.x = 0;
-        uiSprite.y = 0;
+          if (!sprite) {
+            console.log(`No sprite found for category ${category.categoryName}`);
+            continue;
+          }
 
-        if (texture.width > texture.height) uiSprite.y += (texture.width / 2 - texture.height / 2);
-        if (texture.height > texture.width) uiSprite.x += (texture.height / 2 - texture.width / 2);
+          let texture = await this.extractCategoryIcon(sprite, pixiNodeUtil);
+          if (!texture) continue;
 
-        let brt = pixiNodeUtil.getNewBaseRenderTexture({ width: size, height: size });
-        let rt = pixiNodeUtil.getNewRenderTexture(brt);
+          let uiSprite = pixiNodeUtil.getSpriteFrom(texture);
+          let container = pixiNodeUtil.getNewContainer();
+          container.addChild(uiSprite);
 
-        pixiNodeUtil.pixiApp.renderer.render(container, rt, true);
-        let base64: string = pixiNodeUtil.pixiApp.renderer.plugins.extract.canvas(rt).toDataURL();
+          let brt = pixiNodeUtil.getNewBaseRenderTexture({ 
+            width: sprite.uvSize.x, 
+            height: Math.abs(sprite.uvSize.y),
+            resolution: 1
+          });
+          let rt = pixiNodeUtil.getNewRenderTexture(brt);
 
-        let icon = await jimp.read(Buffer.from(base64.replace(/^data:image\/png;base64,/, ""), 'base64'));
-        let iconPath = './assets/images/ui/' + k + '.png';
-        console.log('saving icon to ' + iconPath);
-        icon.write(iconPath);
-        let frontendIconPath = './frontend/src/assets/images/ui/' + k + '.png';
-        console.log('saving icon to ' + frontendIconPath);
-        icon.write(frontendIconPath);
+          pixiNodeUtil.pixiApp.renderer.render(container, rt, true);
+          let base64 = pixiNodeUtil.pixiApp.renderer.plugins.extract.canvas(rt).toDataURL();
 
-        // Free memory
-        brt.destroy();
-        brt = null;
-        rt.destroy();
-        rt = null;
-        container.destroy({ children: true });
-        container = null;
-        global.gc && global.gc();
+          let icon = await jimp.read(Buffer.from(base64.replace(/^data:image\/png;base64,/, ""), 'base64'));
+          icon.write(`./assets/images/ui/${category.categoryIcon}.png`);
+          icon.write(`./frontend/src/assets/images/ui/${category.categoryIcon}.png`);
+
+          processed++;
+          console.log(`Processed ${category.categoryIcon} (${processed}/${categoryIcons.length})`);
+
+          // Cleanup
+          brt.destroy();
+          rt.destroy();
+          container.destroy({ children: true });
+          global.gc && global.gc();
+        } catch (error) {
+          console.warn(`Failed to process category ${category.categoryName}:`, error);
+        }
       }
-      console.log('done generating icons');
+
+      console.log(`Category icon generation complete. Processed ${processed}/${categoryIcons.length}`);
     } catch (error) {
       console.error('Error generating icons:', error);
       throw error;
     }
+  }
+
+  private async extractCategoryIcon(sprite: any, pixiNodeUtil: PixiNodeUtil) {
+    const baseTex = await ImageSource.getBaseTexture(sprite.textureName, pixiNodeUtil);
+    if (!baseTex) {
+      console.log(`No texture found for ${sprite.textureName}`);
+      return null;
+    }
+
+    console.log(`Extracting ${sprite.textureName}:`, {
+      uvMin: sprite.uvMin,
+      uvSize: sprite.uvSize,
+      textureSize: {
+        width: baseTex.width,
+        height: baseTex.height
+      }
+    });
+
+    let x = parseInt(sprite.uvMin.x);
+    let y = parseInt(sprite.uvMin.y);
+    let width = parseInt(sprite.uvSize.x);
+    let height = Math.abs(parseInt(sprite.uvSize.y));
+
+    if (parseInt(sprite.uvSize.y) < 0) {
+      y += parseInt(sprite.uvSize.y);
+    }
+
+    const rectangle = pixiNodeUtil.getNewRectangle(x, y, width, height);
+    return pixiNodeUtil.getNewTexture(baseTex, rectangle);
   }
 }
 
