@@ -141,13 +141,11 @@ export class GenerateGroups {
           spritesToGroup.push(spriteModifier);
         }
 
-        // If no solid sprites to group, use UI sprite as fallback
-        let usingUIFallback = false;
+        // If no solid sprites to group, skip entirely (let user copy raw images manually)
         if (spritesToGroup.length <= 1) {
           if (uiSprites.length > 0) {
-            spritesToGroup = [uiSprites[0]]; // Use the first UI sprite
-            usingUIFallback = true;
-            console.log(`${oniItem.id}: Using UI sprite as fallback (${spritesToGroup.length} solid sprites, fallback to ${uiSprites.length} UI sprites)`);
+            console.log(`${oniItem.id}: SKIPPING - Too few sprites to group (${spritesToGroup.length} solid sprites, ${uiSprites.length} UI sprites). Copy raw images manually.`);
+            continue; // Skip this building entirely
           } else {
             console.log(`${oniItem.id} should not be grouped (${spritesToGroup.length} solid sprites, ${uiSprites.length} UI sprites)`);
             continue;
@@ -211,6 +209,31 @@ export class GenerateGroups {
               oniItem.spriteGroup.spriteModifiers = [runtimeSpriteModifier];
               buildingInDatabase.textureName = textureName;
               
+              // CRITICAL FIX: Also update the building's sprite list for skipped items
+              // Remove ALL individual building sprites, keep only place/UI + grouped modifier
+              console.log(`  🧹 Updating skipped building sprite list for ${oniItem.id}...`);
+              console.log(`    Before: ${buildingInDatabase.sprites.spriteNames.length} sprites`);
+              
+              // Keep only place and UI sprites, remove ALL individual building sprites
+              const preservedSprites = buildingInDatabase.sprites.spriteNames.filter(name => 
+                name.includes('_place') || name.includes('_ui')
+              );
+              
+              // Remove all individual building sprites (those that start with building name + "_off_" pattern)
+              const buildingPrefix = oniItem.id + '_';
+              const individualSpritesToRemove = buildingInDatabase.sprites.spriteNames.filter(name => 
+                name.startsWith(buildingPrefix) && name.includes('_off_') && 
+                !name.includes('_place') && !name.includes('_ui')
+              );
+              
+              console.log(`    Removing ${individualSpritesToRemove.length} individual sprites:`, individualSpritesToRemove);
+              
+              // Replace with preserved sprites + grouped modifier
+              buildingInDatabase.sprites.spriteNames = [...preservedSprites, modifierId];
+              
+              console.log(`    After: ${buildingInDatabase.sprites.spriteNames.length} sprites`);
+              console.log(`    Final sprites:`, buildingInDatabase.sprites.spriteNames);
+              
               // Register in ImageSource
               const relativeImagePath = `images/${textureName}.png`;
               ImageSource.AddImagePixi(textureName, relativeImagePath);
@@ -235,8 +258,8 @@ export class GenerateGroups {
 
           let indexDrawPart = 0;
           for (let spriteModifier of spritesToGroup) {
-            // Skip UI sprites UNLESS we're using them as fallback
-            if (spriteModifier.tags.indexOf(SpriteTag.ui) !== -1 && !usingUIFallback) {
+            // Skip UI sprites (we only process solid building sprites)
+            if (spriteModifier.tags.indexOf(SpriteTag.ui) !== -1) {
               continue;
             }
             
@@ -245,7 +268,7 @@ export class GenerateGroups {
               continue;
             }
 
-            console.log(`\nProcessing sprite: ${spriteModifier.spriteInfoName}${usingUIFallback ? ' (UI fallback)' : ''}`);
+            console.log(`\nProcessing sprite: ${spriteModifier.spriteInfoName}`);
 
             // Try to convert sprite name to match database pattern
             // From: "AdvancedApothecary_capsule_0" 
@@ -337,7 +360,7 @@ export class GenerateGroups {
             indexDrawPart++;
           }
 
-          buildingInDatabase.sprites.spriteNames.push(modifierId);
+          // DON'T add grouped modifier yet - wait until cleanup is complete
 
           container.calculateBounds();
           let bounds = container.getBounds();
@@ -385,6 +408,12 @@ export class GenerateGroups {
           newSpriteInfo.uvSize = new Vector2(bounds.width, bounds.height);
           database.uiSprites.push(newSpriteInfo);
 
+          // Also add to runtime sprite info map
+          let runtimeSpriteInfo = new SpriteInfo(spriteInfoId);
+          runtimeSpriteInfo.copyFrom(newSpriteInfo);
+          SpriteInfo.addSpriteInfo(runtimeSpriteInfo);
+          console.log(`    📝 Added grouped sprite info to static map: ${spriteInfoId}`);
+
           // Create runtime SpriteModifier for the OniItem (different type)
           let runtimeSpriteModifier = new SpriteModifier(modifierId);
           runtimeSpriteModifier.spriteInfoName = spriteInfoId;
@@ -393,38 +422,111 @@ export class GenerateGroups {
           runtimeSpriteModifier.translation = new Vector2(0, 0);
           runtimeSpriteModifier.tags = [SpriteTag.solid];
 
+          // Add the new grouped modifier to static map so it can be found by getSpriteModifier
+          SpriteModifier.addSpriteModifier(runtimeSpriteModifier);
+          console.log(`    📝 Added grouped sprite modifier to static map: ${modifierId}`);
+
           // CRITICAL: Replace the building's sprite group with just the single grouped sprite
           oniItem.spriteGroup.spriteModifiers = [runtimeSpriteModifier];
           
           // CLEANUP: Remove individual sprite references from database that were grouped
           console.log(`  🧹 Cleaning up ${spritesToGroup.length} individual sprites from database...`);
           let actuallyRemoved = 0;
+          let processedSpriteNames: string[] = []; // Track which sprite names we actually processed
+          let uniqueProcessedSpriteNames = new Set<string>(); // Deduplicate sprite names
+          
           for (const spriteModifier of spritesToGroup) {
+            // Skip placement and UI sprites during cleanup too
+            if (spriteModifier.tags.indexOf(SpriteTag.ui) !== -1 || 
+                spriteModifier.spriteInfoName.includes('_place')) {
+              continue;
+            }
+            
+            // Convert sprite name to match database pattern (same logic as processing)
+            let databaseSpriteName = spriteModifier.spriteInfoName;
+            const match = spriteModifier.spriteInfoName.match(/^([^_]+)_(.+)_(\d+)$/);
+            if (match && !spriteModifier.spriteInfoName.includes('_off_') && !spriteModifier.spriteInfoName.endsWith('_place_0')) {
+              const [, buildingName, partName, frameNum] = match;
+              
+              // Try to find the converted name (same logic as processing loop)
+              let found = false;
+              const states = ['off', 'on', 'working'];
+              const maxFrames = 20;
+              
+              for (const state of states) {
+                if (found) break;
+                for (let i = 0; i < maxFrames; i++) {
+                  const potentialName = `${buildingName}_${state}_${i}_${partName}`;
+                  if (database.uiSprites.some(s => s.name === potentialName)) {
+                    databaseSpriteName = potentialName;
+                    found = true;
+                    break;
+                  }
+                }
+              }
+            }
+            
+            // Add to both tracking arrays (processedSpriteNames for logging, uniqueProcessedSpriteNames for deduplication)
+            processedSpriteNames.push(databaseSpriteName);
+            uniqueProcessedSpriteNames.add(databaseSpriteName);
+          }
+          
+          // Remove duplicates and process each unique sprite name only once
+          console.log(`  🧹 Removing ${uniqueProcessedSpriteNames.size} unique sprites from database (${processedSpriteNames.length} total processed)...`);
+          for (const databaseSpriteName of Array.from(uniqueProcessedSpriteNames)) {
             // Remove the sprite modifier from database
-            const modifierIndex = database.spriteModifiers.findIndex(sm => sm.name === spriteModifier.spriteModifierId);
+            const modifierIndex = database.spriteModifiers.findIndex(sm => sm.name === databaseSpriteName);
             if (modifierIndex !== -1) {
               database.spriteModifiers.splice(modifierIndex, 1);
-              console.log(`    ✅ Removed sprite modifier: ${spriteModifier.spriteModifierId}`);
+              console.log(`    ✅ Removed sprite modifier: ${databaseSpriteName}`);
             }
             
-            // Remove the sprite info from database - use spriteInfoName, not spriteModifierId!
-            const spriteInfoIndex = database.uiSprites.findIndex(si => si.name === spriteModifier.spriteInfoName);
+            // CRITICAL: Also remove from static map so future lookups don't find old modifiers
+            SpriteModifier.removeSpriteModifier(databaseSpriteName);
+            
+            // Remove the sprite info from database
+            const spriteInfoIndex = database.uiSprites.findIndex(si => si.name === databaseSpriteName);
             if (spriteInfoIndex !== -1) {
               database.uiSprites.splice(spriteInfoIndex, 1);
-              console.log(`    ✅ Removed sprite info: ${spriteModifier.spriteInfoName}`);
+              console.log(`    ✅ Removed sprite info: ${databaseSpriteName}`);
               actuallyRemoved++;
             }
-            
-            // Remove from building's sprite list
-            const buildingSpriteIndex = buildingInDatabase.sprites.spriteNames.indexOf(spriteModifier.spriteModifierId);
+          }
+          
+          // CRITICAL FIX: Remove processed sprite names from building's sprite list (use unique names)
+          console.log(`  🧹 Removing processed sprite names from building sprite list...`);
+          let removedFromBuilding = 0;
+          for (const spriteName of Array.from(uniqueProcessedSpriteNames)) {
+            const buildingSpriteIndex = buildingInDatabase.sprites.spriteNames.indexOf(spriteName);
             if (buildingSpriteIndex !== -1) {
               buildingInDatabase.sprites.spriteNames.splice(buildingSpriteIndex, 1);
+              console.log(`    ✅ Removed from building sprites: ${spriteName}`);
+              removedFromBuilding++;
             }
           }
-          console.log(`    📊 Actually removed ${actuallyRemoved} sprites from database`);
+          
+          console.log(`    📊 Actually removed ${actuallyRemoved} sprites from database, ${removedFromBuilding} from building sprite list`);
+          
+          // CRITICAL: Only add the grouped modifier if cleanup was successful
+          const expectedToRemove = uniqueProcessedSpriteNames.size;
+          if (removedFromBuilding === expectedToRemove) {
+            buildingInDatabase.sprites.spriteNames.push(modifierId);
+            console.log(`    ✅ Added grouped modifier to building: ${modifierId}`);
+          } else {
+            console.error(`    ❌ CLEANUP FAILED: Expected to remove ${expectedToRemove} sprites from building, but only removed ${removedFromBuilding}`);
+            console.error(`    ❌ Skipping grouped modifier addition to prevent database corruption`);
+            continue; // Skip this building
+          }
           
           // Update building's texture reference to use the grouped sprite
           buildingInDatabase.textureName = textureName;
+          
+          // DEBUG: Verify changes were applied immediately after modification
+          console.log(`\n🔍 DEBUG: ${oniItem.id} sprites immediately after modification:`);
+          console.log(`   Total sprites: ${buildingInDatabase.sprites.spriteNames.length}`);
+          console.log(`   Sprite names:`, buildingInDatabase.sprites.spriteNames);
+          console.log(`   Contains grouped modifier: ${buildingInDatabase.sprites.spriteNames.includes(modifierId)}`);
+          console.log(`   Texture name: ${buildingInDatabase.textureName}`);
           
           console.log(`✅ Replaced ${oniItem.id} sprite group (${spritesToGroup.length} sprites → 1 grouped sprite)`);
 
@@ -470,10 +572,31 @@ export class GenerateGroups {
       
       console.log(`\nBuilding grouping complete: ${groupedItems}/${totalItems} buildings grouped`);
 
+      // DEBUG: Check the Bed entry right before writing to disk
+      const bedBeforeWrite = database.buildings.find(b => b.prefabId === 'Bed');
+      if (bedBeforeWrite) {
+        console.log(`\n🔍 DEBUG: Bed sprites right before writing database:`);
+        console.log(`   Total sprites: ${bedBeforeWrite.sprites.spriteNames.length}`);
+        console.log(`   Sprite names:`, bedBeforeWrite.sprites.spriteNames);
+        console.log(`   Contains grouped modifier: ${bedBeforeWrite.sprites.spriteNames.includes('Bed_group_modifier')}`);
+        console.log(`   Texture name: ${bedBeforeWrite.textureName}`);
+      }
+
       let data = JSON.stringify(database, null, 2);
       fs.writeFileSync('./assets/database/database-groups.json', data);
-      // Also copy to frontend
-      fs.copyFileSync('./assets/database/database-groups.json', './frontend/src/assets/database.json');
+      
+      // Fix: Copy to the correct path that frontend actually loads from
+      const frontendDatabasePath = './frontend/src/assets/database/database.json';
+      
+      // Ensure the database directory exists in frontend assets
+      const frontendDatabaseDir = path.dirname(frontendDatabasePath);
+      if (!fs.existsSync(frontendDatabaseDir)) {
+        fs.mkdirSync(frontendDatabaseDir, { recursive: true });
+        console.log(`Created frontend database directory: ${frontendDatabaseDir}`);
+      }
+      
+      fs.copyFileSync('./assets/database/database-groups.json', frontendDatabasePath);
+      console.log(`✅ Copied grouped database to frontend: ${frontendDatabasePath}`);
 
       console.log('Done generating groups');
     } catch (error) {

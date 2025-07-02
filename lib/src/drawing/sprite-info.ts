@@ -95,20 +95,59 @@ export class SpriteInfo {
   }
 
   public static getSpriteInfo(spriteInfoId: string): SpriteInfo {
+    console.log(`[SpriteInfo] getSpriteInfo called with: "${spriteInfoId || 'UNDEFINED'}" (type: ${typeof spriteInfoId})`);
+    
     if (!spriteInfoId) {
-      console.error('Attempted to get sprite info with null/undefined id');
-      return new SpriteInfo('default');
+      console.error('[SpriteInfo] Attempted to get sprite info with null/undefined id');
+      console.error('[SpriteInfo] Call stack:', new Error().stack?.split('\n').slice(1, 4).join('\n'));
+      const defaultSprite = new SpriteInfo('default');
+      console.log('[SpriteInfo] Created default sprite info:', {
+        spriteInfoId: defaultSprite.spriteInfoId,
+        imageId: defaultSprite.imageId,
+        uvMin: defaultSprite.uvMin,
+        uvSize: defaultSprite.uvSize
+      });
+      return defaultSprite;
     }
 
     const spriteInfo = SpriteInfo.spriteInfosMap.get(spriteInfoId);
     if (!spriteInfo) {
+      console.warn(`[SpriteInfo] No sprite info found for: "${spriteInfoId}"`);
+      console.warn(`[SpriteInfo] Static map has ${SpriteInfo.spriteInfosMap.size} entries`);
+      
+      // Check if it might be a grouped sprite that should exist
+      if (spriteInfoId.includes('_')) {
+        const buildingName = spriteInfoId.split('_')[0];
+        const groupedSpriteName = `${buildingName}_group_sprite`;
+        const hasGroupedSprite = SpriteInfo.spriteInfosMap.has(groupedSpriteName);
+        console.warn(`[SpriteInfo] Expected grouped sprite "${groupedSpriteName}": ${hasGroupedSprite ? '✅ EXISTS' : '❌ MISSING'}`);
+      }
+      
       // Instead of reading from filesystem, return default
       if (process.env.DEBUG) {
-        console.warn(`No sprite info found for: ${spriteInfoId}`);
+        console.warn(`[SpriteInfo] Returning default sprite info for missing: ${spriteInfoId}`);
       }
-      return new SpriteInfo('default');
+      
+      const defaultSprite = new SpriteInfo('default');
+      console.log('[SpriteInfo] Created default sprite info:', {
+        spriteInfoId: defaultSprite.spriteInfoId,
+        imageId: defaultSprite.imageId,
+        uvMin: defaultSprite.uvMin,
+        uvSize: defaultSprite.uvSize
+      });
+      return defaultSprite;
     }
 
+    console.log(`[SpriteInfo] Found sprite info: "${spriteInfoId}"`);
+    console.log(`[SpriteInfo] Sprite info details:`, {
+      spriteInfoId: spriteInfo.spriteInfoId,
+      imageId: spriteInfo.imageId,
+      uvMin: spriteInfo.uvMin,
+      uvSize: spriteInfo.uvSize,
+      realSize: spriteInfo.realSize,
+      pivot: spriteInfo.pivot
+    });
+    
     return spriteInfo;
   }
 
@@ -118,7 +157,13 @@ export class SpriteInfo {
     if (this.texture == null) {
       let baseTex = ImageSource.getBaseTexture(this.imageId, pixiUtil);
       if (baseTex == null) {
-        console.warn(`Failed to get base texture for ${this.imageId}`);
+        console.warn(`[SpriteInfo] Failed to get base texture for imageId: "${this.imageId || 'UNDEFINED'}" (type: ${typeof this.imageId})`);
+        console.warn(`[SpriteInfo] SpriteInfo details:`, {
+          spriteInfoId: this.spriteInfoId,
+          imageId: this.imageId,
+          uvMin: this.uvMin,
+          uvSize: this.uvSize
+        });
         return null;
       }
 
@@ -131,7 +176,7 @@ export class SpriteInfo {
         );
         this.texture = pixiUtil.getNewTexture(baseTex, rectangle);
       } catch (error) {
-        console.debug(`Error creating texture for ${this.imageId}:`, error);
+        console.debug(`[SpriteInfo] Error creating texture for ${this.imageId}:`, error);
         return null;
       }
     }
@@ -165,13 +210,20 @@ export class SpriteInfo {
       // Validate sprite info
       if (!this.uvSize || this.uvSize.x <= 0 || this.uvSize.y <= 0) {
         if (process.env.DEBUG) {
-          console.warn(`Invalid UV size for ${this.imageId}`);
+          console.warn(`[SpriteInfo] Invalid UV size for imageId: "${this.imageId || 'UNDEFINED'}"`, {
+            spriteInfoId: this.spriteInfoId,
+            imageId: this.imageId,
+            uvSize: this.uvSize
+          });
         }
         return null;
       }
 
       let baseTex = ImageSource.getBaseTexture(mainTextureName, pixiUtil);
-      if (baseTex == null) return null;
+      if (baseTex == null) {
+        console.warn(`[SpriteInfo] Failed to get main texture: "${mainTextureName || 'UNDEFINED'}" for sprite: "${this.imageId || 'UNDEFINED'}"`);
+        return null;
+      }
 
       try {
         let rectangle = pixiUtil.getNewRectangle(
@@ -183,7 +235,7 @@ export class SpriteInfo {
         this.texture = pixiUtil.getNewTexture(baseTex, rectangle);
       } catch (error) {
         if (process.env.DEBUG) {
-          console.debug(`Error creating texture for ${this.imageId}:`, error);
+          console.debug(`[SpriteInfo] Error creating texture for imageId: "${this.imageId || 'UNDEFINED'}" from main texture: "${mainTextureName}":`, error);
         }
         return null;
       }

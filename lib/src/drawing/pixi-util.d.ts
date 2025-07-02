@@ -21,6 +21,7 @@ export interface IPixiUtil {
 }
 export declare class PixiUtil implements IPixiUtil {
     pixiApp: PIXI.Application;
+    private textureCache;
     constructor(options?: any);
     getNewContainer(): PIXI.Container;
     getNewGraphics(): PIXI.Graphics;

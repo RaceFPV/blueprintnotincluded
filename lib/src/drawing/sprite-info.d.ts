@@ -16,7 +16,7 @@ export declare class SpriteInfo {
     static get keys(): string[];
     static get spriteInfos(): SpriteInfo[];
     static init(): void;
-    static load(uiSprites: BSpriteInfo[]): void;
+    static load(spriteInfos: BSpriteInfo[]): void;
     static addSpriteInfoArray(sourceArray: BSpriteInfo[]): void;
     static addSpriteInfo(spriteInfo: SpriteInfo): void;
     copyFrom(original: BSpriteInfo): void;

@@ -51,8 +51,12 @@ export class DrawPart
   public prepareSprite(container: any /*PIXI.Container*/, oniItem: OniItem, pixiUtil: PixiUtil) {
 
     if (!this.isReady) {
-      if (this.spriteModifier != null)
+      if (this.spriteModifier != null) {
+        console.log(`[DrawPart] prepareSprite for item: "${oniItem.id}", sprite modifier: "${this.spriteModifier.spriteModifierId}", sprite info name: "${this.spriteModifier.spriteInfoName}"`);
         this.spriteInfo = SpriteInfo.getSpriteInfo(this.spriteModifier.spriteInfoName);
+      } else {
+        console.warn(`[DrawPart] prepareSprite called with null sprite modifier for item: "${oniItem.id}"`);
+      }
 
       let texture: any; // PIXI.Texture;
       if (this.spriteInfo != null)

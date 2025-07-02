@@ -2,6 +2,7 @@ import { SpriteTag } from "../enums/sprite-tag";
 import { Vector2 } from "../vector2";
 import { BSpriteModifier } from "../b-export/b-sprite-modifier";
 import { BBuilding } from "../b-export/b-building";
+import { BExport } from "../b-export/b-export";
 export declare class SpriteModifier {
     spriteModifierId: string;
     spriteInfoName: string;
@@ -18,7 +19,9 @@ export declare class SpriteModifier {
     private static spriteModifiersMap;
     static init(): void;
     static addSpriteModifier(spriteModifier: SpriteModifier): void;
+    static removeSpriteModifier(spriteModifierId: string): boolean;
     static getSpriteModifier(id: string): SpriteModifier;
+    static getSpriteModifer(spriteModifierName: string, database?: BExport): SpriteModifier;
     static load(spriteModifiers: BSpriteModifier[]): void;
 }
 //# sourceMappingURL=sprite-modifier.d.ts.map

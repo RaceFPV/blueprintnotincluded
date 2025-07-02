@@ -1,0 +1,1 @@
+{"version":3,"file":"build-menu-category.d.ts","sourceRoot":"","sources":["build-menu-category.ts"],"names":[],"mappings":"AAAA,qBAAa,iBAAiB;IAC1B,QAAQ,EAAE,MAAM,CAAC;IACjB,eAAe,EAAE,MAAM,CAAC;IACxB,gBAAgB,EAAE,MAAM,CAAC;gBAEb,QAAQ,EAAE,MAAM,EAAE,YAAY,EAAE,MAAM;IAMlD,MAAM,CAAC,mBAAmB,EAAE,iBAAiB,EAAE,CAAM;CACxD"}

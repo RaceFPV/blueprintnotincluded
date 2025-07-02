@@ -46,7 +46,7 @@ export class ImageSource
       // Fall back to creating new base texture
       const imageUrl = ImageSource.imageMap.get(id);
       if (!imageUrl) {
-        console.warn(`No image URL found for ${id}`);
+        console.warn(`[ImageSource] No image URL found for ID: "${id || 'UNDEFINED'}" (type: ${typeof id})`);
         return null;
       }
       

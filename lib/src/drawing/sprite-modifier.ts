@@ -2,6 +2,7 @@ import { SpriteTag } from "../enums/sprite-tag";
 import { Vector2 } from "../vector2";
 import { BSpriteModifier } from "../b-export/b-sprite-modifier";
 import { BBuilding } from "../b-export/b-building";
+import { BExport } from "../b-export/b-export";
 
 export class SpriteModifier
 {
@@ -70,6 +71,16 @@ export class SpriteModifier
     SpriteModifier.spriteModifiersMap.set(spriteModifier.spriteModifierId, spriteModifier);
   }
 
+  public static removeSpriteModifier(spriteModifierId: string): boolean {
+    const removed = SpriteModifier.spriteModifiersMap.delete(spriteModifierId);
+    if (removed) {
+      console.log(`[SpriteModifier] Removed from static map: "${spriteModifierId}"`);
+    } else {
+      console.warn(`[SpriteModifier] Failed to remove from static map (not found): "${spriteModifierId}"`);
+    }
+    return removed;
+  }
+
   public static getSpriteModifier(id: string): SpriteModifier {
     const modifier = SpriteModifier.spriteModifiersMap.get(id);
     if (!modifier) {
@@ -88,9 +99,75 @@ export class SpriteModifier
     return modifier;
   }
 
-  // Add backward compatibility for the typo version
-  public static getSpriteModifer(id: string): SpriteModifier {
-    return SpriteModifier.getSpriteModifier(id);
+  public static getSpriteModifer(
+    spriteModifierName: string,
+    database?: BExport
+  ): SpriteModifier {
+    console.log(`[SpriteModifier] getSpriteModifer called with: "${spriteModifierName || 'UNDEFINED'}" (type: ${typeof spriteModifierName})`);
+    
+    // Debug validation
+    if (!spriteModifierName) {
+      console.warn('[SpriteModifier] Empty spriteModifierName provided');
+      console.warn('[SpriteModifier] Call stack:', new Error().stack?.split('\n').slice(1, 4).join('\n'));
+      return SpriteModifier.getSpriteModifier('default');
+    }
+
+    // First, try the existing static map (for backward compatibility)
+    const existingModifier = SpriteModifier.spriteModifiersMap.get(spriteModifierName);
+    if (existingModifier) {
+      console.log(`[SpriteModifier] Found sprite modifier in static map: "${spriteModifierName}"`);
+      console.log(`[SpriteModifier] Sprite modifier details:`, {
+        spriteModifierId: existingModifier.spriteModifierId,
+        spriteInfoName: existingModifier.spriteInfoName,
+        translation: existingModifier.translation,
+        scale: existingModifier.scale,
+        rotation: existingModifier.rotation,
+        tags: existingModifier.tags
+      });
+      return existingModifier;
+    }
+
+    console.log(`[SpriteModifier] Not found in static map, static map has ${SpriteModifier.spriteModifiersMap.size} entries`);
+
+    // If database is provided, search it
+    if (database && database.spriteModifiers) {
+      console.log(`[SpriteModifier] Searching database for sprite modifier: "${spriteModifierName}"`);
+      
+      for (let spriteModifier of database.spriteModifiers) {
+        if (spriteModifier.name === spriteModifierName) {
+          const modifier = new SpriteModifier(spriteModifier.name);
+          modifier.importFrom(spriteModifier);
+          console.log(`[SpriteModifier] Found sprite modifier in database: "${spriteModifierName}"`);
+          console.log(`[SpriteModifier] Database sprite modifier details:`, {
+            name: spriteModifier.name,
+            spriteInfoName: spriteModifier.spriteInfoName,
+            translation: spriteModifier.translation,
+            scale: spriteModifier.scale,
+            rotation: spriteModifier.rotation
+          });
+          return modifier;
+        }
+      }
+
+      // Enhanced error reporting when database search fails
+      console.warn(`[SpriteModifier] Sprite modifier not found in database: "${spriteModifierName}"`);
+      console.warn(`[SpriteModifier] Database contains ${database.spriteModifiers.length} sprite modifiers`);
+      
+      // Try to find similar names
+      const similar = database.spriteModifiers
+        .filter(sm => sm.name.includes(spriteModifierName.split('_')[0]) || 
+                      spriteModifierName.includes(sm.name.split('_')[0]))
+        .slice(0, 5)
+        .map(sm => sm.name);
+      
+      if (similar.length > 0) {
+        console.warn(`[SpriteModifier] Similar sprite modifiers found: ${similar.join(', ')}`);
+      }
+    }
+
+    // Fallback to creating a default modifier (maintains old behavior)
+    console.warn(`[SpriteModifier] Creating fallback modifier for: "${spriteModifierName}"`);
+    return SpriteModifier.getSpriteModifier(spriteModifierName);
   }
 
   public static load(spriteModifiers: BSpriteModifier[])
