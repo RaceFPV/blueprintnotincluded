@@ -73,10 +73,24 @@ export class SpriteModifier
   public static getSpriteModifier(id: string): SpriteModifier {
     const modifier = SpriteModifier.spriteModifiersMap.get(id);
     if (!modifier) {
-      console.error(`Sprite modifier not found: ${id}`);
-      throw new Error(`SpriteModifier.getSpriteModifer : Sprite Modifier not found : ${id}`);
+      console.warn(`[SpriteModifier] Sprite modifier not found: ${id}, creating default fallback`);
+      
+      // Create a fallback sprite modifier instead of throwing
+      const fallbackModifier = new SpriteModifier(id);
+      fallbackModifier.spriteInfoName = 'default';
+      fallbackModifier.cleanUp();
+      
+      // Optionally cache it to avoid recreating it repeatedly
+      SpriteModifier.spriteModifiersMap.set(id, fallbackModifier);
+      
+      return fallbackModifier;
     }
     return modifier;
+  }
+
+  // Add backward compatibility for the typo version
+  public static getSpriteModifer(id: string): SpriteModifier {
+    return SpriteModifier.getSpriteModifier(id);
   }
 
   public static load(spriteModifiers: BSpriteModifier[])

@@ -150,6 +150,12 @@ export class ComponentSideBuildToolComponent
   }
 
   uiItemChanged() {
+    // Safety check: don't try to create items if database isn't loaded or currentItem is undefined
+    if (!this.databaseLoaded || !this.currentItem) {
+      console.warn('Build tool not properly initialized - database not loaded or no current item');
+      return;
+    }
+
     this.toolService.buildTool.changeItem(
       BlueprintHelpers.createInstance(this.currentItem.id)
     );
@@ -168,7 +174,9 @@ export class ComponentSideBuildToolComponent
   toolChanged(toolType: ToolType) {
     // If the build tool was just selected,
     // We simulate a click to recreate the build tool template item
-    if (toolType == ToolType.build) this.uiItemChanged();
+    if (toolType == ToolType.build && this.databaseLoaded) {
+      this.uiItemChanged();
+    }
 
     // And we hide all the overlays
     if (this.itemPanels != null)

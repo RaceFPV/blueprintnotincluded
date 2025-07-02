@@ -1,30 +1,27 @@
-version: '3'
 services:
   bpni:
-    image: racefpv/bpni:latest
-    container_name: bpni
     build: .
+    image: bpni:latest
+    container_name: bpni
     volumes:
       - ./assets:/app/bpni/assets
       - ./frontend/src/assets:/app/bpni/frontend/src/assets
     environment:
-      - ENV_NAME=development
-      - BROWSE_INCREMENT=100
-      - DB_URI=mongodb://database:27017/blueprintnotincluded
-      - JWT_SECRET=anylongstringhere
-      - CAPTCHA_SITE=localhost
-      - CAPTCHA_SECRET=YOURCAPTCHASECRET
-      - MAILJET_API_KEY=produseonly
-      - MAILJET_SECRET_KEY=produseonly
-      - MAILJET_FROM_EMAIL=help@blueprintnotincluded.org
-    links:
-      - "mongodb-bpni:database"
-      - "mailhog:mailhog"
+      ENV_NAME: development
+      BROWSE_INCREMENT: 100
+      DB_URI: mongodb://mongodb-bpni:27017/blueprintnotincluded
+      JWT_SECRET: anylongstringhere
+      CAPTCHA_SITE: localhost
+      CAPTCHA_SECRET: YOURCAPTCHASECRET
+      MAILJET_API_KEY: produseonly
+      MAILJET_SECRET_KEY: produseonly
+      MAILJET_FROM_EMAIL: help@blueprintnotincluded.org
     depends_on:
       - mongodb-bpni
       - mailhog
     ports:
       - "3000:3000"
+
   mongodb-bpni:
     image: mongo:4.2
     container_name: mongodb-bpni
@@ -34,6 +31,7 @@ services:
       - ./mongo/docker-entrypoint-initdb.d/mongo-init.js:/docker-entrypoint-initdb.d/mongo-init.js:ro
     ports:
       - "27017:27017"
+
   mailhog:
     image: mailhog/mailhog
     container_name: mailhog-bpni

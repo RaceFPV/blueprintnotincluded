@@ -2,7 +2,7 @@ import dotenv from 'dotenv';
 import { Database } from '../db';
 import { BlueprintModel, Blueprint } from '../models/blueprint';
 import * as fs from 'fs';
-import Jimp from 'jimp';
+import * as jimp from 'jimp';
 import { BatchUtils } from './batch-utils';
 import { BExport, SpriteTag, Vector2 } from "../../../lib/index";
 import { ImageSource, BuildableElement, BuildMenuCategory, BuildMenuItem, BSpriteInfo, SpriteInfo, BSpriteModifier, SpriteModifier, BBuilding, OniItem, MdbBlueprint } from '../../../lib';
@@ -23,9 +23,19 @@ export class GenerateGroups {
     dotenv.config();
     console.log(process.env.ENV_NAME);
 
-    // Read database
+    // Always load from original database for core data (to avoid missing sprite modifier references)
+    console.log(`Loading core database from: ${databasePath}`);
     let rawdata = fs.readFileSync(databasePath).toString();
     let json = JSON.parse(rawdata);
+    
+    // Load grouped database separately for sprite info checking (if it exists)
+    const groupedDatabasePath = './assets/database/database-groups.json';
+    let groupedDatabase = null;
+    if (fs.existsSync(groupedDatabasePath)) {
+      console.log(`Loading grouped database for cache checking from: ${groupedDatabasePath}`);
+      const groupedRawdata = fs.readFileSync(groupedDatabasePath).toString();
+      groupedDatabase = JSON.parse(groupedRawdata);
+    }
 
     ImageSource.init();
 
@@ -53,10 +63,10 @@ export class GenerateGroups {
     OniItem.init();
     OniItem.load(buildings);
 
-    this.generateGroups(json);
+    this.generateGroups(json, groupedDatabase);
   }
 
-  async generateGroups(database: BExport) {
+  async generateGroups(database: BExport, groupedDatabase: BExport | null = null) {
     try {
       // First copy manual images to UI folder
       console.log('Copying manual images to UI folder...');
@@ -88,362 +98,231 @@ export class GenerateGroups {
 
       let pixiNodeUtil = new PixiNodeUtil({ forceCanvas: true, preserveDrawingBuffer: true });
 
-      // First initialize PIXI and load all textures
-      console.log('Initializing PIXI and loading textures...');
+      // Initialize PIXI for on-demand texture loading
+      console.log('Initializing PIXI...');
       await pixiNodeUtil.initTextures();
       
-      // Create a map of all textures we need to process
-      const textureMap = new Map<string, {
-        baseTexture: any,
-        width: number,
-        height: number,
-        image: any
-      }>();
+      // Skip expensive batch pre-loading - load textures on-demand only when needed
+      console.log('Using on-demand texture loading and UV coordinates from database...');
 
-      // Load all textures first
-      const totalBuildings = database.buildings.length;
-      console.log(`Starting building texture loading (0/${totalBuildings})...`);
-      let processedBuildings = 0;
-      let successfullyLoaded = 0;
-      let failedToLoad = 0;
-
-      // Process buildings in smaller batches
-      const batchSize = 5; // Reduced batch size
-      const TIMEOUT = 30000; // 30 second timeout
-
-      for (let i = 0; i < totalBuildings; i += batchSize) {
-        const batch = database.buildings.slice(i, i + batchSize);
-        console.log(`\nProcessing batch ${Math.floor(i/batchSize) + 1}/${Math.ceil(totalBuildings/batchSize)}...`);
-        
-        try {
-          // Process one building at a time to avoid memory issues
-          for (const building of batch) {
-            const texturePath = path.join(this.assetsImagesDir, building.textureName + '.png');
-            
-            if (!fs.existsSync(texturePath)) {
-              console.log(`Skipping missing texture: ${building.textureName}`);
-              failedToLoad++;
-              continue;
-            }
-
-            try {
-              console.log(`Starting to load ${building.textureName}...`);
-              
-              // Read image data
-              const imageData = fs.readFileSync(texturePath);
-              console.log(`Read file data for ${building.textureName}`);
-              
-              const base64Image = `data:image/png;base64,${imageData.toString('base64')}`;
-              
-              // Create PIXI texture
-              const baseTexture = await pixiNodeUtil.createBaseTexture(base64Image);
-              console.log(`Created base texture for ${building.textureName}`);
-              
-              // Read with Jimp
-              const image = await Jimp.read(imageData);
-              console.log(`Read image with jimp for ${building.textureName}`);
-
-              // Store everything we need
-              textureMap.set(building.textureName, {
-                baseTexture,
-                width: baseTexture.width,
-                height: baseTexture.height,
-                image
-              });
-
-              // Register with ImageSource
-              ImageSource.AddImagePixi(building.textureName, base64Image);
-              ImageSource.setBaseTexture(building.textureName, baseTexture);
-
-              successfullyLoaded++;
-              console.log(`✓ Successfully loaded ${building.textureName}`);
-
-              // Add a small delay between each texture
-              await new Promise(resolve => setTimeout(resolve, 100));
-
-            } catch (error) {
-              console.error(`Failed to process ${building.textureName}:`, error);
-              failedToLoad++;
-              
-              // Try to clean up any partial resources
-              try {
-                const existingTexture = textureMap.get(building.textureName);
-                if (existingTexture) {
-                  if (existingTexture.baseTexture) {
-                    existingTexture.baseTexture.destroy();
-                  }
-                  if (existingTexture.image?.bitmap) {
-                    existingTexture.image.bitmap.data = null;
-                  }
-                  textureMap.delete(building.textureName);
-                }
-              } catch (cleanupError) {
-                console.error(`Cleanup error for ${building.textureName}:`, cleanupError);
-              }
-            }
-          }
-
-          processedBuildings += batch.length;
-          console.log(`\nBatch complete:`);
-          console.log(`Progress: ${processedBuildings}/${totalBuildings} buildings processed`);
-          console.log(`Status: ${successfullyLoaded} loaded, ${failedToLoad} failed`);
-          
-          // Force garbage collection between batches
-          if (global.gc) {
-            console.log('Running garbage collection...');
-            global.gc();
-          }
-          
-          // Add a delay between batches
-          await new Promise(resolve => setTimeout(resolve, 500));
-          
-        } catch (error) {
-          console.error('Batch processing error:', error);
-        }
-      }
-
-      console.log('\nBuilding texture loading summary:');
-      console.log(`Total processed: ${processedBuildings}/${totalBuildings}`);
-      console.log(`Successfully loaded: ${successfullyLoaded}`);
-      console.log(`Failed to load: ${failedToLoad}`);
-
-      // First scan all textures to build a UV coordinate map
-      console.log('Scanning textures for UV coordinates...');
-      const uvCoordinateMap = new Map<string, Map<string, {
-        uvMin: Vector2,
-        uvSize: Vector2,
-        realSize: Vector2
-      }>>();
-
-      for (const building of database.buildings) {
-        const texturePath = path.join(this.assetsImagesDir, building.textureName + '.png');
-        if (!fs.existsSync(texturePath)) continue;
-
-        try {
-          const image = await Jimp.read(texturePath);
-          const textureWidth = image.getWidth();
-          const textureHeight = image.getHeight();
-          
-          // Create map for this texture if it doesn't exist
-          if (!uvCoordinateMap.has(building.textureName)) {
-            uvCoordinateMap.set(building.textureName, new Map());
-          }
-          
-          // Find all sprites that use this texture
-          const relatedSprites = database.uiSprites.filter(s => s.textureName === building.textureName);
-          
-          for (const sprite of relatedSprites) {
-            // Skip if already processed
-            if (uvCoordinateMap.get(building.textureName)?.has(sprite.name)) continue;
-
-            // Scan the texture to find the actual sprite boundaries
-            let minX = textureWidth, minY = textureHeight;
-            let maxX = 0, maxY = 0;
-            let found = false;
-
-            // Scan in chunks for better performance
-            const chunkSize = 100;
-            for (let y = 0; y < textureHeight; y += chunkSize) {
-              for (let x = 0; x < textureWidth; x += chunkSize) {
-                const w = Math.min(chunkSize, textureWidth - x);
-                const h = Math.min(chunkSize, textureHeight - y);
-
-                for (let dy = 0; dy < h; dy++) {
-                  for (let dx = 0; dx < w; dx++) {
-                    const px = x + dx;
-                    const py = y + dy;
-                    const idx = image.getPixelColor(px, py);
-                    const alpha = ((idx >> 24) & 0xff);
-                    
-                    if (alpha > 0) {
-                      minX = Math.min(minX, px);
-                      minY = Math.min(minY, py);
-                      maxX = Math.max(maxX, px);
-                      maxY = Math.max(maxY, py);
-                      found = true;
-                    }
-                  }
-                }
-              }
-            }
-
-            if (found) {
-              uvCoordinateMap.get(building.textureName)?.set(sprite.name, {
-                uvMin: new Vector2(minX, minY),
-                uvSize: new Vector2(maxX - minX + 1, maxY - minY + 1),
-                realSize: new Vector2(maxX - minX + 1, maxY - minY + 1)
-              });
-            }
-          }
-
-          console.log(`Scanned ${building.textureName}: found ${uvCoordinateMap.get(building.textureName)?.size || 0} sprites`);
-          
-        } catch (error) {
-          console.error(`Failed to scan texture ${building.textureName}:`, error);
-        }
-      }
-
-      // Now update the database with correct UV coordinates
-      console.log('Updating database with correct UV coordinates...');
-      for (const sprite of database.uiSprites) {
-        const coordinates = uvCoordinateMap.get(sprite.textureName)?.get(sprite.name);
-        if (coordinates) {
-          sprite.uvMin = coordinates.uvMin;
-          sprite.uvSize = coordinates.uvSize;
-          sprite.realSize = coordinates.realSize;
-          sprite.pivot = new Vector2(0.5, 0.5); // Default pivot point
-        }
-      }
-
-      // NOW extract UI icons with the corrected UV coordinates
-      console.log('\nExtracting UI icons...');
-      let extractedIcons = 0;
-      let failedIcons = 0;
-
-      for (const sprite of database.uiSprites) {
-        if (!sprite.isIcon) continue;
-
-        // Skip sprites with invalid UV coordinates
-        if (!sprite.uvSize || sprite.uvSize.x <= 0 || sprite.uvSize.y <= 0) {
-          console.warn(`Skipping icon with invalid UV coordinates: ${sprite.name}`);
-          failedIcons++;
-          continue;
-        }
-
-        const texturePath = path.join(this.assetsImagesDir, sprite.textureName + '.png');
-        if (!fs.existsSync(texturePath)) {
-          console.warn(`Source texture not found for icon: ${sprite.name}`);
-          failedIcons++;
-          continue;
-        }
-
-        try {
-          // Read the source texture
-          const sourceImage = await Jimp.read(texturePath);
-          
-          // Create a new image for the icon
-          const iconSize = 64;
-          const iconImage = new Jimp(iconSize, iconSize, 0x00000000);
-          
-          // Clone the source image before modifying it
-          const workingImage = sourceImage.clone();
-          
-          // Extract the icon portion
-          workingImage.crop(
-            Math.floor(sprite.uvMin.x),
-            Math.floor(sprite.uvMin.y),
-            Math.ceil(sprite.uvSize.x),
-            Math.ceil(sprite.uvSize.y)
-          );
-          
-          // Scale to fit icon size while maintaining aspect ratio
-          workingImage.scaleToFit(iconSize, iconSize);
-          
-          // Center the scaled image
-          const x = Math.floor((iconSize - workingImage.getWidth()) / 2);
-          const y = Math.floor((iconSize - workingImage.getHeight()) / 2);
-          
-          // Composite the scaled image onto the icon canvas
-          iconImage.composite(workingImage, x, y);
-          
-          // Save the icon
-          const iconPath = path.join(this.assetsImagesDir, 'ui', `${sprite.name}.png`);
-          await iconImage.writeAsync(iconPath);
-          
-          console.log(`Extracted icon: ${sprite.name} (${Math.ceil(sprite.uvSize.x)}x${Math.ceil(sprite.uvSize.y)})`);
-          extractedIcons++;
-
-        } catch (error) {
-          console.error(`Failed to extract icon for ${sprite.name}:`, error);
-          failedIcons++;
-        }
-      }
-
-      console.log(`\nIcon extraction complete:`);
-      console.log(`Successfully extracted: ${extractedIcons}`);
-      console.log(`Failed to extract: ${failedIcons}`);
-
+      // Process buildings for grouping (UI icons already handled by GenerateUI)
+      console.log('\nProcessing buildings for sprite grouping...');
+      
+      let totalItems = OniItem.oniItems.length;
+      let processedItems = 0;
+      let groupedItems = 0;
+      
       // Now process each building
       for (let oniItem of OniItem.oniItems) {
+        processedItems++;
+        if (processedItems % 50 === 0) {
+          console.log(`Progress: ${processedItems}/${totalItems} buildings processed, ${groupedItems} grouped`);
+        }
         if (oniItem.id == OniItem.elementId || oniItem.id == OniItem.infoId) continue;
 
         const buildingInDatabase = database.buildings.find(b => b.prefabId == oniItem.id);
         if (!buildingInDatabase) continue;
 
-        const textureData = textureMap.get(buildingInDatabase.textureName);
-        if (!textureData) continue;
+        // Legacy approach: individual sprite files should already exist from previous steps
 
-        // Collect sprites to group
+        // Updated filtering: include all sprites except UI sprites
         let spritesToGroup: SpriteModifier[] = [];
+        let uiSprites: SpriteModifier[] = [];
+        
         for (const spriteModifier of oniItem.spriteGroup.spriteModifiers) {
           if (!spriteModifier) continue;
 
-          try {
-            const spriteInfo = SpriteInfo.getSpriteInfo(spriteModifier.spriteInfoName);
-            if (spriteInfo.spriteInfoId === 'default') continue;
+          // Collect UI sprites separately for fallback
+          if (spriteModifier.tags.indexOf(SpriteTag.ui) !== -1) {
+            uiSprites.push(spriteModifier);
+            continue;
+          }
 
-            // Debug output to see what sprites we're processing
-            console.log(`Processing sprite for ${oniItem.id}:`, {
-              name: spriteModifier.spriteInfoName,
-              tags: spriteModifier.tags,
-              hasTexture: !!spriteInfo.getTextureFromMainTexture(pixiNodeUtil, buildingInDatabase.textureName)
-            });
+          spritesToGroup.push(spriteModifier);
+        }
 
-            // Modified sprite filtering - only exclude connection sprites
-            if (spriteModifier.tags.indexOf(SpriteTag.connection) === -1) {
-              spritesToGroup.push(spriteModifier);
-            }
-          } catch (error) {
-            console.warn(`Error processing sprite modifier in ${oniItem.id}:`, error);
+        // If no solid sprites to group, use UI sprite as fallback
+        let usingUIFallback = false;
+        if (spritesToGroup.length <= 1) {
+          if (uiSprites.length > 0) {
+            spritesToGroup = [uiSprites[0]]; // Use the first UI sprite
+            usingUIFallback = true;
+            console.log(`${oniItem.id}: Using UI sprite as fallback (${spritesToGroup.length} solid sprites, fallback to ${uiSprites.length} UI sprites)`);
+          } else {
+            console.log(`${oniItem.id} should not be grouped (${spritesToGroup.length} solid sprites, ${uiSprites.length} UI sprites)`);
+            continue;
           }
         }
 
-        // Only skip if we have 1 or fewer sprites
-        if (spritesToGroup.length <= 1) {
-          if (process.env.DEBUG) {
-            console.log(`${oniItem.id} has too few sprites to group (${spritesToGroup.length})`);
-          }
+        console.log(`${oniItem.id}: ${spritesToGroup.length} sprites to group`);
+        
+        // Skip tiles and conduits (they have too many connection sprites)
+        if (oniItem.id.includes('Tile') || oniItem.id.includes('Conduit') || oniItem.id.includes('Wire')) {
+          console.log(`${oniItem.id} skipped (tile/conduit type)`);
           continue;
         }
 
         try {
+          console.log(`\n=== Processing ${oniItem.id} ===`);
+          console.log(`Building texture: ${buildingInDatabase.textureName}`);
+          console.log(`Sprites to group: ${spritesToGroup.length}`);
+          
+          let modifierId = oniItem.id + '_group_modifier';
+          let spriteInfoId = oniItem.id + '_group_sprite';
+          let textureName = oniItem.id + '_group_sprite';
+          
+          // Check if grouped sprite already exists
+          const frontendImagesDir = './frontend/src/assets/images/';
+          const frontendGroupPath = frontendImagesDir + textureName + '.png';
+          const backendGroupPath = './assets/images/' + textureName + '.png';
+          
+          // Skip if both files exist and sprite info exists in database
+          const frontendExists = fs.existsSync(frontendGroupPath);
+          const backendExists = fs.existsSync(backendGroupPath);
+          const spriteExists = frontendExists && backendExists;
+          
+          // Check sprite info existence in grouped database (if available)
+          const spriteInfoExists = groupedDatabase ? 
+            groupedDatabase.uiSprites.some(s => s.name === spriteInfoId) : false;
+          
+          console.log(`📋 Cache check for ${oniItem.id}:`);
+          console.log(`   Frontend file: ${frontendExists ? '✅' : '❌'} ${frontendGroupPath}`);
+          console.log(`   Backend file: ${backendExists ? '✅' : '❌'} ${backendGroupPath}`);
+          console.log(`   Sprite info in DB: ${spriteInfoExists ? '✅' : '❌'} ${spriteInfoId}`);
+          console.log(`   Grouped DB available: ${groupedDatabase ? '✅' : '❌'}`);
+          
+          if (spriteExists && spriteInfoExists && groupedDatabase) {
+            console.log(`⏭️ SKIPPING ${oniItem.id} - grouped sprite already exists`);
+            
+            // Still need to update the building's sprite group to use the existing grouped sprite
+            const existingSpriteInfo = groupedDatabase.uiSprites.find(s => s.name === spriteInfoId);
+            const existingSpriteModifier = groupedDatabase.spriteModifiers.find(s => s.name === modifierId);
+            
+            if (existingSpriteInfo && existingSpriteModifier) {
+              // Create runtime SpriteModifier
+              let runtimeSpriteModifier = new SpriteModifier(modifierId);
+              runtimeSpriteModifier.spriteInfoName = spriteInfoId;
+              runtimeSpriteModifier.rotation = 0;
+              runtimeSpriteModifier.scale = new Vector2(1, 1);
+              runtimeSpriteModifier.translation = new Vector2(0, 0);
+              runtimeSpriteModifier.tags = [SpriteTag.solid];
+              
+              // Replace the building's sprite group
+              oniItem.spriteGroup.spriteModifiers = [runtimeSpriteModifier];
+              buildingInDatabase.textureName = textureName;
+              
+              // Register in ImageSource
+              const relativeImagePath = `images/${textureName}.png`;
+              ImageSource.AddImagePixi(textureName, relativeImagePath);
+            }
+            
+            groupedItems++;
+            continue;
+          }
+          
+          console.log(`🔄 GENERATING new grouped sprite for ${oniItem.id}`);
+          
+          // Debug: Show all sprite modifier names for this building
+          console.log(`All sprite modifiers:`, oniItem.spriteGroup.spriteModifiers.map(s => s?.spriteInfoName).filter(Boolean));
+          
+          // Debug: Check if any sprite infos exist for this building prefix
+          const allSpriteInfos = database.uiSprites.map(s => s.name);
+          const matchingSprites = allSpriteInfos.filter(name => name.includes(oniItem.id) || name.includes(buildingInDatabase.textureName));
+          console.log(`Matching sprite infos in database:`, matchingSprites.slice(0, 10)); // Show first 10 matches
+          
           let container = pixiNodeUtil.getNewContainer();
           container.sortableChildren = true;
 
-          let modifierId = oniItem.id + '_group_modifier';
-          let spriteInfoId = oniItem.id + '_group_sprite';
-          let textureName = oniItem.id + '_group_sprite'
-
           let indexDrawPart = 0;
-          for (let spriteModifier of oniItem.spriteGroup.spriteModifiers) {
-            if (spriteModifier.tags.indexOf(SpriteTag.connection) !== -1) {
-              console.log(`Skipping connection sprite for ${oniItem.id}: ${spriteModifier.spriteInfoName}`);
+          for (let spriteModifier of spritesToGroup) {
+            // Skip UI sprites UNLESS we're using them as fallback
+            if (spriteModifier.tags.indexOf(SpriteTag.ui) !== -1 && !usingUIFallback) {
+              continue;
+            }
+            
+            // Skip placement sprites (white overlays that mess up grouped sprites)
+            if (spriteModifier.spriteInfoName.includes('_place')) {
               continue;
             }
 
-            let spriteInfo = SpriteInfo.getSpriteInfo(spriteModifier.spriteInfoName);
+            console.log(`\nProcessing sprite: ${spriteModifier.spriteInfoName}${usingUIFallback ? ' (UI fallback)' : ''}`);
+
+            // Try to convert sprite name to match database pattern
+            // From: "AdvancedApothecary_capsule_0" 
+            // To: "AdvancedApothecary_off_0_capsule"
+            let databaseSpriteName = spriteModifier.spriteInfoName;
+            console.log(`Original sprite name: ${spriteModifier.spriteInfoName}`);
             
-            // Debug the texture loading
+            // Check if it follows the BuildingName_PartName_0 pattern and needs conversion
+            const match = spriteModifier.spriteInfoName.match(/^([^_]+)_(.+)_(\d+)$/);
+            if (match && !spriteModifier.spriteInfoName.includes('_off_') && !spriteModifier.spriteInfoName.endsWith('_place_0')) {
+              const [, buildingName, partName, frameNum] = match;
+              
+              console.log(`  Trying conversions for: ${spriteModifier.spriteInfoName}`);
+              console.log(`    Building: ${buildingName}, Part: ${partName}, Original Frame: ${frameNum}`);
+              
+              let found = false;
+              // Try different animation states
+              const states = ['off', 'on', 'working'];
+              // Try frame numbers 0-20 (database uses sequential indices)
+              const maxFrames = 20;
+              
+              for (const state of states) {
+                if (found) break;
+                for (let i = 0; i < maxFrames; i++) {
+                  const potentialName = `${buildingName}_${state}_${i}_${partName}`;
+                  if (database.uiSprites.some(s => s.name === potentialName)) {
+                    databaseSpriteName = potentialName;
+                    console.log(`  ✅ SUCCESS: ${spriteModifier.spriteInfoName} → ${databaseSpriteName}`);
+                    found = true;
+                    break;
+                  }
+                }
+              }
+              
+              if (!found) {
+                console.log(`  ❌ FAILED: No database match found for ${spriteModifier.spriteInfoName}`);
+                // Show what sprites DO exist for this building
+                const buildingSprites = database.uiSprites.filter(s => s.name.startsWith(buildingName + '_')).slice(0, 8);
+                console.log(`    Available sprites for ${buildingName}:`, buildingSprites.map(s => s.name));
+              }
+            }
+
+            let spriteInfo = SpriteInfo.getSpriteInfo(databaseSpriteName);
+            
+            // Debug: log what texture the sprite info is looking for
+            console.log(`Sprite expects:`, {
+              spriteInfoId: spriteInfo.spriteInfoId,
+              buildingTexture: buildingInDatabase.textureName,
+              uvMin: spriteInfo.uvMin,
+              uvSize: spriteInfo.uvSize
+            });
+            
+            // Try to ensure the main building texture is loaded
+            const texturePath = path.join(this.assetsImagesDir, buildingInDatabase.textureName + '.png');
+            if (fs.existsSync(texturePath)) {
+              const imageData = fs.readFileSync(texturePath);
+              const base64Image = `data:image/png;base64,${imageData.toString('base64')}`;
+              ImageSource.AddImagePixi(buildingInDatabase.textureName, base64Image);
+              
+              const baseTexture = await pixiNodeUtil.createBaseTexture(base64Image);
+              ImageSource.setBaseTexture(buildingInDatabase.textureName, baseTexture);
+              console.log(`Loaded main texture: ${buildingInDatabase.textureName}`);
+            } else {
+              console.warn(`Main texture file missing: ${texturePath}`);
+              continue;
+            }
+            
+            // Use main texture extraction with UV coordinates
             let texture = spriteInfo.getTextureFromMainTexture(pixiNodeUtil, buildingInDatabase.textureName);
             if (!texture) {
-              console.warn(`Failed to get texture for ${oniItem.id} - ${spriteModifier.spriteInfoName} from ${buildingInDatabase.textureName}`);
+              console.warn(`Failed to extract texture for ${oniItem.id} - ${spriteModifier.spriteInfoName} from ${buildingInDatabase.textureName}`);
               continue;
             }
-
-            console.log(`Adding sprite to container for ${oniItem.id}:`, {
-              spriteInfo: spriteModifier.spriteInfoName,
-              textureSize: {
-                width: texture.width,
-                height: texture.height
-              },
-              uvMin: spriteInfo.uvMin,
-              uvSize: spriteInfo.uvSize,
-              realSize: spriteInfo.realSize
-            });
 
             let sprite = pixiNodeUtil.getSpriteFrom(texture);
             
-            // Set sprite properties
+            // Set sprite properties (legacy approach)
             sprite.anchor.set(spriteInfo.pivot.x, 1 - spriteInfo.pivot.y);
             sprite.x = 0 + (spriteModifier.translation.x);
             sprite.y = 0 - (spriteModifier.translation.y);
@@ -454,19 +333,6 @@ export class GenerateGroups {
             sprite.angle = -spriteModifier.rotation;
             sprite.zIndex -= (indexDrawPart / 50);
 
-            // Add debug info
-            if (process.env.DEBUG) {
-              console.log(`Drawing sprite ${spriteModifier.spriteInfoName}:`, {
-                uvMin: spriteInfo.uvMin,
-                uvSize: spriteInfo.uvSize,
-                realSize: spriteInfo.realSize,
-                pivot: spriteInfo.pivot,
-                translation: spriteModifier.translation,
-                scale: spriteModifier.scale,
-                rotation: spriteModifier.rotation
-              });
-            }
-
             container.addChild(sprite);
             indexDrawPart++;
           }
@@ -475,11 +341,14 @@ export class GenerateGroups {
 
           container.calculateBounds();
           let bounds = container.getBounds();
-          console.log(`Container bounds for ${oniItem.id}:`, {
-            bounds,
-            childCount: container.children.length,
-            spritesAttempted: spritesToGroup.length
-          });
+          
+          // Legacy bounds calculation with floor/ceil
+          bounds.x = Math.floor(bounds.x);
+          bounds.y = Math.floor(bounds.y);
+          bounds.width = Math.ceil(bounds.width);
+          bounds.height = Math.ceil(bounds.height);
+          
+          console.log(`Saving group to ./frontend/src/assets/images/${textureName}.png`);
 
           // Make sure the bounds are valid
           if (bounds.width <= 0 || bounds.height <= 0) {
@@ -496,15 +365,15 @@ export class GenerateGroups {
           let pivot = new Vector2(1 - ((bounds.width + bounds.x) / bounds.width), ((bounds.height + bounds.y) / bounds.height));
           //console.log(pivot);
 
-          // Create and add the new sprite modifier to replace the group
-          let newSpriteModifier = new BSpriteModifier();
-          newSpriteModifier.name = modifierId;
-          newSpriteModifier.spriteInfoName = spriteInfoId;
-          newSpriteModifier.rotation = 0;
-          newSpriteModifier.scale = new Vector2(1, 1);
-          newSpriteModifier.translation = new Vector2(0, 0);
-          newSpriteModifier.tags = [SpriteTag.solid];
-          database.spriteModifiers.push(newSpriteModifier);
+          // Create and add the new sprite modifier to replace the group (for database)
+          let newBSpriteModifier = new BSpriteModifier();
+          newBSpriteModifier.name = modifierId;
+          newBSpriteModifier.spriteInfoName = spriteInfoId;
+          newBSpriteModifier.rotation = 0;
+          newBSpriteModifier.scale = new Vector2(1, 1);
+          newBSpriteModifier.translation = new Vector2(0, 0);
+          newBSpriteModifier.tags = [SpriteTag.solid];
+          database.spriteModifiers.push(newBSpriteModifier);
 
           // Create and add the new spriteInfo
           let newSpriteInfo = new BSpriteInfo();
@@ -516,32 +385,72 @@ export class GenerateGroups {
           newSpriteInfo.uvSize = new Vector2(bounds.width, bounds.height);
           database.uiSprites.push(newSpriteInfo);
 
+          // Create runtime SpriteModifier for the OniItem (different type)
+          let runtimeSpriteModifier = new SpriteModifier(modifierId);
+          runtimeSpriteModifier.spriteInfoName = spriteInfoId;
+          runtimeSpriteModifier.rotation = 0;
+          runtimeSpriteModifier.scale = new Vector2(1, 1);
+          runtimeSpriteModifier.translation = new Vector2(0, 0);
+          runtimeSpriteModifier.tags = [SpriteTag.solid];
+
+          // CRITICAL: Replace the building's sprite group with just the single grouped sprite
+          oniItem.spriteGroup.spriteModifiers = [runtimeSpriteModifier];
+          
+          // CLEANUP: Remove individual sprite references from database that were grouped
+          console.log(`  🧹 Cleaning up ${spritesToGroup.length} individual sprites from database...`);
+          let actuallyRemoved = 0;
+          for (const spriteModifier of spritesToGroup) {
+            // Remove the sprite modifier from database
+            const modifierIndex = database.spriteModifiers.findIndex(sm => sm.name === spriteModifier.spriteModifierId);
+            if (modifierIndex !== -1) {
+              database.spriteModifiers.splice(modifierIndex, 1);
+              console.log(`    ✅ Removed sprite modifier: ${spriteModifier.spriteModifierId}`);
+            }
+            
+            // Remove the sprite info from database - use spriteInfoName, not spriteModifierId!
+            const spriteInfoIndex = database.uiSprites.findIndex(si => si.name === spriteModifier.spriteInfoName);
+            if (spriteInfoIndex !== -1) {
+              database.uiSprites.splice(spriteInfoIndex, 1);
+              console.log(`    ✅ Removed sprite info: ${spriteModifier.spriteInfoName}`);
+              actuallyRemoved++;
+            }
+            
+            // Remove from building's sprite list
+            const buildingSpriteIndex = buildingInDatabase.sprites.spriteNames.indexOf(spriteModifier.spriteModifierId);
+            if (buildingSpriteIndex !== -1) {
+              buildingInDatabase.sprites.spriteNames.splice(buildingSpriteIndex, 1);
+            }
+          }
+          console.log(`    📊 Actually removed ${actuallyRemoved} sprites from database`);
+          
+          // Update building's texture reference to use the grouped sprite
+          buildingInDatabase.textureName = textureName;
+          
+          console.log(`✅ Replaced ${oniItem.id} sprite group (${spritesToGroup.length} sprites → 1 grouped sprite)`);
+
           let brt = pixiNodeUtil.getNewBaseRenderTexture({ width: bounds.width, height: bounds.height });
           let rt = pixiNodeUtil.getNewRenderTexture(brt);
 
           pixiNodeUtil.pixiApp.renderer.render(container, rt);
           let base64: string = pixiNodeUtil.pixiApp.renderer.plugins.extract.canvas(rt).toDataURL();
 
-          let group = await Jimp.read(Buffer.from(base64.replace(/^data:image\/png;base64,/, ""), 'base64'));
+          let group = await jimp.read(Buffer.from(base64.replace(/^data:image\/png;base64,/, ""), 'base64'));
           
-          // Save to both locations
-          const assetsPath = path.join(this.assetsImagesDir, textureName + '.png');
-          const frontendPath = path.join(this.frontendImagesDir, textureName + '.png');
+          // Ensure frontend images directory exists
+          if (!fs.existsSync(frontendImagesDir)) {
+            fs.mkdirSync(frontendImagesDir, { recursive: true });
+          }
+          
+          // Save to frontend directory where it will actually be used
+          group.write(frontendGroupPath);
+          
+          // Also save to backend assets for consistency/backup
+          group.write(backendGroupPath);
 
-          console.log('Saving group images:', {
-            assets: assetsPath,
-            frontend: frontendPath
-          });
-
-          // Ensure frontend directory exists
-          fs.mkdirSync(path.dirname(frontendPath), { recursive: true });
-
-          await group.writeAsync(assetsPath);
-          await group.writeAsync(frontendPath);
-
-          // Register the image with ImageSource
-          ImageSource.AddImagePixi(textureName, base64);
-          ImageSource.setBaseTexture(textureName, brt);
+          // Register the grouped sprite in ImageSource so it can be loaded by the frontend
+          const relativeImagePath = `images/${textureName}.png`;
+          ImageSource.AddImagePixi(textureName, relativeImagePath);
+          console.log(`📝 Registered grouped sprite: ${textureName} → ${relativeImagePath}`);
 
           // Free memory
           brt.destroy();
@@ -551,11 +460,15 @@ export class GenerateGroups {
           container.destroy({ children: true });
           container = null;
           global.gc && global.gc();
+          
+          groupedItems++;
         } catch (error) {
           console.error(`Error processing sprite group for ${oniItem.id}:`, error);
           continue;  // Skip this item but continue with others
         }
       }
+      
+      console.log(`\nBuilding grouping complete: ${groupedItems}/${totalItems} buildings grouped`);
 
       let data = JSON.stringify(database, null, 2);
       fs.writeFileSync('./assets/database/database-groups.json', data);
@@ -573,7 +486,7 @@ export class GenerateGroups {
 
 // Only execute this script if loaded directly with node
 if (require.main === module) {
-  const projectRoot = path.join(__dirname, '../../../../');
-  const assetsImagesDir = path.join(projectRoot, 'assets/images');
+  const assetsImagesDir = path.join(__dirname, '../../../assets/images');
   new GenerateGroups('./assets/database/database.json', assetsImagesDir);
 }
+

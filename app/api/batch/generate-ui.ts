@@ -64,6 +64,25 @@ export class GenerateUI {
       });
 
       console.log(`Found ${uiSprites.length} UI sprites to process`);
+      
+      // Preload all unique textures needed for UI sprite extraction
+      console.log('Preloading main building textures...');
+      const uniqueTextures = Array.from(new Set(uiSprites.map(sprite => sprite.textureName as string)));
+      console.log(`Found ${uniqueTextures.length} unique textures to preload`);
+      
+      for (const textureName of uniqueTextures) {
+        const textureNameStr = textureName as string;
+        try {
+          const imagePath = `assets/images/${textureNameStr}.png`;
+          const baseTexture = await pixiNodeUtil.getImageFromCanvas(imagePath);
+          ImageSource.setBaseTexture(textureNameStr, baseTexture);
+          
+        } catch (error: any) {
+          console.warn(`Failed to preload texture ${textureNameStr}:`, error.message);
+        }
+      }
+      
+      console.log('Texture preloading complete. Starting UI sprite extraction...');
       let processed = 0;
 
       for (let sprite of uiSprites) {

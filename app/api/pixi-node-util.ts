@@ -90,33 +90,10 @@ export class PixiNodeUtil extends PixiUtil {
   }
 
   async initTextures(): Promise<void> {
-    console.log('Starting texture initialization...');
-    const total = ImageSource.keys.length;
-    let processed = 0;
-
-    for (let k of ImageSource.keys) {
-      try {
-        let imageUrl = ImageSource.getUrl(k);
-        if (!imageUrl) {
-          console.warn(`No URL found for texture: ${k}`);
-          continue;
-        }
-
-        let brt = await this.getImageFromCanvas(imageUrl);
-        if (brt) {
-          ImageSource.setBaseTexture(k, brt);
-        }
-        
-        processed++;
-        if (processed % 10 === 0) { // Log progress every 10 textures
-          console.log(`Processed ${processed}/${total} textures`);
-        }
-      } catch (error) {
-        console.warn(`Failed to initialize texture ${k}:`, error);
-        continue; // Skip this texture but continue with others
-      }
-    }
-    console.log(`Texture initialization complete. Processed ${processed}/${total} textures`);
+    console.log('Skipping individual sprite texture initialization...');
+    console.log('Main building textures will be loaded on-demand when needed.');
+    // Don't try to load individual sprite files - they don't exist!
+    // Sprites are extracted from main building textures using UV coordinates
   }
 
   async getImageFromCanvas(path: string) {

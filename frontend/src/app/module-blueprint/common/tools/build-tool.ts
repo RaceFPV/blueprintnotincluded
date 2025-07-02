@@ -36,11 +36,17 @@ export class BuildTool implements ITool {
   destroy() {
     if (this.templateItemToBuild != null) {
       this.templateItemToBuild.destroy();
-      this.templateItemToBuild = null;
+      this.templateItemToBuild = undefined as any;
     }
   }
 
   private updateBuildCandidateResult() {
+    // Safety check: prevent access to undefined templateItemToBuild
+    if (!this.templateItemToBuild) {
+      console.warn('updateBuildCandidateResult called but templateItemToBuild is undefined');
+      return;
+    }
+
     let previousCanBuild =
       this.templateItemToBuild.buildCandidateResult.canBuild.valueOf();
     let previousCantBuildReason =
@@ -229,6 +235,10 @@ export class BuildTool implements ITool {
   }
 
   leftClick(tile: Vector2) {
+    if (!this.templateItemToBuild) {
+      console.warn('leftClick called but templateItemToBuild is undefined');
+      return;
+    }
     this.templateItemToBuild.position = tile;
     this.build();
   }
@@ -238,6 +248,9 @@ export class BuildTool implements ITool {
   }
 
   hover(tile: Vector2) {
+    if (!this.templateItemToBuild) {
+      return;
+    }
     this.templateItemToBuild.position = Vector2.clone(tile);
     this.templateItemToBuild.prepareBoundingBox();
     this.templateItemToBuild.sortChildren();
@@ -256,6 +269,10 @@ export class BuildTool implements ITool {
   }
 
   mouseDown(tile: Vector2) {
+    if (!this.templateItemToBuild) {
+      console.warn('mouseDown called but templateItemToBuild is undefined');
+      return;
+    }
     this.templateItemToBuild.position = tile;
     this.build();
   }
@@ -408,6 +425,9 @@ export class BuildTool implements ITool {
   }
 
   draw(drawPixi: DrawPixi, camera: CameraService) {
+    if (!this.templateItemToBuild) {
+      return;
+    }
     // TODO SOLID
     //if (this.canBuild()) this.templateItemToBuild.drawPart.tint = DrawHelpers.whiteColor;
     //else this.templateItemToBuild.drawPart.tint = 0xD40000;

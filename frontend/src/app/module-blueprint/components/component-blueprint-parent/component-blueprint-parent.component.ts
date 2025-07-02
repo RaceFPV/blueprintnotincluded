@@ -208,8 +208,9 @@ export class ComponentBlueprintParentComponent
 
   database: any;
   fetchDatabase(): Promise<any> {
-    let promise = new Promise((resolve, reject) => {
-      // Start comment here
+    let promise = new Promise(async (resolve, reject) => {
+      /*
+      // Zip loading method (commented out)
       this.http
         .get("assets/database/database.zip", { responseType: "arraybuffer" })
         .subscribe((data) => {
@@ -270,41 +271,61 @@ export class ComponentBlueprintParentComponent
               reject(error);
             });
         });
-      // End comment here
-
-      /*
-      // Start comment here
-      fetch("/assets/database/database.json")
-        .then(response => { return response.json(); })
-        .then(json => {
-
-          this.database = json;
-
-          let elements: BuildableElement[] = json.elements;
-          BuildableElement.load(elements);
-
-          let buildMenuCategories: BuildMenuCategory[] = json.buildMenuCategories;
-          BuildMenuCategory.load(buildMenuCategories);
-
-          let buildMenuItems: BuildMenuItem[] = json.buildMenuItems;
-          BuildMenuItem.load(buildMenuItems);
-
-          let uiSprites: BSpriteInfo[] = json.uiSprites;
-          SpriteInfo.load(uiSprites)
-
-          let spriteModifiers: BSpriteModifier[] = json.spriteModifiers;
-          SpriteModifier.load(spriteModifiers);
-
-          let buildings: BBuilding[] = json.buildings;
-          OniItem.load(buildings);
-
-          resolve(0);
-      })
-      .catch((error) => {
-        reject(error);
-      });
-      // End comment here
       */
+
+      // Direct JSON loading method (active)
+      try {
+        const response = await fetch("/assets/database/database.json");
+        const json = await response.json();
+
+        this.database = json;
+
+        let elements: BuildableElement[] = json.elements;
+        for (const e of elements) {
+          const localizedName = await this.gameStringService.getStr(
+            `STRINGS.ELEMENTS.${e.id.toUpperCase()}.NAME`
+          );
+          if (!localizedName)
+            console.warn(`Missing element translation`, e);
+          e.name = localizedName || e.name;
+        }
+        BuildableElement.load(elements);
+
+        let buildMenuCategories: BuildMenuCategory[] = json.buildMenuCategories;
+        for (const bm of buildMenuCategories) {
+          const localizedName = await this.gameStringService.getStr(
+            `STRINGS.UI.BUILDCATEGORIES.${bm.categoryName.toUpperCase()}.NAME`
+          );
+          if (!localizedName)
+            console.warn(`Missing buildMenuCategory translation`, bm);
+          bm.categoryShowName = localizedName || bm.categoryName;
+        }
+        BuildMenuCategory.load(buildMenuCategories);
+
+        let buildMenuItems: BuildMenuItem[] = json.buildMenuItems;
+        BuildMenuItem.load(buildMenuItems);
+
+        let uiSprites: BSpriteInfo[] = json.uiSprites;
+        SpriteInfo.load(uiSprites);
+
+        let spriteModifiers: BSpriteModifier[] = json.spriteModifiers;
+        SpriteModifier.load(spriteModifiers);
+
+        let buildings: BBuilding[] = json.buildings;
+        for (const b of buildings) {
+          const localizedName = await this.gameStringService.getStr(
+            `STRINGS.BUILDINGS.PREFABS.${b.prefabId.toUpperCase()}.NAME`
+          );
+          if (!localizedName)
+            console.warn(`Missing building translation`, b);
+          b.name = localizedName;
+        }
+        OniItem.load(buildings);
+
+        resolve(0);
+      } catch (error) {
+        reject(error);
+      }
     });
 
     return promise;

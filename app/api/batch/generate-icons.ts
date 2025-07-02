@@ -49,54 +49,54 @@ export class GenerateIcons {
 
       console.log('Generating category icons...');
       
-      // Only process category icons
-      const categoryIcons = this.json.buildMenuCategories
-        .filter(cat => cat.categoryIcon && cat.categoryIcon.includes('icon_category'));
-
-      console.log(`Found ${categoryIcons.length} category icons to process`);
+      // Process category icons using the working old approach
       let processed = 0;
+      const uiDir = './assets/images/ui';
+      const frontendUiDir = './frontend/src/assets/images/ui';
+      fs.mkdirSync(uiDir, { recursive: true });
+      fs.mkdirSync(frontendUiDir, { recursive: true });
 
-      for (let category of categoryIcons) {
+      for (let k of SpriteInfo.keys.filter(s => {
+        const sprite = SpriteInfo.getSpriteInfo(s);
+        return sprite.isIcon && !sprite.isInputOutput && s.includes('icon_category');
+      })) {
         try {
-          // Create output directories
-          const uiDir = './assets/images/ui';
-          const frontendUiDir = './frontend/src/assets/images/ui';
-          fs.mkdirSync(uiDir, { recursive: true });
-          fs.mkdirSync(frontendUiDir, { recursive: true });
+          let uiSpriteInfo = SpriteInfo.getSpriteInfo(k);
+          console.log(`Extracting ${k}:`, {
+            uvMin: uiSpriteInfo.uvMin,
+            uvSize: uiSpriteInfo.uvSize
+          });
 
-          // Find sprite info for this category
-          const sprite = this.json.uiSprites.find(s => 
-            s.textureName === category.categoryIcon && s.isIcon
-          );
-
-          if (!sprite) {
-            console.log(`No sprite found for category ${category.categoryName}`);
+          let texture = uiSpriteInfo.getTexture(pixiNodeUtil);
+          if (!texture) {
+            console.log(`No texture found for ${k}`);
             continue;
           }
 
-          let texture = await this.extractCategoryIcon(sprite, pixiNodeUtil);
-          if (!texture) continue;
-
           let uiSprite = pixiNodeUtil.getSpriteFrom(texture);
+          let size = Math.max(texture.width, texture.height);
+
           let container = pixiNodeUtil.getNewContainer();
           container.addChild(uiSprite);
 
-          let brt = pixiNodeUtil.getNewBaseRenderTexture({ 
-            width: sprite.uvSize.x, 
-            height: Math.abs(sprite.uvSize.y),
-            resolution: 1
-          });
+          uiSprite.x = 0;
+          uiSprite.y = 0;
+
+          if (texture.width > texture.height) uiSprite.y += (texture.width / 2 - texture.height / 2);
+          if (texture.height > texture.width) uiSprite.x += (texture.height / 2 - texture.width / 2);
+
+          let brt = pixiNodeUtil.getNewBaseRenderTexture({ width: size, height: size, resolution: 1 });
           let rt = pixiNodeUtil.getNewRenderTexture(brt);
 
           pixiNodeUtil.pixiApp.renderer.render(container, rt, true);
           let base64 = pixiNodeUtil.pixiApp.renderer.plugins.extract.canvas(rt).toDataURL();
 
           let icon = await jimp.read(Buffer.from(base64.replace(/^data:image\/png;base64,/, ""), 'base64'));
-          icon.write(`./assets/images/ui/${category.categoryIcon}.png`);
-          icon.write(`./frontend/src/assets/images/ui/${category.categoryIcon}.png`);
+          icon.write(`${uiDir}/${k}.png`);
+          icon.write(`${frontendUiDir}/${k}.png`);
 
           processed++;
-          console.log(`Processed ${category.categoryIcon} (${processed}/${categoryIcons.length})`);
+          console.log(`Processed ${k} (${processed})`);
 
           // Cleanup
           brt.destroy();
@@ -104,45 +104,18 @@ export class GenerateIcons {
           container.destroy({ children: true });
           global.gc && global.gc();
         } catch (error) {
-          console.warn(`Failed to process category ${category.categoryName}:`, error);
+          console.warn(`Failed to process icon ${k}:`, error);
         }
       }
 
-      console.log(`Category icon generation complete. Processed ${processed}/${categoryIcons.length}`);
+      console.log(`Category icon generation complete. Processed ${processed} icons`);
     } catch (error) {
       console.error('Error generating icons:', error);
       throw error;
     }
   }
 
-  private async extractCategoryIcon(sprite: any, pixiNodeUtil: PixiNodeUtil) {
-    const baseTex = await ImageSource.getBaseTexture(sprite.textureName, pixiNodeUtil);
-    if (!baseTex) {
-      console.log(`No texture found for ${sprite.textureName}`);
-      return null;
-    }
 
-    console.log(`Extracting ${sprite.textureName}:`, {
-      uvMin: sprite.uvMin,
-      uvSize: sprite.uvSize,
-      textureSize: {
-        width: baseTex.width,
-        height: baseTex.height
-      }
-    });
-
-    let x = parseInt(sprite.uvMin.x);
-    let y = parseInt(sprite.uvMin.y);
-    let width = parseInt(sprite.uvSize.x);
-    let height = Math.abs(parseInt(sprite.uvSize.y));
-
-    if (parseInt(sprite.uvSize.y) < 0) {
-      y += parseInt(sprite.uvSize.y);
-    }
-
-    const rectangle = pixiNodeUtil.getNewRectangle(x, y, width, height);
-    return pixiNodeUtil.getNewTexture(baseTex, rectangle);
-  }
 }
 
 // Only execute this script if loaded directly with node

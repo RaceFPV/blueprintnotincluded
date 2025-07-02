@@ -63,7 +63,8 @@ export class ImageSource
     public static getUrl(imageId: string): string {
       const imageSource = ImageSource.imageSourcesMapPixi.get(imageId);
       if (!imageSource) {
-        throw new Error('ImageSource.getUrl : imageId not found : ' + imageId);
+        console.warn(`[ImageSource] Image ID not found: ${imageId}, returning empty string`);
+        return '';
       }
       return imageSource.imageUrl;
     }

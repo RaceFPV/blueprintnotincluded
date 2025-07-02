@@ -1,0 +1,1741 @@
+
+> blueprintnotincluded-backend@1.0.0 generateGroups /home/racefpv/git/blueprintnotincluded
+> ts-node-dev --expose_gc --max_old_space_size=4096 --transpile-only -r jsdom-global/register ./app/api/batch/generate-groups.ts
+
+[INFO] 04:01:00 ts-node-dev ver. 1.1.8 (using ts-node ver. 9.1.1, typescript ver. 4.9.5)
+pixi-shim ❤️ browser environment
+pixi-shim ❤️ PIXI.js
+pixi-shim ❤️ initialized in: 2.298ms
+pixi-shim ❤️ Canvas + WebGL
+pixi-shim ❤️ image
+pixi-shim ❤️ polyfill performance.now
+pixi-shim ❤️ polyfill requestAnimationFrame
+pixi-shim ❤️ PIXI.js
+Running batch GenerateGroups
+undefined
+Loading core database from: ./assets/database/database.json
+Loading grouped database for cache checking from: ./assets/database/database-groups.json
+Copying manual images to UI folder...
+Copied element_tile_back.png to UI folder
+Copied gas_tile.png to UI folder
+Copied gas_tile_front.png to UI folder
+Copied info_back.png to UI folder
+Copied info_front_0.png to UI folder
+Copied info_front_1.png to UI folder
+Copied info_front_10.png to UI folder
+Copied info_front_11.png to UI folder
+Copied info_front_2.png to UI folder
+Copied info_front_3.png to UI folder
+Copied info_front_4.png to UI folder
+Copied info_front_5.png to UI folder
+Copied info_front_6.png to UI folder
+Copied info_front_7.png to UI folder
+Copied info_front_8.png to UI folder
+Copied info_front_9.png to UI folder
+Copied liquid_tile_front.png to UI folder
+Copied vacuum_tile_front.png to UI folder
+PixiJS 5.3.0 - Canvas - http://www.pixijs.com/
+Initializing PIXI...
+Skipping individual sprite texture initialization...
+Main building textures will be loaded on-demand when needed.
+Using on-demand texture loading and UV coordinates from database...
+
+Processing buildings for sprite grouping...
+AdvancedApothecary: 19 sprites to group
+
+=== Processing AdvancedApothecary ===
+Building texture: medicine_nuclear_0
+Sprites to group: 19
+📋 Cache check for AdvancedApothecary:
+   Frontend file: ✅ ./frontend/src/assets/images/AdvancedApothecary_group_sprite.png
+   Backend file: ✅ ./assets/images/AdvancedApothecary_group_sprite.png
+   Sprite info in DB: ✅ AdvancedApothecary_group_sprite
+   Grouped DB available: ✅
+⏭️ SKIPPING AdvancedApothecary - grouped sprite already exists
+AdvancedCraftingTable: 34 sprites to group
+
+=== Processing AdvancedCraftingTable ===
+Building texture: advanced_crafting_table_0
+Sprites to group: 34
+📋 Cache check for AdvancedCraftingTable:
+   Frontend file: ✅ ./frontend/src/assets/images/AdvancedCraftingTable_group_sprite.png
+   Backend file: ✅ ./assets/images/AdvancedCraftingTable_group_sprite.png
+   Sprite info in DB: ❌ AdvancedCraftingTable_group_sprite
+   Grouped DB available: ✅
+🔄 GENERATING new grouped sprite for AdvancedCraftingTable
+All sprite modifiers: [
+  'AdvancedCraftingTable_light_glow_0',
+  'AdvancedCraftingTable_meter_target_0',
+  'AdvancedCraftingTable_on_off_knob_glow_0',
+  'AdvancedCraftingTable_advanced_crafting_table_main_16',
+  'AdvancedCraftingTable_advanced_crafting_table_main_29',
+  'AdvancedCraftingTable_advanced_crafting_table_main_28',
+  'AdvancedCraftingTable_advanced_crafting_table_main_15',
+  'AdvancedCraftingTable_advanced_crafting_table_main_14',
+  'AdvancedCraftingTable_printer_head_base_0',
+  'AdvancedCraftingTable_printer_nozzle_0',
+  'AdvancedCraftingTable_printer_bar_0',
+  'AdvancedCraftingTable_gear_0',
+  'AdvancedCraftingTable_gear_0',
+  'AdvancedCraftingTable_advanced_crafting_table_main_9',
+  'AdvancedCraftingTable_icons_group_0',
+  'AdvancedCraftingTable_icon_2_0',
+  'AdvancedCraftingTable_icon_3_0',
+  'AdvancedCraftingTable_icon_1_0',
+  'AdvancedCraftingTable_screen_0',
+  'AdvancedCraftingTable_advanced_crafting_table_main_22',
+  'AdvancedCraftingTable_advanced_crafting_table_main_0',
+  'AdvancedCraftingTable_advanced_crafting_table_main_2',
+  'AdvancedCraftingTable_on_off_light_1',
+  'AdvancedCraftingTable_advanced_crafting_table_main_12',
+  'AdvancedCraftingTable_advanced_crafting_table_main_20',
+  'AdvancedCraftingTable_advanced_crafting_table_main_21',
+  'AdvancedCraftingTable_advanced_crafting_table_main_23',
+  'AdvancedCraftingTable_advanced_crafting_table_main_24',
+  'AdvancedCraftingTable_advanced_crafting_table_main_25',
+  'AdvancedCraftingTable_advanced_crafting_table_main_26',
+  'AdvancedCraftingTable_advanced_crafting_table_main_17',
+  'AdvancedCraftingTable_advanced_crafting_table_main_18',
+  'AdvancedCraftingTable_advanced_crafting_table_main_19',
+  'AdvancedCraftingTable_place_0',
+  'AdvancedCraftingTable_ui_0'
+]
+Matching sprite infos in database: [
+  'AdvancedCraftingTable_off_0_light_glow',
+  'AdvancedCraftingTable_off_1_meter_target',
+  'AdvancedCraftingTable_off_2_on_off_knob_glow',
+  'AdvancedCraftingTable_off_3_advanced_crafting_table_main',
+  'AdvancedCraftingTable_off_4_advanced_crafting_table_main',
+  'AdvancedCraftingTable_off_5_advanced_crafting_table_main',
+  'AdvancedCraftingTable_off_6_advanced_crafting_table_main',
+  'AdvancedCraftingTable_off_7_advanced_crafting_table_main',
+  'AdvancedCraftingTable_off_8_printer_head_base',
+  'AdvancedCraftingTable_off_9_printer_nozzle'
+]
+
+Processing sprite: AdvancedCraftingTable_light_glow_0
+Original sprite name: AdvancedCraftingTable_light_glow_0
+  Trying conversions for: AdvancedCraftingTable_light_glow_0
+    Building: AdvancedCraftingTable, Part: light_glow, Original Frame: 0
+  ✅ SUCCESS: AdvancedCraftingTable_light_glow_0 → AdvancedCraftingTable_off_0_light_glow
+Sprite expects: {
+  spriteInfoId: 'AdvancedCraftingTable_off_0_light_glow',
+  buildingTexture: 'advanced_crafting_table_0',
+  uvMin: Vector2 { x: 731, y: 645 },
+  uvSize: Vector2 { x: 75, y: 75 }
+}
+Loaded main texture: advanced_crafting_table_0
+
+Processing sprite: AdvancedCraftingTable_meter_target_0
+Original sprite name: AdvancedCraftingTable_meter_target_0
+  Trying conversions for: AdvancedCraftingTable_meter_target_0
+    Building: AdvancedCraftingTable, Part: meter_target, Original Frame: 0
+  ✅ SUCCESS: AdvancedCraftingTable_meter_target_0 → AdvancedCraftingTable_off_1_meter_target
+Sprite expects: {
+  spriteInfoId: 'AdvancedCraftingTable_off_1_meter_target',
+  buildingTexture: 'advanced_crafting_table_0',
+  uvMin: Vector2 { x: 731, y: 820 },
+  uvSize: Vector2 { x: 70, y: 34 }
+}
+Loaded main texture: advanced_crafting_table_0
+
+Processing sprite: AdvancedCraftingTable_on_off_knob_glow_0
+Original sprite name: AdvancedCraftingTable_on_off_knob_glow_0
+Sprite expects: {
+  spriteInfoId: 'default',
+  buildingTexture: 'advanced_crafting_table_0',
+  uvMin: Vector2 { x: 0, y: 0 },
+  uvSize: Vector2 { x: 0, y: 0 }
+}
+Loaded main texture: advanced_crafting_table_0
+Failed to extract texture for AdvancedCraftingTable - AdvancedCraftingTable_on_off_knob_glow_0 from advanced_crafting_table_0
+
+Processing sprite: AdvancedCraftingTable_advanced_crafting_table_main_16
+Original sprite name: AdvancedCraftingTable_advanced_crafting_table_main_16
+  Trying conversions for: AdvancedCraftingTable_advanced_crafting_table_main_16
+    Building: AdvancedCraftingTable, Part: advanced_crafting_table_main, Original Frame: 16
+  ✅ SUCCESS: AdvancedCraftingTable_advanced_crafting_table_main_16 → AdvancedCraftingTable_off_3_advanced_crafting_table_main
+Sprite expects: {
+  spriteInfoId: 'AdvancedCraftingTable_off_3_advanced_crafting_table_main',
+  buildingTexture: 'advanced_crafting_table_0',
+  uvMin: Vector2 { x: 704, y: 952 },
+  uvSize: Vector2 { x: 63, y: 64 }
+}
+Loaded main texture: advanced_crafting_table_0
+
+Processing sprite: AdvancedCraftingTable_advanced_crafting_table_main_29
+Original sprite name: AdvancedCraftingTable_advanced_crafting_table_main_29
+  Trying conversions for: AdvancedCraftingTable_advanced_crafting_table_main_29
+    Building: AdvancedCraftingTable, Part: advanced_crafting_table_main, Original Frame: 29
+  ✅ SUCCESS: AdvancedCraftingTable_advanced_crafting_table_main_29 → AdvancedCraftingTable_off_3_advanced_crafting_table_main
+Sprite expects: {
+  spriteInfoId: 'AdvancedCraftingTable_off_3_advanced_crafting_table_main',
+  buildingTexture: 'advanced_crafting_table_0',
+  uvMin: Vector2 { x: 704, y: 952 },
+  uvSize: Vector2 { x: 63, y: 64 }
+}
+Loaded main texture: advanced_crafting_table_0
+
+Processing sprite: AdvancedCraftingTable_advanced_crafting_table_main_28
+Original sprite name: AdvancedCraftingTable_advanced_crafting_table_main_28
+  Trying conversions for: AdvancedCraftingTable_advanced_crafting_table_main_28
+    Building: AdvancedCraftingTable, Part: advanced_crafting_table_main, Original Frame: 28
+  ✅ SUCCESS: AdvancedCraftingTable_advanced_crafting_table_main_28 → AdvancedCraftingTable_off_3_advanced_crafting_table_main
+Sprite expects: {
+  spriteInfoId: 'AdvancedCraftingTable_off_3_advanced_crafting_table_main',
+  buildingTexture: 'advanced_crafting_table_0',
+  uvMin: Vector2 { x: 704, y: 952 },
+  uvSize: Vector2 { x: 63, y: 64 }
+}
+Loaded main texture: advanced_crafting_table_0
+
+Processing sprite: AdvancedCraftingTable_advanced_crafting_table_main_15
+Original sprite name: AdvancedCraftingTable_advanced_crafting_table_main_15
+  Trying conversions for: AdvancedCraftingTable_advanced_crafting_table_main_15
+    Building: AdvancedCraftingTable, Part: advanced_crafting_table_main, Original Frame: 15
+  ✅ SUCCESS: AdvancedCraftingTable_advanced_crafting_table_main_15 → AdvancedCraftingTable_off_3_advanced_crafting_table_main
+Sprite expects: {
+  spriteInfoId: 'AdvancedCraftingTable_off_3_advanced_crafting_table_main',
+  buildingTexture: 'advanced_crafting_table_0',
+  uvMin: Vector2 { x: 704, y: 952 },
+  uvSize: Vector2 { x: 63, y: 64 }
+}
+Loaded main texture: advanced_crafting_table_0
+
+Processing sprite: AdvancedCraftingTable_advanced_crafting_table_main_14
+Original sprite name: AdvancedCraftingTable_advanced_crafting_table_main_14
+  Trying conversions for: AdvancedCraftingTable_advanced_crafting_table_main_14
+    Building: AdvancedCraftingTable, Part: advanced_crafting_table_main, Original Frame: 14
+  ✅ SUCCESS: AdvancedCraftingTable_advanced_crafting_table_main_14 → AdvancedCraftingTable_off_3_advanced_crafting_table_main
+Sprite expects: {
+  spriteInfoId: 'AdvancedCraftingTable_off_3_advanced_crafting_table_main',
+  buildingTexture: 'advanced_crafting_table_0',
+  uvMin: Vector2 { x: 704, y: 952 },
+  uvSize: Vector2 { x: 63, y: 64 }
+}
+Loaded main texture: advanced_crafting_table_0
+
+Processing sprite: AdvancedCraftingTable_printer_head_base_0
+Original sprite name: AdvancedCraftingTable_printer_head_base_0
+  Trying conversions for: AdvancedCraftingTable_printer_head_base_0
+    Building: AdvancedCraftingTable, Part: printer_head_base, Original Frame: 0
+  ✅ SUCCESS: AdvancedCraftingTable_printer_head_base_0 → AdvancedCraftingTable_off_8_printer_head_base
+Sprite expects: {
+  spriteInfoId: 'AdvancedCraftingTable_off_8_printer_head_base',
+  buildingTexture: 'advanced_crafting_table_0',
+  uvMin: Vector2 { x: 376, y: 358 },
+  uvSize: Vector2 { x: 60, y: 48 }
+}
+Loaded main texture: advanced_crafting_table_0
+
+Processing sprite: AdvancedCraftingTable_printer_nozzle_0
+Original sprite name: AdvancedCraftingTable_printer_nozzle_0
+  Trying conversions for: AdvancedCraftingTable_printer_nozzle_0
+    Building: AdvancedCraftingTable, Part: printer_nozzle, Original Frame: 0
+  ✅ SUCCESS: AdvancedCraftingTable_printer_nozzle_0 → AdvancedCraftingTable_off_9_printer_nozzle
+Sprite expects: {
+  spriteInfoId: 'AdvancedCraftingTable_off_9_printer_nozzle',
+  buildingTexture: 'advanced_crafting_table_0',
+  uvMin: Vector2 { x: 584, y: 430 },
+  uvSize: Vector2 { x: 25, y: 25 }
+}
+Loaded main texture: advanced_crafting_table_0
+
+Processing sprite: AdvancedCraftingTable_printer_bar_0
+Original sprite name: AdvancedCraftingTable_printer_bar_0
+  Trying conversions for: AdvancedCraftingTable_printer_bar_0
+    Building: AdvancedCraftingTable, Part: printer_bar, Original Frame: 0
+  ✅ SUCCESS: AdvancedCraftingTable_printer_bar_0 → AdvancedCraftingTable_off_10_printer_bar
+Sprite expects: {
+  spriteInfoId: 'AdvancedCraftingTable_off_10_printer_bar',
+  buildingTexture: 'advanced_crafting_table_0',
+  uvMin: Vector2 { x: 838, y: 199 },
+  uvSize: Vector2 { x: 158, y: 28 }
+}
+Loaded main texture: advanced_crafting_table_0
+
+Processing sprite: AdvancedCraftingTable_gear_0
+Original sprite name: AdvancedCraftingTable_gear_0
+  Trying conversions for: AdvancedCraftingTable_gear_0
+    Building: AdvancedCraftingTable, Part: gear, Original Frame: 0
+  ✅ SUCCESS: AdvancedCraftingTable_gear_0 → AdvancedCraftingTable_off_11_gear
+Sprite expects: {
+  spriteInfoId: 'AdvancedCraftingTable_off_11_gear',
+  buildingTexture: 'advanced_crafting_table_0',
+  uvMin: Vector2 { x: 996, y: 227 },
+  uvSize: Vector2 { x: 28, y: 28 }
+}
+Loaded main texture: advanced_crafting_table_0
+
+Processing sprite: AdvancedCraftingTable_gear_0
+Original sprite name: AdvancedCraftingTable_gear_0
+  Trying conversions for: AdvancedCraftingTable_gear_0
+    Building: AdvancedCraftingTable, Part: gear, Original Frame: 0
+  ✅ SUCCESS: AdvancedCraftingTable_gear_0 → AdvancedCraftingTable_off_11_gear
+Sprite expects: {
+  spriteInfoId: 'AdvancedCraftingTable_off_11_gear',
+  buildingTexture: 'advanced_crafting_table_0',
+  uvMin: Vector2 { x: 996, y: 227 },
+  uvSize: Vector2 { x: 28, y: 28 }
+}
+Loaded main texture: advanced_crafting_table_0
+
+Processing sprite: AdvancedCraftingTable_advanced_crafting_table_main_9
+Original sprite name: AdvancedCraftingTable_advanced_crafting_table_main_9
+  Trying conversions for: AdvancedCraftingTable_advanced_crafting_table_main_9
+    Building: AdvancedCraftingTable, Part: advanced_crafting_table_main, Original Frame: 9
+  ✅ SUCCESS: AdvancedCraftingTable_advanced_crafting_table_main_9 → AdvancedCraftingTable_off_3_advanced_crafting_table_main
+Sprite expects: {
+  spriteInfoId: 'AdvancedCraftingTable_off_3_advanced_crafting_table_main',
+  buildingTexture: 'advanced_crafting_table_0',
+  uvMin: Vector2 { x: 704, y: 952 },
+  uvSize: Vector2 { x: 63, y: 64 }
+}
+Loaded main texture: advanced_crafting_table_0
+
+Processing sprite: AdvancedCraftingTable_icons_group_0
+Original sprite name: AdvancedCraftingTable_icons_group_0
+  Trying conversions for: AdvancedCraftingTable_icons_group_0
+    Building: AdvancedCraftingTable, Part: icons_group, Original Frame: 0
+  ✅ SUCCESS: AdvancedCraftingTable_icons_group_0 → AdvancedCraftingTable_off_14_icons_group
+Sprite expects: {
+  spriteInfoId: 'AdvancedCraftingTable_off_14_icons_group',
+  buildingTexture: 'advanced_crafting_table_0',
+  uvMin: Vector2 { x: 731, y: 406 },
+  uvSize: Vector2 { x: 85, y: 117 }
+}
+Loaded main texture: advanced_crafting_table_0
+
+Processing sprite: AdvancedCraftingTable_icon_2_0
+Original sprite name: AdvancedCraftingTable_icon_2_0
+  Trying conversions for: AdvancedCraftingTable_icon_2_0
+    Building: AdvancedCraftingTable, Part: icon_2, Original Frame: 0
+  ✅ SUCCESS: AdvancedCraftingTable_icon_2_0 → AdvancedCraftingTable_off_15_icon_2
+Sprite expects: {
+  spriteInfoId: 'AdvancedCraftingTable_off_15_icon_2',
+  buildingTexture: 'advanced_crafting_table_0',
+  uvMin: Vector2 { x: 798, y: 720 },
+  uvSize: Vector2 { x: 38, y: 32 }
+}
+Loaded main texture: advanced_crafting_table_0
+
+Processing sprite: AdvancedCraftingTable_icon_3_0
+Original sprite name: AdvancedCraftingTable_icon_3_0
+  Trying conversions for: AdvancedCraftingTable_icon_3_0
+    Building: AdvancedCraftingTable, Part: icon_3, Original Frame: 0
+  ✅ SUCCESS: AdvancedCraftingTable_icon_3_0 → AdvancedCraftingTable_off_16_icon_3
+Sprite expects: {
+  spriteInfoId: 'AdvancedCraftingTable_off_16_icon_3',
+  buildingTexture: 'advanced_crafting_table_0',
+  uvMin: Vector2 { x: 816, y: 406 },
+  uvSize: Vector2 { x: 22, y: 20 }
+}
+Loaded main texture: advanced_crafting_table_0
+
+Processing sprite: AdvancedCraftingTable_icon_1_0
+Original sprite name: AdvancedCraftingTable_icon_1_0
+  Trying conversions for: AdvancedCraftingTable_icon_1_0
+    Building: AdvancedCraftingTable, Part: icon_1, Original Frame: 0
+  ✅ SUCCESS: AdvancedCraftingTable_icon_1_0 → AdvancedCraftingTable_off_17_icon_1
+Sprite expects: {
+  spriteInfoId: 'AdvancedCraftingTable_off_17_icon_1',
+  buildingTexture: 'advanced_crafting_table_0',
+  uvMin: Vector2 { x: 493, y: 880 },
+  uvSize: Vector2 { x: 46, y: 40 }
+}
+Loaded main texture: advanced_crafting_table_0
+
+Processing sprite: AdvancedCraftingTable_screen_0
+Original sprite name: AdvancedCraftingTable_screen_0
+  Trying conversions for: AdvancedCraftingTable_screen_0
+    Building: AdvancedCraftingTable, Part: screen, Original Frame: 0
+  ✅ SUCCESS: AdvancedCraftingTable_screen_0 → AdvancedCraftingTable_off_18_screen
+Sprite expects: {
+  spriteInfoId: 'AdvancedCraftingTable_off_18_screen',
+  buildingTexture: 'advanced_crafting_table_0',
+  uvMin: Vector2 { x: 838, y: 660 },
+  uvSize: Vector2 { x: 112, y: 137 }
+}
+Loaded main texture: advanced_crafting_table_0
+
+Processing sprite: AdvancedCraftingTable_advanced_crafting_table_main_22
+Original sprite name: AdvancedCraftingTable_advanced_crafting_table_main_22
+  Trying conversions for: AdvancedCraftingTable_advanced_crafting_table_main_22
+    Building: AdvancedCraftingTable, Part: advanced_crafting_table_main, Original Frame: 22
+  ✅ SUCCESS: AdvancedCraftingTable_advanced_crafting_table_main_22 → AdvancedCraftingTable_off_3_advanced_crafting_table_main
+Sprite expects: {
+  spriteInfoId: 'AdvancedCraftingTable_off_3_advanced_crafting_table_main',
+  buildingTexture: 'advanced_crafting_table_0',
+  uvMin: Vector2 { x: 704, y: 952 },
+  uvSize: Vector2 { x: 63, y: 64 }
+}
+Loaded main texture: advanced_crafting_table_0
+
+Processing sprite: AdvancedCraftingTable_advanced_crafting_table_main_0
+Original sprite name: AdvancedCraftingTable_advanced_crafting_table_main_0
+  Trying conversions for: AdvancedCraftingTable_advanced_crafting_table_main_0
+    Building: AdvancedCraftingTable, Part: advanced_crafting_table_main, Original Frame: 0
+  ✅ SUCCESS: AdvancedCraftingTable_advanced_crafting_table_main_0 → AdvancedCraftingTable_off_3_advanced_crafting_table_main
+Sprite expects: {
+  spriteInfoId: 'AdvancedCraftingTable_off_3_advanced_crafting_table_main',
+  buildingTexture: 'advanced_crafting_table_0',
+  uvMin: Vector2 { x: 704, y: 952 },
+  uvSize: Vector2 { x: 63, y: 64 }
+}
+Loaded main texture: advanced_crafting_table_0
+
+Processing sprite: AdvancedCraftingTable_advanced_crafting_table_main_2
+Original sprite name: AdvancedCraftingTable_advanced_crafting_table_main_2
+  Trying conversions for: AdvancedCraftingTable_advanced_crafting_table_main_2
+    Building: AdvancedCraftingTable, Part: advanced_crafting_table_main, Original Frame: 2
+  ✅ SUCCESS: AdvancedCraftingTable_advanced_crafting_table_main_2 → AdvancedCraftingTable_off_3_advanced_crafting_table_main
+Sprite expects: {
+  spriteInfoId: 'AdvancedCraftingTable_off_3_advanced_crafting_table_main',
+  buildingTexture: 'advanced_crafting_table_0',
+  uvMin: Vector2 { x: 704, y: 952 },
+  uvSize: Vector2 { x: 63, y: 64 }
+}
+Loaded main texture: advanced_crafting_table_0
+
+Processing sprite: AdvancedCraftingTable_on_off_light_1
+Original sprite name: AdvancedCraftingTable_on_off_light_1
+Sprite expects: {
+  spriteInfoId: 'default',
+  buildingTexture: 'advanced_crafting_table_0',
+  uvMin: Vector2 { x: 0, y: 0 },
+  uvSize: Vector2 { x: 0, y: 0 }
+}
+Loaded main texture: advanced_crafting_table_0
+Failed to extract texture for AdvancedCraftingTable - AdvancedCraftingTable_on_off_light_1 from advanced_crafting_table_0
+
+Processing sprite: AdvancedCraftingTable_advanced_crafting_table_main_12
+Original sprite name: AdvancedCraftingTable_advanced_crafting_table_main_12
+  Trying conversions for: AdvancedCraftingTable_advanced_crafting_table_main_12
+    Building: AdvancedCraftingTable, Part: advanced_crafting_table_main, Original Frame: 12
+  ✅ SUCCESS: AdvancedCraftingTable_advanced_crafting_table_main_12 → AdvancedCraftingTable_off_3_advanced_crafting_table_main
+Sprite expects: {
+  spriteInfoId: 'AdvancedCraftingTable_off_3_advanced_crafting_table_main',
+  buildingTexture: 'advanced_crafting_table_0',
+  uvMin: Vector2 { x: 704, y: 952 },
+  uvSize: Vector2 { x: 63, y: 64 }
+}
+Loaded main texture: advanced_crafting_table_0
+
+Processing sprite: AdvancedCraftingTable_advanced_crafting_table_main_20
+Original sprite name: AdvancedCraftingTable_advanced_crafting_table_main_20
+  Trying conversions for: AdvancedCraftingTable_advanced_crafting_table_main_20
+    Building: AdvancedCraftingTable, Part: advanced_crafting_table_main, Original Frame: 20
+  ✅ SUCCESS: AdvancedCraftingTable_advanced_crafting_table_main_20 → AdvancedCraftingTable_off_3_advanced_crafting_table_main
+Sprite expects: {
+  spriteInfoId: 'AdvancedCraftingTable_off_3_advanced_crafting_table_main',
+  buildingTexture: 'advanced_crafting_table_0',
+  uvMin: Vector2 { x: 704, y: 952 },
+  uvSize: Vector2 { x: 63, y: 64 }
+}
+Loaded main texture: advanced_crafting_table_0
+
+Processing sprite: AdvancedCraftingTable_advanced_crafting_table_main_21
+Original sprite name: AdvancedCraftingTable_advanced_crafting_table_main_21
+  Trying conversions for: AdvancedCraftingTable_advanced_crafting_table_main_21
+    Building: AdvancedCraftingTable, Part: advanced_crafting_table_main, Original Frame: 21
+  ✅ SUCCESS: AdvancedCraftingTable_advanced_crafting_table_main_21 → AdvancedCraftingTable_off_3_advanced_crafting_table_main
+Sprite expects: {
+  spriteInfoId: 'AdvancedCraftingTable_off_3_advanced_crafting_table_main',
+  buildingTexture: 'advanced_crafting_table_0',
+  uvMin: Vector2 { x: 704, y: 952 },
+  uvSize: Vector2 { x: 63, y: 64 }
+}
+Loaded main texture: advanced_crafting_table_0
+
+Processing sprite: AdvancedCraftingTable_advanced_crafting_table_main_23
+Original sprite name: AdvancedCraftingTable_advanced_crafting_table_main_23
+  Trying conversions for: AdvancedCraftingTable_advanced_crafting_table_main_23
+    Building: AdvancedCraftingTable, Part: advanced_crafting_table_main, Original Frame: 23
+  ✅ SUCCESS: AdvancedCraftingTable_advanced_crafting_table_main_23 → AdvancedCraftingTable_off_3_advanced_crafting_table_main
+Sprite expects: {
+  spriteInfoId: 'AdvancedCraftingTable_off_3_advanced_crafting_table_main',
+  buildingTexture: 'advanced_crafting_table_0',
+  uvMin: Vector2 { x: 704, y: 952 },
+  uvSize: Vector2 { x: 63, y: 64 }
+}
+Loaded main texture: advanced_crafting_table_0
+
+Processing sprite: AdvancedCraftingTable_advanced_crafting_table_main_24
+Original sprite name: AdvancedCraftingTable_advanced_crafting_table_main_24
+  Trying conversions for: AdvancedCraftingTable_advanced_crafting_table_main_24
+    Building: AdvancedCraftingTable, Part: advanced_crafting_table_main, Original Frame: 24
+  ✅ SUCCESS: AdvancedCraftingTable_advanced_crafting_table_main_24 → AdvancedCraftingTable_off_3_advanced_crafting_table_main
+Sprite expects: {
+  spriteInfoId: 'AdvancedCraftingTable_off_3_advanced_crafting_table_main',
+  buildingTexture: 'advanced_crafting_table_0',
+  uvMin: Vector2 { x: 704, y: 952 },
+  uvSize: Vector2 { x: 63, y: 64 }
+}
+Loaded main texture: advanced_crafting_table_0
+
+Processing sprite: AdvancedCraftingTable_advanced_crafting_table_main_25
+Original sprite name: AdvancedCraftingTable_advanced_crafting_table_main_25
+  Trying conversions for: AdvancedCraftingTable_advanced_crafting_table_main_25
+    Building: AdvancedCraftingTable, Part: advanced_crafting_table_main, Original Frame: 25
+  ✅ SUCCESS: AdvancedCraftingTable_advanced_crafting_table_main_25 → AdvancedCraftingTable_off_3_advanced_crafting_table_main
+Sprite expects: {
+  spriteInfoId: 'AdvancedCraftingTable_off_3_advanced_crafting_table_main',
+  buildingTexture: 'advanced_crafting_table_0',
+  uvMin: Vector2 { x: 704, y: 952 },
+  uvSize: Vector2 { x: 63, y: 64 }
+}
+Loaded main texture: advanced_crafting_table_0
+
+Processing sprite: AdvancedCraftingTable_advanced_crafting_table_main_26
+Original sprite name: AdvancedCraftingTable_advanced_crafting_table_main_26
+  Trying conversions for: AdvancedCraftingTable_advanced_crafting_table_main_26
+    Building: AdvancedCraftingTable, Part: advanced_crafting_table_main, Original Frame: 26
+  ✅ SUCCESS: AdvancedCraftingTable_advanced_crafting_table_main_26 → AdvancedCraftingTable_off_3_advanced_crafting_table_main
+Sprite expects: {
+  spriteInfoId: 'AdvancedCraftingTable_off_3_advanced_crafting_table_main',
+  buildingTexture: 'advanced_crafting_table_0',
+  uvMin: Vector2 { x: 704, y: 952 },
+  uvSize: Vector2 { x: 63, y: 64 }
+}
+Loaded main texture: advanced_crafting_table_0
+
+Processing sprite: AdvancedCraftingTable_advanced_crafting_table_main_17
+Original sprite name: AdvancedCraftingTable_advanced_crafting_table_main_17
+  Trying conversions for: AdvancedCraftingTable_advanced_crafting_table_main_17
+    Building: AdvancedCraftingTable, Part: advanced_crafting_table_main, Original Frame: 17
+  ✅ SUCCESS: AdvancedCraftingTable_advanced_crafting_table_main_17 → AdvancedCraftingTable_off_3_advanced_crafting_table_main
+Sprite expects: {
+  spriteInfoId: 'AdvancedCraftingTable_off_3_advanced_crafting_table_main',
+  buildingTexture: 'advanced_crafting_table_0',
+  uvMin: Vector2 { x: 704, y: 952 },
+  uvSize: Vector2 { x: 63, y: 64 }
+}
+Loaded main texture: advanced_crafting_table_0
+
+Processing sprite: AdvancedCraftingTable_advanced_crafting_table_main_18
+Original sprite name: AdvancedCraftingTable_advanced_crafting_table_main_18
+  Trying conversions for: AdvancedCraftingTable_advanced_crafting_table_main_18
+    Building: AdvancedCraftingTable, Part: advanced_crafting_table_main, Original Frame: 18
+  ✅ SUCCESS: AdvancedCraftingTable_advanced_crafting_table_main_18 → AdvancedCraftingTable_off_3_advanced_crafting_table_main
+Sprite expects: {
+  spriteInfoId: 'AdvancedCraftingTable_off_3_advanced_crafting_table_main',
+  buildingTexture: 'advanced_crafting_table_0',
+  uvMin: Vector2 { x: 704, y: 952 },
+  uvSize: Vector2 { x: 63, y: 64 }
+}
+Loaded main texture: advanced_crafting_table_0
+
+Processing sprite: AdvancedCraftingTable_advanced_crafting_table_main_19
+Original sprite name: AdvancedCraftingTable_advanced_crafting_table_main_19
+  Trying conversions for: AdvancedCraftingTable_advanced_crafting_table_main_19
+    Building: AdvancedCraftingTable, Part: advanced_crafting_table_main, Original Frame: 19
+  ✅ SUCCESS: AdvancedCraftingTable_advanced_crafting_table_main_19 → AdvancedCraftingTable_off_3_advanced_crafting_table_main
+Sprite expects: {
+  spriteInfoId: 'AdvancedCraftingTable_off_3_advanced_crafting_table_main',
+  buildingTexture: 'advanced_crafting_table_0',
+  uvMin: Vector2 { x: 704, y: 952 },
+  uvSize: Vector2 { x: 63, y: 64 }
+}
+Loaded main texture: advanced_crafting_table_0
+Saving group to ./frontend/src/assets/images/AdvancedCraftingTable_group_sprite.png
+  🧹 Cleaning up 34 individual sprites from database...
+    Looking for sprite modifier: AdvancedCraftingTable_off_0_light_glow
+    Looking for sprite info: AdvancedCraftingTable_light_glow_0
+    ✅ Removed sprite modifier: AdvancedCraftingTable_off_0_light_glow
+    ✅ Removed sprite info: AdvancedCraftingTable_off_0_light_glow
+    Looking for sprite modifier: AdvancedCraftingTable_off_1_meter_target
+    Looking for sprite info: AdvancedCraftingTable_meter_target_0
+    ✅ Removed sprite modifier: AdvancedCraftingTable_off_1_meter_target
+    ✅ Removed sprite info: AdvancedCraftingTable_off_1_meter_target
+    Looking for sprite modifier: AdvancedCraftingTable_off_2_on_off_knob_glow
+    Looking for sprite info: AdvancedCraftingTable_on_off_knob_glow_0
+    ✅ Removed sprite modifier: AdvancedCraftingTable_off_2_on_off_knob_glow
+    ✅ Removed sprite info: AdvancedCraftingTable_off_2_on_off_knob_glow
+    Looking for sprite modifier: AdvancedCraftingTable_off_3_advanced_crafting_table_main
+    Looking for sprite info: AdvancedCraftingTable_advanced_crafting_table_main_16
+    ✅ Removed sprite modifier: AdvancedCraftingTable_off_3_advanced_crafting_table_main
+    ✅ Removed sprite info: AdvancedCraftingTable_off_3_advanced_crafting_table_main
+    Looking for sprite modifier: AdvancedCraftingTable_off_4_advanced_crafting_table_main
+    Looking for sprite info: AdvancedCraftingTable_advanced_crafting_table_main_29
+    ✅ Removed sprite modifier: AdvancedCraftingTable_off_4_advanced_crafting_table_main
+    ✅ Removed sprite info: AdvancedCraftingTable_off_4_advanced_crafting_table_main
+    Looking for sprite modifier: AdvancedCraftingTable_off_5_advanced_crafting_table_main
+    Looking for sprite info: AdvancedCraftingTable_advanced_crafting_table_main_28
+    ✅ Removed sprite modifier: AdvancedCraftingTable_off_5_advanced_crafting_table_main
+    ✅ Removed sprite info: AdvancedCraftingTable_off_5_advanced_crafting_table_main
+    Looking for sprite modifier: AdvancedCraftingTable_off_6_advanced_crafting_table_main
+    Looking for sprite info: AdvancedCraftingTable_advanced_crafting_table_main_15
+    ✅ Removed sprite modifier: AdvancedCraftingTable_off_6_advanced_crafting_table_main
+    ✅ Removed sprite info: AdvancedCraftingTable_off_6_advanced_crafting_table_main
+    Looking for sprite modifier: AdvancedCraftingTable_off_7_advanced_crafting_table_main
+    Looking for sprite info: AdvancedCraftingTable_advanced_crafting_table_main_14
+    ✅ Removed sprite modifier: AdvancedCraftingTable_off_7_advanced_crafting_table_main
+    ✅ Removed sprite info: AdvancedCraftingTable_off_7_advanced_crafting_table_main
+    Looking for sprite modifier: AdvancedCraftingTable_off_8_printer_head_base
+    Looking for sprite info: AdvancedCraftingTable_printer_head_base_0
+    ✅ Removed sprite modifier: AdvancedCraftingTable_off_8_printer_head_base
+    ✅ Removed sprite info: AdvancedCraftingTable_off_8_printer_head_base
+    Looking for sprite modifier: AdvancedCraftingTable_off_9_printer_nozzle
+    Looking for sprite info: AdvancedCraftingTable_printer_nozzle_0
+    ✅ Removed sprite modifier: AdvancedCraftingTable_off_9_printer_nozzle
+    ✅ Removed sprite info: AdvancedCraftingTable_off_9_printer_nozzle
+    Looking for sprite modifier: AdvancedCraftingTable_off_10_printer_bar
+    Looking for sprite info: AdvancedCraftingTable_printer_bar_0
+    ✅ Removed sprite modifier: AdvancedCraftingTable_off_10_printer_bar
+    ✅ Removed sprite info: AdvancedCraftingTable_off_10_printer_bar
+    Looking for sprite modifier: AdvancedCraftingTable_off_11_gear
+    Looking for sprite info: AdvancedCraftingTable_gear_0
+    ✅ Removed sprite modifier: AdvancedCraftingTable_off_11_gear
+    ✅ Removed sprite info: AdvancedCraftingTable_off_11_gear
+    Looking for sprite modifier: AdvancedCraftingTable_off_12_gear
+    Looking for sprite info: AdvancedCraftingTable_gear_0
+    ✅ Removed sprite modifier: AdvancedCraftingTable_off_12_gear
+    ✅ Removed sprite info: AdvancedCraftingTable_off_12_gear
+    Looking for sprite modifier: AdvancedCraftingTable_off_13_advanced_crafting_table_main
+    Looking for sprite info: AdvancedCraftingTable_advanced_crafting_table_main_9
+    ✅ Removed sprite modifier: AdvancedCraftingTable_off_13_advanced_crafting_table_main
+    ✅ Removed sprite info: AdvancedCraftingTable_off_13_advanced_crafting_table_main
+    Looking for sprite modifier: AdvancedCraftingTable_off_14_icons_group
+    Looking for sprite info: AdvancedCraftingTable_icons_group_0
+    ✅ Removed sprite modifier: AdvancedCraftingTable_off_14_icons_group
+    ✅ Removed sprite info: AdvancedCraftingTable_off_14_icons_group
+    Looking for sprite modifier: AdvancedCraftingTable_off_15_icon_2
+    Looking for sprite info: AdvancedCraftingTable_icon_2_0
+    ✅ Removed sprite modifier: AdvancedCraftingTable_off_15_icon_2
+    ✅ Removed sprite info: AdvancedCraftingTable_off_15_icon_2
+    Looking for sprite modifier: AdvancedCraftingTable_off_16_icon_3
+    Looking for sprite info: AdvancedCraftingTable_icon_3_0
+    ✅ Removed sprite modifier: AdvancedCraftingTable_off_16_icon_3
+    ✅ Removed sprite info: AdvancedCraftingTable_off_16_icon_3
+    Looking for sprite modifier: AdvancedCraftingTable_off_17_icon_1
+    Looking for sprite info: AdvancedCraftingTable_icon_1_0
+    ✅ Removed sprite modifier: AdvancedCraftingTable_off_17_icon_1
+    ✅ Removed sprite info: AdvancedCraftingTable_off_17_icon_1
+    Looking for sprite modifier: AdvancedCraftingTable_off_18_screen
+    Looking for sprite info: AdvancedCraftingTable_screen_0
+    ✅ Removed sprite modifier: AdvancedCraftingTable_off_18_screen
+    ✅ Removed sprite info: AdvancedCraftingTable_off_18_screen
+    Looking for sprite modifier: AdvancedCraftingTable_off_19_advanced_crafting_table_main
+    Looking for sprite info: AdvancedCraftingTable_advanced_crafting_table_main_22
+    ✅ Removed sprite modifier: AdvancedCraftingTable_off_19_advanced_crafting_table_main
+    ✅ Removed sprite info: AdvancedCraftingTable_off_19_advanced_crafting_table_main
+    Looking for sprite modifier: AdvancedCraftingTable_off_20_advanced_crafting_table_main
+    Looking for sprite info: AdvancedCraftingTable_advanced_crafting_table_main_0
+    ✅ Removed sprite modifier: AdvancedCraftingTable_off_20_advanced_crafting_table_main
+    ✅ Removed sprite info: AdvancedCraftingTable_off_20_advanced_crafting_table_main
+    Looking for sprite modifier: AdvancedCraftingTable_off_21_advanced_crafting_table_main
+    Looking for sprite info: AdvancedCraftingTable_advanced_crafting_table_main_2
+    ✅ Removed sprite modifier: AdvancedCraftingTable_off_21_advanced_crafting_table_main
+    ✅ Removed sprite info: AdvancedCraftingTable_off_21_advanced_crafting_table_main
+    Looking for sprite modifier: AdvancedCraftingTable_off_22_on_off_light
+    Looking for sprite info: AdvancedCraftingTable_on_off_light_1
+    ✅ Removed sprite modifier: AdvancedCraftingTable_off_22_on_off_light
+    ✅ Removed sprite info: AdvancedCraftingTable_off_22_on_off_light
+    Looking for sprite modifier: AdvancedCraftingTable_off_23_advanced_crafting_table_main
+    Looking for sprite info: AdvancedCraftingTable_advanced_crafting_table_main_12
+    ✅ Removed sprite modifier: AdvancedCraftingTable_off_23_advanced_crafting_table_main
+    ✅ Removed sprite info: AdvancedCraftingTable_off_23_advanced_crafting_table_main
+    Looking for sprite modifier: AdvancedCraftingTable_off_24_advanced_crafting_table_main
+    Looking for sprite info: AdvancedCraftingTable_advanced_crafting_table_main_20
+    ✅ Removed sprite modifier: AdvancedCraftingTable_off_24_advanced_crafting_table_main
+    ✅ Removed sprite info: AdvancedCraftingTable_off_24_advanced_crafting_table_main
+    Looking for sprite modifier: AdvancedCraftingTable_off_25_advanced_crafting_table_main
+    Looking for sprite info: AdvancedCraftingTable_advanced_crafting_table_main_21
+    ✅ Removed sprite modifier: AdvancedCraftingTable_off_25_advanced_crafting_table_main
+    ✅ Removed sprite info: AdvancedCraftingTable_off_25_advanced_crafting_table_main
+    Looking for sprite modifier: AdvancedCraftingTable_off_26_advanced_crafting_table_main
+    Looking for sprite info: AdvancedCraftingTable_advanced_crafting_table_main_23
+    ✅ Removed sprite modifier: AdvancedCraftingTable_off_26_advanced_crafting_table_main
+    ✅ Removed sprite info: AdvancedCraftingTable_off_26_advanced_crafting_table_main
+    Looking for sprite modifier: AdvancedCraftingTable_off_27_advanced_crafting_table_main
+    Looking for sprite info: AdvancedCraftingTable_advanced_crafting_table_main_24
+    ✅ Removed sprite modifier: AdvancedCraftingTable_off_27_advanced_crafting_table_main
+    ✅ Removed sprite info: AdvancedCraftingTable_off_27_advanced_crafting_table_main
+    Looking for sprite modifier: AdvancedCraftingTable_off_28_advanced_crafting_table_main
+    Looking for sprite info: AdvancedCraftingTable_advanced_crafting_table_main_25
+    ✅ Removed sprite modifier: AdvancedCraftingTable_off_28_advanced_crafting_table_main
+    ✅ Removed sprite info: AdvancedCraftingTable_off_28_advanced_crafting_table_main
+    Looking for sprite modifier: AdvancedCraftingTable_off_29_advanced_crafting_table_main
+    Looking for sprite info: AdvancedCraftingTable_advanced_crafting_table_main_26
+    ✅ Removed sprite modifier: AdvancedCraftingTable_off_29_advanced_crafting_table_main
+    ✅ Removed sprite info: AdvancedCraftingTable_off_29_advanced_crafting_table_main
+    Looking for sprite modifier: AdvancedCraftingTable_off_30_advanced_crafting_table_main
+    Looking for sprite info: AdvancedCraftingTable_advanced_crafting_table_main_17
+    ✅ Removed sprite modifier: AdvancedCraftingTable_off_30_advanced_crafting_table_main
+    ✅ Removed sprite info: AdvancedCraftingTable_off_30_advanced_crafting_table_main
+    Looking for sprite modifier: AdvancedCraftingTable_off_31_advanced_crafting_table_main
+    Looking for sprite info: AdvancedCraftingTable_advanced_crafting_table_main_18
+    ✅ Removed sprite modifier: AdvancedCraftingTable_off_31_advanced_crafting_table_main
+    ✅ Removed sprite info: AdvancedCraftingTable_off_31_advanced_crafting_table_main
+    Looking for sprite modifier: AdvancedCraftingTable_off_32_advanced_crafting_table_main
+    Looking for sprite info: AdvancedCraftingTable_advanced_crafting_table_main_19
+    ✅ Removed sprite modifier: AdvancedCraftingTable_off_32_advanced_crafting_table_main
+    ✅ Removed sprite info: AdvancedCraftingTable_off_32_advanced_crafting_table_main
+    Looking for sprite modifier: AdvancedCraftingTable_place_0_place
+    Looking for sprite info: AdvancedCraftingTable_place_0
+    ✅ Removed sprite modifier: AdvancedCraftingTable_place_0_place
+    ✅ Removed sprite info: AdvancedCraftingTable_place_0_place
+    📊 Actually removed 34 sprites from database
+✅ Replaced AdvancedCraftingTable sprite group (34 sprites → 1 grouped sprite)
+📝 Registered grouped sprite: AdvancedCraftingTable_group_sprite → images/AdvancedCraftingTable_group_sprite.png
+AdvancedDoctorStation: 11 sprites to group
+
+=== Processing AdvancedDoctorStation ===
+Building texture: bed_medical_0
+Sprites to group: 11
+📋 Cache check for AdvancedDoctorStation:
+   Frontend file: ✅ ./frontend/src/assets/images/AdvancedDoctorStation_group_sprite.png
+   Backend file: ✅ ./assets/images/AdvancedDoctorStation_group_sprite.png
+   Sprite info in DB: ✅ AdvancedDoctorStation_group_sprite
+   Grouped DB available: ✅
+⏭️ SKIPPING AdvancedDoctorStation - grouped sprite already exists
+AdvancedResearchCenter: 24 sprites to group
+
+=== Processing AdvancedResearchCenter ===
+Building texture: research_center2_0
+Sprites to group: 24
+📋 Cache check for AdvancedResearchCenter:
+   Frontend file: ✅ ./frontend/src/assets/images/AdvancedResearchCenter_group_sprite.png
+   Backend file: ✅ ./assets/images/AdvancedResearchCenter_group_sprite.png
+   Sprite info in DB: ❌ AdvancedResearchCenter_group_sprite
+   Grouped DB available: ✅
+🔄 GENERATING new grouped sprite for AdvancedResearchCenter
+All sprite modifiers: [
+  'AdvancedResearchCenter_box_0',
+  'AdvancedResearchCenter_pipewire_0',
+  'AdvancedResearchCenter_throttle_0',
+  'AdvancedResearchCenter_button_1',
+  'AdvancedResearchCenter_button_0',
+  'AdvancedResearchCenter_button_1',
+  'AdvancedResearchCenter_button_0',
+  'AdvancedResearchCenter_screen_0',
+  'AdvancedResearchCenter_screen_1',
+  'AdvancedResearchCenter_screen_2',
+  'AdvancedResearchCenter_watertube_0',
+  'AdvancedResearchCenter_desk_0',
+  'AdvancedResearchCenter_tippybracket_0',
+  'AdvancedResearchCenter_tippybird_0',
+  'AdvancedResearchCenter_tippybracket_0',
+  'AdvancedResearchCenter_paperpile_0',
+  'AdvancedResearchCenter_watertube_3',
+  'AdvancedResearchCenter_watertube_4',
+  'AdvancedResearchCenter_watertube_5',
+  'AdvancedResearchCenter_watertube_1',
+  'AdvancedResearchCenter_watertube_2',
+  'AdvancedResearchCenter_wire_0',
+  'AdvancedResearchCenter_wire_1',
+  'AdvancedResearchCenter_place_0',
+  'AdvancedResearchCenter_ui_0'
+]
+Matching sprite infos in database: [
+  'AdvancedResearchCenter_off_0_box',
+  'AdvancedResearchCenter_off_1_pipewire',
+  'AdvancedResearchCenter_off_2_throttle',
+  'AdvancedResearchCenter_off_3_button',
+  'AdvancedResearchCenter_off_4_button',
+  'AdvancedResearchCenter_off_5_button',
+  'AdvancedResearchCenter_off_6_button',
+  'AdvancedResearchCenter_off_7_screen',
+  'AdvancedResearchCenter_off_8_screen',
+  'AdvancedResearchCenter_off_9_screen'
+]
+
+Processing sprite: AdvancedResearchCenter_box_0
+Original sprite name: AdvancedResearchCenter_box_0
+  Trying conversions for: AdvancedResearchCenter_box_0
+    Building: AdvancedResearchCenter, Part: box, Original Frame: 0
+  ✅ SUCCESS: AdvancedResearchCenter_box_0 → AdvancedResearchCenter_off_0_box
+Sprite expects: {
+  spriteInfoId: 'AdvancedResearchCenter_off_0_box',
+  buildingTexture: 'research_center2_0',
+  uvMin: Vector2 { x: 336, y: 214 },
+  uvSize: Vector2 { x: 110, y: 82 }
+}
+Loaded main texture: research_center2_0
+
+Processing sprite: AdvancedResearchCenter_pipewire_0
+Original sprite name: AdvancedResearchCenter_pipewire_0
+  Trying conversions for: AdvancedResearchCenter_pipewire_0
+    Building: AdvancedResearchCenter, Part: pipewire, Original Frame: 0
+  ✅ SUCCESS: AdvancedResearchCenter_pipewire_0 → AdvancedResearchCenter_off_1_pipewire
+Sprite expects: {
+  spriteInfoId: 'AdvancedResearchCenter_off_1_pipewire',
+  buildingTexture: 'research_center2_0',
+  uvMin: Vector2 { x: 278, y: 450 },
+  uvSize: Vector2 { x: 60, y: 62 }
+}
+Loaded main texture: research_center2_0
+
+Processing sprite: AdvancedResearchCenter_throttle_0
+Original sprite name: AdvancedResearchCenter_throttle_0
+  Trying conversions for: AdvancedResearchCenter_throttle_0
+    Building: AdvancedResearchCenter, Part: throttle, Original Frame: 0
+  ✅ SUCCESS: AdvancedResearchCenter_throttle_0 → AdvancedResearchCenter_off_2_throttle
+Sprite expects: {
+  spriteInfoId: 'AdvancedResearchCenter_off_2_throttle',
+  buildingTexture: 'research_center2_0',
+  uvMin: Vector2 { x: 882, y: 454 },
+  uvSize: Vector2 { x: 82, y: 54 }
+}
+Loaded main texture: research_center2_0
+
+Processing sprite: AdvancedResearchCenter_button_1
+Original sprite name: AdvancedResearchCenter_button_1
+  Trying conversions for: AdvancedResearchCenter_button_1
+    Building: AdvancedResearchCenter, Part: button, Original Frame: 1
+  ✅ SUCCESS: AdvancedResearchCenter_button_1 → AdvancedResearchCenter_off_3_button
+Sprite expects: {
+  spriteInfoId: 'AdvancedResearchCenter_off_3_button',
+  buildingTexture: 'research_center2_0',
+  uvMin: Vector2 { x: 336, y: 296 },
+  uvSize: Vector2 { x: 50, y: 30 }
+}
+Loaded main texture: research_center2_0
+
+Processing sprite: AdvancedResearchCenter_button_0
+Original sprite name: AdvancedResearchCenter_button_0
+  Trying conversions for: AdvancedResearchCenter_button_0
+    Building: AdvancedResearchCenter, Part: button, Original Frame: 0
+  ✅ SUCCESS: AdvancedResearchCenter_button_0 → AdvancedResearchCenter_off_3_button
+Sprite expects: {
+  spriteInfoId: 'AdvancedResearchCenter_off_3_button',
+  buildingTexture: 'research_center2_0',
+  uvMin: Vector2 { x: 336, y: 296 },
+  uvSize: Vector2 { x: 50, y: 30 }
+}
+Loaded main texture: research_center2_0
+
+Processing sprite: AdvancedResearchCenter_button_1
+Original sprite name: AdvancedResearchCenter_button_1
+  Trying conversions for: AdvancedResearchCenter_button_1
+    Building: AdvancedResearchCenter, Part: button, Original Frame: 1
+  ✅ SUCCESS: AdvancedResearchCenter_button_1 → AdvancedResearchCenter_off_3_button
+Sprite expects: {
+  spriteInfoId: 'AdvancedResearchCenter_off_3_button',
+  buildingTexture: 'research_center2_0',
+  uvMin: Vector2 { x: 336, y: 296 },
+  uvSize: Vector2 { x: 50, y: 30 }
+}
+Loaded main texture: research_center2_0
+
+Processing sprite: AdvancedResearchCenter_button_0
+Original sprite name: AdvancedResearchCenter_button_0
+  Trying conversions for: AdvancedResearchCenter_button_0
+    Building: AdvancedResearchCenter, Part: button, Original Frame: 0
+  ✅ SUCCESS: AdvancedResearchCenter_button_0 → AdvancedResearchCenter_off_3_button
+Sprite expects: {
+  spriteInfoId: 'AdvancedResearchCenter_off_3_button',
+  buildingTexture: 'research_center2_0',
+  uvMin: Vector2 { x: 336, y: 296 },
+  uvSize: Vector2 { x: 50, y: 30 }
+}
+Loaded main texture: research_center2_0
+
+Processing sprite: AdvancedResearchCenter_screen_0
+Original sprite name: AdvancedResearchCenter_screen_0
+  Trying conversions for: AdvancedResearchCenter_screen_0
+    Building: AdvancedResearchCenter, Part: screen, Original Frame: 0
+  ✅ SUCCESS: AdvancedResearchCenter_screen_0 → AdvancedResearchCenter_off_7_screen
+Sprite expects: {
+  spriteInfoId: 'AdvancedResearchCenter_off_7_screen',
+  buildingTexture: 'research_center2_0',
+  uvMin: Vector2 { x: 336, y: 0 },
+  uvSize: Vector2 { x: 132, y: 140 }
+}
+Loaded main texture: research_center2_0
+
+Processing sprite: AdvancedResearchCenter_screen_1
+Original sprite name: AdvancedResearchCenter_screen_1
+  Trying conversions for: AdvancedResearchCenter_screen_1
+    Building: AdvancedResearchCenter, Part: screen, Original Frame: 1
+  ✅ SUCCESS: AdvancedResearchCenter_screen_1 → AdvancedResearchCenter_off_7_screen
+Sprite expects: {
+  spriteInfoId: 'AdvancedResearchCenter_off_7_screen',
+  buildingTexture: 'research_center2_0',
+  uvMin: Vector2 { x: 336, y: 0 },
+  uvSize: Vector2 { x: 132, y: 140 }
+}
+Loaded main texture: research_center2_0
+
+Processing sprite: AdvancedResearchCenter_screen_2
+Original sprite name: AdvancedResearchCenter_screen_2
+  Trying conversions for: AdvancedResearchCenter_screen_2
+    Building: AdvancedResearchCenter, Part: screen, Original Frame: 2
+  ✅ SUCCESS: AdvancedResearchCenter_screen_2 → AdvancedResearchCenter_off_7_screen
+Sprite expects: {
+  spriteInfoId: 'AdvancedResearchCenter_off_7_screen',
+  buildingTexture: 'research_center2_0',
+  uvMin: Vector2 { x: 336, y: 0 },
+  uvSize: Vector2 { x: 132, y: 140 }
+}
+Loaded main texture: research_center2_0
+
+Processing sprite: AdvancedResearchCenter_watertube_0
+Original sprite name: AdvancedResearchCenter_watertube_0
+  Trying conversions for: AdvancedResearchCenter_watertube_0
+    Building: AdvancedResearchCenter, Part: watertube, Original Frame: 0
+  ✅ SUCCESS: AdvancedResearchCenter_watertube_0 → AdvancedResearchCenter_off_10_watertube
+Sprite expects: {
+  spriteInfoId: 'AdvancedResearchCenter_off_10_watertube',
+  buildingTexture: 'research_center2_0',
+  uvMin: Vector2 { x: 468, y: 140 },
+  uvSize: Vector2 { x: 108, y: 128 }
+}
+Loaded main texture: research_center2_0
+
+Processing sprite: AdvancedResearchCenter_desk_0
+Original sprite name: AdvancedResearchCenter_desk_0
+  Trying conversions for: AdvancedResearchCenter_desk_0
+    Building: AdvancedResearchCenter, Part: desk, Original Frame: 0
+  ✅ SUCCESS: AdvancedResearchCenter_desk_0 → AdvancedResearchCenter_off_11_desk
+Sprite expects: {
+  spriteInfoId: 'AdvancedResearchCenter_off_11_desk',
+  buildingTexture: 'research_center2_0',
+  uvMin: Vector2 { x: 0, y: 332 },
+  uvSize: Vector2 { x: 278, y: 134 }
+}
+Loaded main texture: research_center2_0
+
+Processing sprite: AdvancedResearchCenter_tippybracket_0
+Original sprite name: AdvancedResearchCenter_tippybracket_0
+  Trying conversions for: AdvancedResearchCenter_tippybracket_0
+    Building: AdvancedResearchCenter, Part: tippybracket, Original Frame: 0
+  ✅ SUCCESS: AdvancedResearchCenter_tippybracket_0 → AdvancedResearchCenter_off_12_tippybracket
+Sprite expects: {
+  spriteInfoId: 'AdvancedResearchCenter_off_12_tippybracket',
+  buildingTexture: 'research_center2_0',
+  uvMin: Vector2 { x: 34, y: 466 },
+  uvSize: Vector2 { x: 26, y: 44 }
+}
+Loaded main texture: research_center2_0
+
+Processing sprite: AdvancedResearchCenter_tippybird_0
+Original sprite name: AdvancedResearchCenter_tippybird_0
+  Trying conversions for: AdvancedResearchCenter_tippybird_0
+    Building: AdvancedResearchCenter, Part: tippybird, Original Frame: 0
+  ✅ SUCCESS: AdvancedResearchCenter_tippybird_0 → AdvancedResearchCenter_off_13_tippybird
+Sprite expects: {
+  spriteInfoId: 'AdvancedResearchCenter_off_13_tippybird',
+  buildingTexture: 'research_center2_0',
+  uvMin: Vector2 { x: 696, y: 0 },
+  uvSize: Vector2 { x: 50, y: 72 }
+}
+Loaded main texture: research_center2_0
+
+Processing sprite: AdvancedResearchCenter_tippybracket_0
+Original sprite name: AdvancedResearchCenter_tippybracket_0
+  Trying conversions for: AdvancedResearchCenter_tippybracket_0
+    Building: AdvancedResearchCenter, Part: tippybracket, Original Frame: 0
+  ✅ SUCCESS: AdvancedResearchCenter_tippybracket_0 → AdvancedResearchCenter_off_12_tippybracket
+Sprite expects: {
+  spriteInfoId: 'AdvancedResearchCenter_off_12_tippybracket',
+  buildingTexture: 'research_center2_0',
+  uvMin: Vector2 { x: 34, y: 466 },
+  uvSize: Vector2 { x: 26, y: 44 }
+}
+Loaded main texture: research_center2_0
+
+Processing sprite: AdvancedResearchCenter_paperpile_0
+Original sprite name: AdvancedResearchCenter_paperpile_0
+  Trying conversions for: AdvancedResearchCenter_paperpile_0
+    Building: AdvancedResearchCenter, Part: paperpile, Original Frame: 0
+  ✅ SUCCESS: AdvancedResearchCenter_paperpile_0 → AdvancedResearchCenter_off_15_paperpile
+Sprite expects: {
+  spriteInfoId: 'AdvancedResearchCenter_off_15_paperpile',
+  buildingTexture: 'research_center2_0',
+  uvMin: Vector2 { x: 446, y: 450 },
+  uvSize: Vector2 { x: 144, y: 62 }
+}
+Loaded main texture: research_center2_0
+
+Processing sprite: AdvancedResearchCenter_watertube_3
+Original sprite name: AdvancedResearchCenter_watertube_3
+  Trying conversions for: AdvancedResearchCenter_watertube_3
+    Building: AdvancedResearchCenter, Part: watertube, Original Frame: 3
+  ✅ SUCCESS: AdvancedResearchCenter_watertube_3 → AdvancedResearchCenter_off_10_watertube
+Sprite expects: {
+  spriteInfoId: 'AdvancedResearchCenter_off_10_watertube',
+  buildingTexture: 'research_center2_0',
+  uvMin: Vector2 { x: 468, y: 140 },
+  uvSize: Vector2 { x: 108, y: 128 }
+}
+Loaded main texture: research_center2_0
+
+Processing sprite: AdvancedResearchCenter_watertube_4
+Original sprite name: AdvancedResearchCenter_watertube_4
+  Trying conversions for: AdvancedResearchCenter_watertube_4
+    Building: AdvancedResearchCenter, Part: watertube, Original Frame: 4
+  ✅ SUCCESS: AdvancedResearchCenter_watertube_4 → AdvancedResearchCenter_off_10_watertube
+Sprite expects: {
+  spriteInfoId: 'AdvancedResearchCenter_off_10_watertube',
+  buildingTexture: 'research_center2_0',
+  uvMin: Vector2 { x: 468, y: 140 },
+  uvSize: Vector2 { x: 108, y: 128 }
+}
+Loaded main texture: research_center2_0
+
+Processing sprite: AdvancedResearchCenter_watertube_5
+Original sprite name: AdvancedResearchCenter_watertube_5
+  Trying conversions for: AdvancedResearchCenter_watertube_5
+    Building: AdvancedResearchCenter, Part: watertube, Original Frame: 5
+  ✅ SUCCESS: AdvancedResearchCenter_watertube_5 → AdvancedResearchCenter_off_10_watertube
+Sprite expects: {
+  spriteInfoId: 'AdvancedResearchCenter_off_10_watertube',
+  buildingTexture: 'research_center2_0',
+  uvMin: Vector2 { x: 468, y: 140 },
+  uvSize: Vector2 { x: 108, y: 128 }
+}
+Loaded main texture: research_center2_0
+
+Processing sprite: AdvancedResearchCenter_watertube_1
+Original sprite name: AdvancedResearchCenter_watertube_1
+  Trying conversions for: AdvancedResearchCenter_watertube_1
+    Building: AdvancedResearchCenter, Part: watertube, Original Frame: 1
+  ✅ SUCCESS: AdvancedResearchCenter_watertube_1 → AdvancedResearchCenter_off_10_watertube
+Sprite expects: {
+  spriteInfoId: 'AdvancedResearchCenter_off_10_watertube',
+  buildingTexture: 'research_center2_0',
+  uvMin: Vector2 { x: 468, y: 140 },
+  uvSize: Vector2 { x: 108, y: 128 }
+}
+Loaded main texture: research_center2_0
+
+Processing sprite: AdvancedResearchCenter_watertube_2
+Original sprite name: AdvancedResearchCenter_watertube_2
+  Trying conversions for: AdvancedResearchCenter_watertube_2
+    Building: AdvancedResearchCenter, Part: watertube, Original Frame: 2
+  ✅ SUCCESS: AdvancedResearchCenter_watertube_2 → AdvancedResearchCenter_off_10_watertube
+Sprite expects: {
+  spriteInfoId: 'AdvancedResearchCenter_off_10_watertube',
+  buildingTexture: 'research_center2_0',
+  uvMin: Vector2 { x: 468, y: 140 },
+  uvSize: Vector2 { x: 108, y: 128 }
+}
+Loaded main texture: research_center2_0
+
+Processing sprite: AdvancedResearchCenter_wire_0
+Original sprite name: AdvancedResearchCenter_wire_0
+  Trying conversions for: AdvancedResearchCenter_wire_0
+    Building: AdvancedResearchCenter, Part: wire, Original Frame: 0
+  ❌ FAILED: No database match found for AdvancedResearchCenter_wire_0
+    Available sprites for AdvancedResearchCenter: [
+  'AdvancedResearchCenter_off_0_box',
+  'AdvancedResearchCenter_off_1_pipewire',
+  'AdvancedResearchCenter_off_2_throttle',
+  'AdvancedResearchCenter_off_3_button',
+  'AdvancedResearchCenter_off_4_button',
+  'AdvancedResearchCenter_off_5_button',
+  'AdvancedResearchCenter_off_6_button',
+  'AdvancedResearchCenter_off_7_screen'
+]
+Sprite expects: {
+  spriteInfoId: 'default',
+  buildingTexture: 'research_center2_0',
+  uvMin: Vector2 { x: 0, y: 0 },
+  uvSize: Vector2 { x: 0, y: 0 }
+}
+Loaded main texture: research_center2_0
+Failed to extract texture for AdvancedResearchCenter - AdvancedResearchCenter_wire_0 from research_center2_0
+
+Processing sprite: AdvancedResearchCenter_wire_1
+Original sprite name: AdvancedResearchCenter_wire_1
+  Trying conversions for: AdvancedResearchCenter_wire_1
+    Building: AdvancedResearchCenter, Part: wire, Original Frame: 1
+  ❌ FAILED: No database match found for AdvancedResearchCenter_wire_1
+    Available sprites for AdvancedResearchCenter: [
+  'AdvancedResearchCenter_off_0_box',
+  'AdvancedResearchCenter_off_1_pipewire',
+  'AdvancedResearchCenter_off_2_throttle',
+  'AdvancedResearchCenter_off_3_button',
+  'AdvancedResearchCenter_off_4_button',
+  'AdvancedResearchCenter_off_5_button',
+  'AdvancedResearchCenter_off_6_button',
+  'AdvancedResearchCenter_off_7_screen'
+]
+Sprite expects: {
+  spriteInfoId: 'default',
+  buildingTexture: 'research_center2_0',
+  uvMin: Vector2 { x: 0, y: 0 },
+  uvSize: Vector2 { x: 0, y: 0 }
+}
+Loaded main texture: research_center2_0
+Failed to extract texture for AdvancedResearchCenter - AdvancedResearchCenter_wire_1 from research_center2_0
+Saving group to ./frontend/src/assets/images/AdvancedResearchCenter_group_sprite.png
+  🧹 Cleaning up 24 individual sprites from database...
+    Looking for sprite modifier: AdvancedResearchCenter_off_0_box
+    Looking for sprite info: AdvancedResearchCenter_box_0
+    ✅ Removed sprite modifier: AdvancedResearchCenter_off_0_box
+    ✅ Removed sprite info: AdvancedResearchCenter_off_0_box
+    Looking for sprite modifier: AdvancedResearchCenter_off_1_pipewire
+    Looking for sprite info: AdvancedResearchCenter_pipewire_0
+    ✅ Removed sprite modifier: AdvancedResearchCenter_off_1_pipewire
+    ✅ Removed sprite info: AdvancedResearchCenter_off_1_pipewire
+    Looking for sprite modifier: AdvancedResearchCenter_off_2_throttle
+    Looking for sprite info: AdvancedResearchCenter_throttle_0
+    ✅ Removed sprite modifier: AdvancedResearchCenter_off_2_throttle
+    ✅ Removed sprite info: AdvancedResearchCenter_off_2_throttle
+    Looking for sprite modifier: AdvancedResearchCenter_off_3_button
+    Looking for sprite info: AdvancedResearchCenter_button_1
+    ✅ Removed sprite modifier: AdvancedResearchCenter_off_3_button
+    ✅ Removed sprite info: AdvancedResearchCenter_off_3_button
+    Looking for sprite modifier: AdvancedResearchCenter_off_4_button
+    Looking for sprite info: AdvancedResearchCenter_button_0
+    ✅ Removed sprite modifier: AdvancedResearchCenter_off_4_button
+    ✅ Removed sprite info: AdvancedResearchCenter_off_4_button
+    Looking for sprite modifier: AdvancedResearchCenter_off_5_button
+    Looking for sprite info: AdvancedResearchCenter_button_1
+    ✅ Removed sprite modifier: AdvancedResearchCenter_off_5_button
+    ✅ Removed sprite info: AdvancedResearchCenter_off_5_button
+    Looking for sprite modifier: AdvancedResearchCenter_off_6_button
+    Looking for sprite info: AdvancedResearchCenter_button_0
+    ✅ Removed sprite modifier: AdvancedResearchCenter_off_6_button
+    ✅ Removed sprite info: AdvancedResearchCenter_off_6_button
+    Looking for sprite modifier: AdvancedResearchCenter_off_7_screen
+    Looking for sprite info: AdvancedResearchCenter_screen_0
+    ✅ Removed sprite modifier: AdvancedResearchCenter_off_7_screen
+    ✅ Removed sprite info: AdvancedResearchCenter_off_7_screen
+    Looking for sprite modifier: AdvancedResearchCenter_off_8_screen
+    Looking for sprite info: AdvancedResearchCenter_screen_1
+    ✅ Removed sprite modifier: AdvancedResearchCenter_off_8_screen
+    ✅ Removed sprite info: AdvancedResearchCenter_off_8_screen
+    Looking for sprite modifier: AdvancedResearchCenter_off_9_screen
+    Looking for sprite info: AdvancedResearchCenter_screen_2
+    ✅ Removed sprite modifier: AdvancedResearchCenter_off_9_screen
+    ✅ Removed sprite info: AdvancedResearchCenter_off_9_screen
+    Looking for sprite modifier: AdvancedResearchCenter_off_10_watertube
+    Looking for sprite info: AdvancedResearchCenter_watertube_0
+    ✅ Removed sprite modifier: AdvancedResearchCenter_off_10_watertube
+    ✅ Removed sprite info: AdvancedResearchCenter_off_10_watertube
+    Looking for sprite modifier: AdvancedResearchCenter_off_11_desk
+    Looking for sprite info: AdvancedResearchCenter_desk_0
+    ✅ Removed sprite modifier: AdvancedResearchCenter_off_11_desk
+    ✅ Removed sprite info: AdvancedResearchCenter_off_11_desk
+    Looking for sprite modifier: AdvancedResearchCenter_off_12_tippybracket
+    Looking for sprite info: AdvancedResearchCenter_tippybracket_0
+    ✅ Removed sprite modifier: AdvancedResearchCenter_off_12_tippybracket
+    ✅ Removed sprite info: AdvancedResearchCenter_off_12_tippybracket
+    Looking for sprite modifier: AdvancedResearchCenter_off_13_tippybird
+    Looking for sprite info: AdvancedResearchCenter_tippybird_0
+    ✅ Removed sprite modifier: AdvancedResearchCenter_off_13_tippybird
+    ✅ Removed sprite info: AdvancedResearchCenter_off_13_tippybird
+    Looking for sprite modifier: AdvancedResearchCenter_off_14_tippybracket
+    Looking for sprite info: AdvancedResearchCenter_tippybracket_0
+    ✅ Removed sprite modifier: AdvancedResearchCenter_off_14_tippybracket
+    ✅ Removed sprite info: AdvancedResearchCenter_off_14_tippybracket
+    Looking for sprite modifier: AdvancedResearchCenter_off_15_paperpile
+    Looking for sprite info: AdvancedResearchCenter_paperpile_0
+    ✅ Removed sprite modifier: AdvancedResearchCenter_off_15_paperpile
+    ✅ Removed sprite info: AdvancedResearchCenter_off_15_paperpile
+    Looking for sprite modifier: AdvancedResearchCenter_off_16_watertube
+    Looking for sprite info: AdvancedResearchCenter_watertube_3
+    ✅ Removed sprite modifier: AdvancedResearchCenter_off_16_watertube
+    ✅ Removed sprite info: AdvancedResearchCenter_off_16_watertube
+    Looking for sprite modifier: AdvancedResearchCenter_off_17_watertube
+    Looking for sprite info: AdvancedResearchCenter_watertube_4
+    ✅ Removed sprite modifier: AdvancedResearchCenter_off_17_watertube
+    ✅ Removed sprite info: AdvancedResearchCenter_off_17_watertube
+    Looking for sprite modifier: AdvancedResearchCenter_off_18_watertube
+    Looking for sprite info: AdvancedResearchCenter_watertube_5
+    ✅ Removed sprite modifier: AdvancedResearchCenter_off_18_watertube
+    ✅ Removed sprite info: AdvancedResearchCenter_off_18_watertube
+    Looking for sprite modifier: AdvancedResearchCenter_off_19_watertube
+    Looking for sprite info: AdvancedResearchCenter_watertube_1
+    ✅ Removed sprite modifier: AdvancedResearchCenter_off_19_watertube
+    ✅ Removed sprite info: AdvancedResearchCenter_off_19_watertube
+    Looking for sprite modifier: AdvancedResearchCenter_off_20_watertube
+    Looking for sprite info: AdvancedResearchCenter_watertube_2
+    ✅ Removed sprite modifier: AdvancedResearchCenter_off_20_watertube
+    ✅ Removed sprite info: AdvancedResearchCenter_off_20_watertube
+    Looking for sprite modifier: AdvancedResearchCenter_off_21_wire
+    Looking for sprite info: AdvancedResearchCenter_wire_0
+    ✅ Removed sprite modifier: AdvancedResearchCenter_off_21_wire
+    ✅ Removed sprite info: AdvancedResearchCenter_off_21_wire
+    Looking for sprite modifier: AdvancedResearchCenter_off_22_wire
+    Looking for sprite info: AdvancedResearchCenter_wire_1
+    ✅ Removed sprite modifier: AdvancedResearchCenter_off_22_wire
+    ✅ Removed sprite info: AdvancedResearchCenter_off_22_wire
+    Looking for sprite modifier: AdvancedResearchCenter_place_0_place
+    Looking for sprite info: AdvancedResearchCenter_place_0
+    ✅ Removed sprite modifier: AdvancedResearchCenter_place_0_place
+    ✅ Removed sprite info: AdvancedResearchCenter_place_0_place
+    📊 Actually removed 24 sprites from database
+✅ Replaced AdvancedResearchCenter sprite group (24 sprites → 1 grouped sprite)
+📝 Registered grouped sprite: AdvancedResearchCenter_group_sprite → images/AdvancedResearchCenter_group_sprite.png
+AirBorneCritterCondo: 4 sprites to group
+
+=== Processing AirBorneCritterCondo ===
+Building texture: critter_condo_airborne_0
+Sprites to group: 4
+📋 Cache check for AirBorneCritterCondo:
+   Frontend file: ✅ ./frontend/src/assets/images/AirBorneCritterCondo_group_sprite.png
+   Backend file: ✅ ./assets/images/AirBorneCritterCondo_group_sprite.png
+   Sprite info in DB: ✅ AirBorneCritterCondo_group_sprite
+   Grouped DB available: ✅
+⏭️ SKIPPING AirBorneCritterCondo - grouped sprite already exists
+AirConditioner: 15 sprites to group
+
+=== Processing AirConditioner ===
+Building texture: airconditioner_0
+Sprites to group: 15
+📋 Cache check for AirConditioner:
+   Frontend file: ✅ ./frontend/src/assets/images/AirConditioner_group_sprite.png
+   Backend file: ✅ ./assets/images/AirConditioner_group_sprite.png
+   Sprite info in DB: ❌ AirConditioner_group_sprite
+   Grouped DB available: ✅
+🔄 GENERATING new grouped sprite for AirConditioner
+All sprite modifiers: [
+  'AirConditioner_ribbon_1',
+  'AirConditioner_ribbon_0',
+  'AirConditioner_ribbon_1',
+  'AirConditioner_ribbon_0',
+  'AirConditioner_base_0',
+  'AirConditioner_tubing_5',
+  'AirConditioner_vent_0',
+  'AirConditioner_body_0',
+  'AirConditioner_tubing_2',
+  'AirConditioner_blades_0',
+  'AirConditioner_tubing_1',
+  'AirConditioner_neck_0',
+  'AirConditioner_backing_0',
+  'AirConditioner_light_0',
+  'AirConditioner_place_0',
+  'AirConditioner_ui_0'
+]
+Matching sprite infos in database: [
+  'AirConditioner_off_0_ribbon',
+  'AirConditioner_off_1_ribbon',
+  'AirConditioner_off_2_ribbon',
+  'AirConditioner_off_3_ribbon',
+  'AirConditioner_off_4_base',
+  'AirConditioner_off_5_tubing',
+  'AirConditioner_off_6_vent',
+  'AirConditioner_off_7_body',
+  'AirConditioner_off_8_tubing',
+  'AirConditioner_off_9_blades'
+]
+
+Processing sprite: AirConditioner_ribbon_1
+Original sprite name: AirConditioner_ribbon_1
+  Trying conversions for: AirConditioner_ribbon_1
+    Building: AirConditioner, Part: ribbon, Original Frame: 1
+  ✅ SUCCESS: AirConditioner_ribbon_1 → AirConditioner_off_0_ribbon
+Sprite expects: {
+  spriteInfoId: 'AirConditioner_off_0_ribbon',
+  buildingTexture: 'airconditioner_0',
+  uvMin: Vector2 { x: 474, y: 334 },
+  uvSize: Vector2 { x: 32, y: 28 }
+}
+Loaded main texture: airconditioner_0
+
+Processing sprite: AirConditioner_ribbon_0
+Original sprite name: AirConditioner_ribbon_0
+  Trying conversions for: AirConditioner_ribbon_0
+    Building: AirConditioner, Part: ribbon, Original Frame: 0
+  ✅ SUCCESS: AirConditioner_ribbon_0 → AirConditioner_off_0_ribbon
+Sprite expects: {
+  spriteInfoId: 'AirConditioner_off_0_ribbon',
+  buildingTexture: 'airconditioner_0',
+  uvMin: Vector2 { x: 474, y: 334 },
+  uvSize: Vector2 { x: 32, y: 28 }
+}
+Loaded main texture: airconditioner_0
+
+Processing sprite: AirConditioner_ribbon_1
+Original sprite name: AirConditioner_ribbon_1
+  Trying conversions for: AirConditioner_ribbon_1
+    Building: AirConditioner, Part: ribbon, Original Frame: 1
+  ✅ SUCCESS: AirConditioner_ribbon_1 → AirConditioner_off_0_ribbon
+Sprite expects: {
+  spriteInfoId: 'AirConditioner_off_0_ribbon',
+  buildingTexture: 'airconditioner_0',
+  uvMin: Vector2 { x: 474, y: 334 },
+  uvSize: Vector2 { x: 32, y: 28 }
+}
+Loaded main texture: airconditioner_0
+
+Processing sprite: AirConditioner_ribbon_0
+Original sprite name: AirConditioner_ribbon_0
+  Trying conversions for: AirConditioner_ribbon_0
+    Building: AirConditioner, Part: ribbon, Original Frame: 0
+  ✅ SUCCESS: AirConditioner_ribbon_0 → AirConditioner_off_0_ribbon
+Sprite expects: {
+  spriteInfoId: 'AirConditioner_off_0_ribbon',
+  buildingTexture: 'airconditioner_0',
+  uvMin: Vector2 { x: 474, y: 334 },
+  uvSize: Vector2 { x: 32, y: 28 }
+}
+Loaded main texture: airconditioner_0
+
+Processing sprite: AirConditioner_base_0
+Original sprite name: AirConditioner_base_0
+  Trying conversions for: AirConditioner_base_0
+    Building: AirConditioner, Part: base, Original Frame: 0
+  ✅ SUCCESS: AirConditioner_base_0 → AirConditioner_off_4_base
+Sprite expects: {
+  spriteInfoId: 'AirConditioner_off_4_base',
+  buildingTexture: 'airconditioner_0',
+  uvMin: Vector2 { x: 218, y: 0 },
+  uvSize: Vector2 { x: 206, y: 72 }
+}
+Loaded main texture: airconditioner_0
+
+Processing sprite: AirConditioner_tubing_5
+Original sprite name: AirConditioner_tubing_5
+  Trying conversions for: AirConditioner_tubing_5
+    Building: AirConditioner, Part: tubing, Original Frame: 5
+  ✅ SUCCESS: AirConditioner_tubing_5 → AirConditioner_off_5_tubing
+Sprite expects: {
+  spriteInfoId: 'AirConditioner_off_5_tubing',
+  buildingTexture: 'airconditioner_0',
+  uvMin: Vector2 { x: 304, y: 284 },
+  uvSize: Vector2 { x: 54, y: 56 }
+}
+Loaded main texture: airconditioner_0
+
+Processing sprite: AirConditioner_vent_0
+Original sprite name: AirConditioner_vent_0
+  Trying conversions for: AirConditioner_vent_0
+    Building: AirConditioner, Part: vent, Original Frame: 0
+  ✅ SUCCESS: AirConditioner_vent_0 → AirConditioner_off_6_vent
+Sprite expects: {
+  spriteInfoId: 'AirConditioner_off_6_vent',
+  buildingTexture: 'airconditioner_0',
+  uvMin: Vector2 { x: 218, y: 214 },
+  uvSize: Vector2 { x: 86, y: 110 }
+}
+Loaded main texture: airconditioner_0
+
+Processing sprite: AirConditioner_body_0
+Original sprite name: AirConditioner_body_0
+  Trying conversions for: AirConditioner_body_0
+    Building: AirConditioner, Part: body, Original Frame: 0
+  ✅ SUCCESS: AirConditioner_body_0 → AirConditioner_off_7_body
+Sprite expects: {
+  spriteInfoId: 'AirConditioner_off_7_body',
+  buildingTexture: 'airconditioner_0',
+  uvMin: Vector2 { x: 218, y: 72 },
+  uvSize: Vector2 { x: 154, y: 142 }
+}
+Loaded main texture: airconditioner_0
+
+Processing sprite: AirConditioner_tubing_2
+Original sprite name: AirConditioner_tubing_2
+  Trying conversions for: AirConditioner_tubing_2
+    Building: AirConditioner, Part: tubing, Original Frame: 2
+  ✅ SUCCESS: AirConditioner_tubing_2 → AirConditioner_off_5_tubing
+Sprite expects: {
+  spriteInfoId: 'AirConditioner_off_5_tubing',
+  buildingTexture: 'airconditioner_0',
+  uvMin: Vector2 { x: 304, y: 284 },
+  uvSize: Vector2 { x: 54, y: 56 }
+}
+Loaded main texture: airconditioner_0
+
+Processing sprite: AirConditioner_blades_0
+Original sprite name: AirConditioner_blades_0
+  Trying conversions for: AirConditioner_blades_0
+    Building: AirConditioner, Part: blades, Original Frame: 0
+  ✅ SUCCESS: AirConditioner_blades_0 → AirConditioner_off_9_blades
+Sprite expects: {
+  spriteInfoId: 'AirConditioner_off_9_blades',
+  buildingTexture: 'airconditioner_0',
+  uvMin: Vector2 { x: 372, y: 198 },
+  uvSize: Vector2 { x: 110, y: 110 }
+}
+Loaded main texture: airconditioner_0
+
+Processing sprite: AirConditioner_tubing_1
+Original sprite name: AirConditioner_tubing_1
+  Trying conversions for: AirConditioner_tubing_1
+    Building: AirConditioner, Part: tubing, Original Frame: 1
+  ✅ SUCCESS: AirConditioner_tubing_1 → AirConditioner_off_5_tubing
+Sprite expects: {
+  spriteInfoId: 'AirConditioner_off_5_tubing',
+  buildingTexture: 'airconditioner_0',
+  uvMin: Vector2 { x: 304, y: 284 },
+  uvSize: Vector2 { x: 54, y: 56 }
+}
+Loaded main texture: airconditioner_0
+
+Processing sprite: AirConditioner_neck_0
+Original sprite name: AirConditioner_neck_0
+  Trying conversions for: AirConditioner_neck_0
+    Building: AirConditioner, Part: neck, Original Frame: 0
+  ✅ SUCCESS: AirConditioner_neck_0 → AirConditioner_off_11_neck
+Sprite expects: {
+  spriteInfoId: 'AirConditioner_off_11_neck',
+  buildingTexture: 'airconditioner_0',
+  uvMin: Vector2 { x: 372, y: 424 },
+  uvSize: Vector2 { x: 80, y: 60 }
+}
+Loaded main texture: airconditioner_0
+
+Processing sprite: AirConditioner_backing_0
+Original sprite name: AirConditioner_backing_0
+  Trying conversions for: AirConditioner_backing_0
+    Building: AirConditioner, Part: backing, Original Frame: 0
+  ✅ SUCCESS: AirConditioner_backing_0 → AirConditioner_off_12_backing
+Sprite expects: {
+  spriteInfoId: 'AirConditioner_off_12_backing',
+  buildingTexture: 'airconditioner_0',
+  uvMin: Vector2 { x: 372, y: 308 },
+  uvSize: Vector2 { x: 102, y: 116 }
+}
+Loaded main texture: airconditioner_0
+
+Processing sprite: AirConditioner_light_0
+Original sprite name: AirConditioner_light_0
+  Trying conversions for: AirConditioner_light_0
+    Building: AirConditioner, Part: light, Original Frame: 0
+  ✅ SUCCESS: AirConditioner_light_0 → AirConditioner_off_13_light
+Sprite expects: {
+  spriteInfoId: 'AirConditioner_off_13_light',
+  buildingTexture: 'airconditioner_0',
+  uvMin: Vector2 { x: 424, y: 0 },
+  uvSize: Vector2 { x: 82, y: 50 }
+}
+Loaded main texture: airconditioner_0
+Saving group to ./frontend/src/assets/images/AirConditioner_group_sprite.png
+  🧹 Cleaning up 15 individual sprites from database...
+    Looking for sprite modifier: AirConditioner_off_0_ribbon
+    Looking for sprite info: AirConditioner_ribbon_1
+    ✅ Removed sprite modifier: AirConditioner_off_0_ribbon
+    ✅ Removed sprite info: AirConditioner_off_0_ribbon
+    Looking for sprite modifier: AirConditioner_off_1_ribbon
+    Looking for sprite info: AirConditioner_ribbon_0
+    ✅ Removed sprite modifier: AirConditioner_off_1_ribbon
+    ✅ Removed sprite info: AirConditioner_off_1_ribbon
+    Looking for sprite modifier: AirConditioner_off_2_ribbon
+    Looking for sprite info: AirConditioner_ribbon_1
+    ✅ Removed sprite modifier: AirConditioner_off_2_ribbon
+    ✅ Removed sprite info: AirConditioner_off_2_ribbon
+    Looking for sprite modifier: AirConditioner_off_3_ribbon
+    Looking for sprite info: AirConditioner_ribbon_0
+    ✅ Removed sprite modifier: AirConditioner_off_3_ribbon
+    ✅ Removed sprite info: AirConditioner_off_3_ribbon
+    Looking for sprite modifier: AirConditioner_off_4_base
+    Looking for sprite info: AirConditioner_base_0
+    ✅ Removed sprite modifier: AirConditioner_off_4_base
+    ✅ Removed sprite info: AirConditioner_off_4_base
+    Looking for sprite modifier: AirConditioner_off_5_tubing
+    Looking for sprite info: AirConditioner_tubing_5
+    ✅ Removed sprite modifier: AirConditioner_off_5_tubing
+    ✅ Removed sprite info: AirConditioner_off_5_tubing
+    Looking for sprite modifier: AirConditioner_off_6_vent
+    Looking for sprite info: AirConditioner_vent_0
+    ✅ Removed sprite modifier: AirConditioner_off_6_vent
+    ✅ Removed sprite info: AirConditioner_off_6_vent
+    Looking for sprite modifier: AirConditioner_off_7_body
+    Looking for sprite info: AirConditioner_body_0
+    ✅ Removed sprite modifier: AirConditioner_off_7_body
+    ✅ Removed sprite info: AirConditioner_off_7_body
+    Looking for sprite modifier: AirConditioner_off_8_tubing
+    Looking for sprite info: AirConditioner_tubing_2
+    ✅ Removed sprite modifier: AirConditioner_off_8_tubing
+    ✅ Removed sprite info: AirConditioner_off_8_tubing
+    Looking for sprite modifier: AirConditioner_off_9_blades
+    Looking for sprite info: AirConditioner_blades_0
+    ✅ Removed sprite modifier: AirConditioner_off_9_blades
+    ✅ Removed sprite info: AirConditioner_off_9_blades
+    Looking for sprite modifier: AirConditioner_off_10_tubing
+    Looking for sprite info: AirConditioner_tubing_1
+    ✅ Removed sprite modifier: AirConditioner_off_10_tubing
+    ✅ Removed sprite info: AirConditioner_off_10_tubing
+    Looking for sprite modifier: AirConditioner_off_11_neck
+    Looking for sprite info: AirConditioner_neck_0
+    ✅ Removed sprite modifier: AirConditioner_off_11_neck
+    ✅ Removed sprite info: AirConditioner_off_11_neck
+    Looking for sprite modifier: AirConditioner_off_12_backing
+    Looking for sprite info: AirConditioner_backing_0
+    ✅ Removed sprite modifier: AirConditioner_off_12_backing
+    ✅ Removed sprite info: AirConditioner_off_12_backing
+    Looking for sprite modifier: AirConditioner_off_13_light
+    Looking for sprite info: AirConditioner_light_0
+    ✅ Removed sprite modifier: AirConditioner_off_13_light
+    ✅ Removed sprite info: AirConditioner_off_13_light
+    Looking for sprite modifier: AirConditioner_place_0_place
+    Looking for sprite info: AirConditioner_place_0
+    ✅ Removed sprite modifier: AirConditioner_place_0_place
+    ✅ Removed sprite info: AirConditioner_place_0_place
+    📊 Actually removed 15 sprites from database
+✅ Replaced AirConditioner sprite group (15 sprites → 1 grouped sprite)
+📝 Registered grouped sprite: AirConditioner_group_sprite → images/AirConditioner_group_sprite.png
+AirFilter: 6 sprites to group
+
+=== Processing AirFilter ===
+Building texture: co2filter_0
+Sprites to group: 6
+📋 Cache check for AirFilter:
+   Frontend file: ✅ ./frontend/src/assets/images/AirFilter_group_sprite.png
+   Backend file: ✅ ./assets/images/AirFilter_group_sprite.png
+   Sprite info in DB: ✅ AirFilter_group_sprite
+   Grouped DB available: ✅
+⏭️ SKIPPING AirFilter - grouped sprite already exists
+AirborneCreatureLure: 11 sprites to group
+
+=== Processing AirborneCreatureLure ===
+Building texture: airbornecreaturetrap_0
+Sprites to group: 11
+📋 Cache check for AirborneCreatureLure:
+   Frontend file: ✅ ./frontend/src/assets/images/AirborneCreatureLure_group_sprite.png
+   Backend file: ✅ ./assets/images/AirborneCreatureLure_group_sprite.png
+   Sprite info in DB: ❌ AirborneCreatureLure_group_sprite
+   Grouped DB available: ✅
+🔄 GENERATING new grouped sprite for AirborneCreatureLure
+All sprite modifiers: [
+  'AirborneCreatureLure_blue_bloom_1',
+  'AirborneCreatureLure_outlet_0',
+  'AirborneCreatureLure_base_0',
+  'AirborneCreatureLure_meter_target_0',
+  'AirborneCreatureLure_pump_0',
+  'AirborneCreatureLure_wire_0',
+  'AirborneCreatureLure_pipe_0',
+  'AirborneCreatureLure_accordion_tube_0',
+  'AirborneCreatureLure_accordion_tube2_0',
+  'AirborneCreatureLure_base_rear_0',
+  'AirborneCreatureLure_place_0',
+  'AirborneCreatureLure_ui_0'
+]
+Matching sprite infos in database: [
+  'AirborneCreatureLure_off_0_blue_bloom',
+  'AirborneCreatureLure_off_1_outlet',
+  'AirborneCreatureLure_off_2_base',
+  'AirborneCreatureLure_off_3_meter_target',
+  'AirborneCreatureLure_off_4_pump',
+  'AirborneCreatureLure_off_5_wire',
+  'AirborneCreatureLure_off_6_pipe',
+  'AirborneCreatureLure_off_7_accordion_tube',
+  'AirborneCreatureLure_off_8_accordion_tube2',
+  'AirborneCreatureLure_off_9_base_rear'
+]
+
+Processing sprite: AirborneCreatureLure_blue_bloom_1
+Original sprite name: AirborneCreatureLure_blue_bloom_1
+  Trying conversions for: AirborneCreatureLure_blue_bloom_1
+    Building: AirborneCreatureLure, Part: blue_bloom, Original Frame: 1
+  ✅ SUCCESS: AirborneCreatureLure_blue_bloom_1 → AirborneCreatureLure_off_0_blue_bloom
+Sprite expects: {
+  spriteInfoId: 'AirborneCreatureLure_off_0_blue_bloom',
+  buildingTexture: 'airbornecreaturetrap_0',
+  uvMin: Vector2 { x: 152, y: 177 },
+  uvSize: Vector2 { x: 49, y: 49 }
+}
+Loaded main texture: airbornecreaturetrap_0
+
+Processing sprite: AirborneCreatureLure_outlet_0
+Original sprite name: AirborneCreatureLure_outlet_0
+  Trying conversions for: AirborneCreatureLure_outlet_0
+    Building: AirborneCreatureLure, Part: outlet, Original Frame: 0
+  ✅ SUCCESS: AirborneCreatureLure_outlet_0 → AirborneCreatureLure_off_1_outlet
+Sprite expects: {
+  spriteInfoId: 'AirborneCreatureLure_off_1_outlet',
+  buildingTexture: 'airbornecreaturetrap_0',
+  uvMin: Vector2 { x: 110, y: 504 },
+  uvSize: Vector2 { x: 101, y: 48 }
+}
+Loaded main texture: airbornecreaturetrap_0
+
+Processing sprite: AirborneCreatureLure_base_0
+Original sprite name: AirborneCreatureLure_base_0
+  Trying conversions for: AirborneCreatureLure_base_0
+    Building: AirborneCreatureLure, Part: base, Original Frame: 0
+  ✅ SUCCESS: AirborneCreatureLure_base_0 → AirborneCreatureLure_off_2_base
+Sprite expects: {
+  spriteInfoId: 'AirborneCreatureLure_off_2_base',
+  buildingTexture: 'airbornecreaturetrap_0',
+  uvMin: Vector2 { x: 0, y: 622 },
+  uvSize: Vector2 { x: 93, y: 197 }
+}
+Loaded main texture: airbornecreaturetrap_0
+
+Processing sprite: AirborneCreatureLure_meter_target_0
+Original sprite name: AirborneCreatureLure_meter_target_0
+  Trying conversions for: AirborneCreatureLure_meter_target_0
+    Building: AirborneCreatureLure, Part: meter_target, Original Frame: 0
+  ✅ SUCCESS: AirborneCreatureLure_meter_target_0 → AirborneCreatureLure_off_3_meter_target
+Sprite expects: {
+  spriteInfoId: 'AirborneCreatureLure_off_3_meter_target',
+  buildingTexture: 'airbornecreaturetrap_0',
+  uvMin: Vector2 { x: 303, y: 735 },
+  uvSize: Vector2 { x: 45, y: 119 }
+}
+Loaded main texture: airbornecreaturetrap_0
+
+Processing sprite: AirborneCreatureLure_pump_0
+Original sprite name: AirborneCreatureLure_pump_0
+  Trying conversions for: AirborneCreatureLure_pump_0
+    Building: AirborneCreatureLure, Part: pump, Original Frame: 0
+  ✅ SUCCESS: AirborneCreatureLure_pump_0 → AirborneCreatureLure_off_4_pump
+Sprite expects: {
+  spriteInfoId: 'AirborneCreatureLure_off_4_pump',
+  buildingTexture: 'airbornecreaturetrap_0',
+  uvMin: Vector2 { x: 206, y: 378 },
+  uvSize: Vector2 { x: 52, y: 89 }
+}
+Loaded main texture: airbornecreaturetrap_0
+
+Processing sprite: AirborneCreatureLure_wire_0
+Original sprite name: AirborneCreatureLure_wire_0
+  Trying conversions for: AirborneCreatureLure_wire_0
+    Building: AirborneCreatureLure, Part: wire, Original Frame: 0
+  ✅ SUCCESS: AirborneCreatureLure_wire_0 → AirborneCreatureLure_off_5_wire
+Sprite expects: {
+  spriteInfoId: 'AirborneCreatureLure_off_5_wire',
+  buildingTexture: 'airbornecreaturetrap_0',
+  uvMin: Vector2 { x: 152, y: 49 },
+  uvSize: Vector2 { x: 49, y: 79 }
+}
+Loaded main texture: airbornecreaturetrap_0
+
+Processing sprite: AirborneCreatureLure_pipe_0
+Original sprite name: AirborneCreatureLure_pipe_0
+  Trying conversions for: AirborneCreatureLure_pipe_0
+    Building: AirborneCreatureLure, Part: pipe, Original Frame: 0
+  ✅ SUCCESS: AirborneCreatureLure_pipe_0 → AirborneCreatureLure_off_6_pipe
+Sprite expects: {
+  spriteInfoId: 'AirborneCreatureLure_off_6_pipe',
+  buildingTexture: 'airbornecreaturetrap_0',
+  uvMin: Vector2 { x: 393, y: 504 },
+  uvSize: Vector2 { x: 37, y: 28 }
+}
+Loaded main texture: airbornecreaturetrap_0
+
+Processing sprite: AirborneCreatureLure_accordion_tube_0
+Original sprite name: AirborneCreatureLure_accordion_tube_0
+  Trying conversions for: AirborneCreatureLure_accordion_tube_0
+    Building: AirborneCreatureLure, Part: accordion_tube, Original Frame: 0
+  ✅ SUCCESS: AirborneCreatureLure_accordion_tube_0 → AirborneCreatureLure_off_7_accordion_tube
+Sprite expects: {
+  spriteInfoId: 'AirborneCreatureLure_off_7_accordion_tube',
+  buildingTexture: 'airbornecreaturetrap_0',
+  uvMin: Vector2 { x: 140, y: 692 },
+  uvSize: Vector2 { x: 68, y: 78 }
+}
+Loaded main texture: airbornecreaturetrap_0
+
+Processing sprite: AirborneCreatureLure_accordion_tube2_0
+Original sprite name: AirborneCreatureLure_accordion_tube2_0
+  Trying conversions for: AirborneCreatureLure_accordion_tube2_0
+    Building: AirborneCreatureLure, Part: accordion_tube2, Original Frame: 0
+  ✅ SUCCESS: AirborneCreatureLure_accordion_tube2_0 → AirborneCreatureLure_off_8_accordion_tube2
+Sprite expects: {
+  spriteInfoId: 'AirborneCreatureLure_off_8_accordion_tube2',
+  buildingTexture: 'airbornecreaturetrap_0',
+  uvMin: Vector2 { x: 140, y: 604 },
+  uvSize: Vector2 { x: 69, y: 88 }
+}
+Loaded main texture: airbornecreaturetrap_0
+
+Processing sprite: AirborneCreatureLure_base_rear_0
+Original sprite name: AirborneCreatureLure_base_rear_0
+  Trying conversions for: AirborneCreatureLure_base_rear_0
+    Building: AirborneCreatureLure, Part: base_rear, Original Frame: 0
+  ✅ SUCCESS: AirborneCreatureLure_base_rear_0 → AirborneCreatureLure_off_9_base_rear
+Sprite expects: {
+  spriteInfoId: 'AirborneCreatureLure_off_9_base_rear',
+  buildingTexture: 'airbornecreaturetrap_0',
+  uvMin: Vector2 { x: 140, y: 978 },
+  uvSize: Vector2 { x: 35, y: 43 }
+}
+Loaded main texture: airbornecreaturetrap_0
+Saving group to ./frontend/src/assets/images/AirborneCreatureLure_group_sprite.png
+  🧹 Cleaning up 11 individual sprites from database...
+    Looking for sprite modifier: AirborneCreatureLure_off_0_blue_bloom
+    Looking for sprite info: AirborneCreatureLure_blue_bloom_1
+    ✅ Removed sprite modifier: AirborneCreatureLure_off_0_blue_bloom
+    ✅ Removed sprite info: AirborneCreatureLure_off_0_blue_bloom
+    Looking for sprite modifier: AirborneCreatureLure_off_1_outlet
+    Looking for sprite info: AirborneCreatureLure_outlet_0
+    ✅ Removed sprite modifier: AirborneCreatureLure_off_1_outlet
+    ✅ Removed sprite info: AirborneCreatureLure_off_1_outlet
+    Looking for sprite modifier: AirborneCreatureLure_off_2_base
+    Looking for sprite info: AirborneCreatureLure_base_0
+    ✅ Removed sprite modifier: AirborneCreatureLure_off_2_base
+    ✅ Removed sprite info: AirborneCreatureLure_off_2_base
+    Looking for sprite modifier: AirborneCreatureLure_off_3_meter_target
+    Looking for sprite info: AirborneCreatureLure_meter_target_0
+    ✅ Removed sprite modifier: AirborneCreatureLure_off_3_meter_target
+    ✅ Removed sprite info: AirborneCreatureLure_off_3_meter_target
+    Looking for sprite modifier: AirborneCreatureLure_off_4_pump
+    Looking for sprite info: AirborneCreatureLure_pump_0
+    ✅ Removed sprite modifier: AirborneCreatureLure_off_4_pump
+    ✅ Removed sprite info: AirborneCreatureLure_off_4_pump
+    Looking for sprite modifier: AirborneCreatureLure_off_5_wire
+    Looking for sprite info: AirborneCreatureLure_wire_0
+    ✅ Removed sprite modifier: AirborneCreatureLure_off_5_wire
+    ✅ Removed sprite info: AirborneCreatureLure_off_5_wire
+    Looking for sprite modifier: AirborneCreatureLure_off_6_pipe
+    Looking for sprite info: AirborneCreatureLure_pipe_0
+    ✅ Removed sprite modifier: AirborneCreatureLure_off_6_pipe
+    ✅ Removed sprite info: AirborneCreatureLure_off_6_pipe
+    Looking for sprite modifier: AirborneCreatureLure_off_7_accordion_tube
+    Looking for sprite info: AirborneCreatureLure_accordion_tube_0
+    ✅ Removed sprite modifier: AirborneCreatureLure_off_7_accordion_tube
+    ✅ Removed sprite info: AirborneCreatureLure_off_7_accordion_tube
+    Looking for sprite modifier: AirborneCreatureLure_off_8_accordion_tube2
+    Looking for sprite info: AirborneCreatureLure_accordion_tube2_0
+    ✅ Removed sprite modifier: AirborneCreatureLure_off_8_accordion_tube2
+    ✅ Removed sprite info: AirborneCreatureLure_off_8_accordion_tube2
+    Looking for sprite modifier: AirborneCreatureLure_off_9_base_rear
+    Looking for sprite info: AirborneCreatureLure_base_rear_0
+    ✅ Removed sprite modifier: AirborneCreatureLure_off_9_base_rear
+    ✅ Removed sprite info: AirborneCreatureLure_off_9_base_rear
+    Looking for sprite modifier: AirborneCreatureLure_place_0_place
+    Looking for sprite info: AirborneCreatureLure_place_0
+    ✅ Removed sprite modifier: AirborneCreatureLure_place_0_place
+    ✅ Removed sprite info: AirborneCreatureLure_place_0_place
+    📊 Actually removed 11 sprites from database
+✅ Replaced AirborneCreatureLure sprite group (11 sprites → 1 grouped sprite)
+📝 Registered grouped sprite: AirborneCreatureLure_group_sprite → images/AirborneCreatureLure_group_sprite.png
+AlgaeDistillery: 11 sprites to group
+
+=== Processing AlgaeDistillery ===
+Building texture: algae_distillery_0
+Sprites to group: 11
+📋 Cache check for AlgaeDistillery:
+   Frontend file: ✅ ./frontend/src/assets/images/AlgaeDistillery_group_sprite.png
+   Backend file: ✅ ./assets/images/AlgaeDistillery_group_sprite.png
+   Sprite info in DB: ✅ AlgaeDistillery_group_sprite
+   Grouped DB available: ✅
+⏭️ SKIPPING AlgaeDistillery - grouped sprite already exists
+AlgaeHabitat: 9 sprites to group
+
+=== Processing AlgaeHabitat ===
+Building texture: algaefarm_0
+Sprites to group: 9
+📋 Cache check for AlgaeHabitat:
+   Frontend file: ✅ ./frontend/src/assets/images/AlgaeHabitat_group_sprite.png
+   Backend file: ✅ ./assets/images/AlgaeHabitat_group_sprite.png
+   Sprite info in DB: ❌ AlgaeHabitat_group_sprite
+   Grouped DB available: ✅
+🔄 GENERATING new grouped sprite for AlgaeHabitat
+All sprite modifiers: [
+  'AlgaeHabitat_cap_left_0',
+  'AlgaeHabitat_cap_right_0',
+  'AlgaeHabitat_box_0',
+  'AlgaeHabitat_dirt_0',
+  'AlgaeHabitat_dirt_1',
+  'AlgaeHabitat_dirt_2',
+  'AlgaeHabitat_place_left_0',
+  'AlgaeHabitat_place_right_0',
+  'AlgaeHabitat_place_0',
+  'AlgaeHabitat_ui_0'
+]
+Matching sprite infos in database: [
+  'AlgaeHabitat_off_0_cap_left',
+  'AlgaeHabitat_off_1_cap_right',
+  'AlgaeHabitat_off_2_box',
+  'AlgaeHabitat_off_3_dirt',
+  'AlgaeHabitat_off_4_dirt',
+  'AlgaeHabitat_off_5_dirt',
+  'AlgaeHabitat_place_left_0',
+  'AlgaeHabitat_place_0_place_left',
+  'AlgaeHabitat_place_right_0',
+  'AlgaeHabitat_place_1_place_right'
+]
+
+Processing sprite: AlgaeHabitat_cap_left_0
+Original sprite name: AlgaeHabitat_cap_left_0
+  Trying conversions for: AlgaeHabitat_cap_left_0
+    Building: AlgaeHabitat, Part: cap_left, Original Frame: 0
+  ✅ SUCCESS: AlgaeHabitat_cap_left_0 → AlgaeHabitat_off_0_cap_left

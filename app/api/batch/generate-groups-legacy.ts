@@ -7,19 +7,17 @@ import { BatchUtils } from './batch-utils';
 import { BExport, SpriteTag, Vector2 } from "../../../lib/index";
 import { ImageSource, BuildableElement, BuildMenuCategory, BuildMenuItem, BSpriteInfo, SpriteInfo, BSpriteModifier, SpriteModifier, BBuilding, OniItem, MdbBlueprint } from '../../../lib';
 import { PixiNodeUtil } from '../pixi-node-util';
-import { Canvas } from 'canvas';
 
-// Add browser API shims
-global.cancelAnimationFrame = () => {};
-global.requestAnimationFrame = () => 0;
 
-export class GenerateGroupsLegacy {
+export class GenerateGroups {
   constructor(databasePath: string) {
+
     console.log('Running batch GenerateGroups')
 
     // initialize configuration
     dotenv.config();
-    
+    console.log(process.env.ENV_NAME);
+
     // Read database
     let rawdata = fs.readFileSync(databasePath).toString();
     let json = JSON.parse(rawdata);
@@ -50,195 +48,153 @@ export class GenerateGroupsLegacy {
     OniItem.init();
     OniItem.load(buildings);
 
-    this.generateGroupsLegacy(json);
+    this.generateGroups(json);
   }
 
-  async generateGroupsLegacy(database: BExport) {
-    // Initialize with proper type
-    const pixiNodeUtil = new PixiNodeUtil({ forceCanvas: true, preserveDrawingBuffer: true });
+  async generateGroups(database: BExport) {
+
+    let pixiNodeUtil = new PixiNodeUtil({ forceCanvas: true, preserveDrawingBuffer: true });
     await pixiNodeUtil.initTextures();
 
-    let totalItems = OniItem.oniItems.length;
-    let processed = 0;
-
     for (let oniItem of OniItem.oniItems) {
-      processed++;
-      if (processed % 10 === 0) {
-        console.log(`Processing buildings: ${processed}/${totalItems}`);
-      }
 
       if (oniItem.id == OniItem.elementId || oniItem.id == OniItem.infoId) continue;
 
       let buildingInDatabase = database.buildings.find((building) => { return building.prefabId == oniItem.id });
-      if (!buildingInDatabase) throw new Error('GenerateGroups.generateGroups : building not found : ' + oniItem.id);
+      if (buildingInDatabase == undefined) throw new Error('GenerateGroups.generateGroups : building not found : ' + oniItem.id);
 
-      // Group sprites by animation state
       let spritesToGroup: SpriteModifier[] = [];
       for (let spriteModifier of oniItem.spriteGroup.spriteModifiers) {
-        if (!spriteModifier) continue;
 
-        // Skip UI and placement sprites
-        if (spriteModifier.spriteModifierId.includes('_ui') || 
-            spriteModifier.spriteModifierId.includes('_place')) continue;
+        if (spriteModifier == undefined) console.log(oniItem);
 
-        // Skip working/special effect states
-        if (spriteModifier.spriteModifierId.includes('_working') || 
-            spriteModifier.spriteModifierId.includes('_pst') || 
-            spriteModifier.spriteModifierId.includes('_bloom') ||
-            spriteModifier.spriteModifierId.includes('_glow')) continue;
-
-        // Add base sprites to group
-        spritesToGroup.push(spriteModifier);
+        if (spriteModifier.tags.indexOf(SpriteTag.solid) != -1 &&
+          spriteModifier.tags.indexOf(SpriteTag.tileable) == -1 &&
+          spriteModifier.tags.indexOf(SpriteTag.connection) == -1)
+          spritesToGroup.push(spriteModifier);
       }
 
       if (spritesToGroup.length > 1) {
-        try {
-          // Create container for grouped sprites
-          const container = pixiNodeUtil.getNewContainer();
-          if (!container) throw new Error('Failed to create container');
-          container.sortableChildren = true;
+        let container = pixiNodeUtil.getNewContainer();
+        container.sortableChildren = true;
 
-          let baseRenderTexture: any = null;
-          let renderTexture: any = null;
+        let modifierId = oniItem.id + '_group_modifier';
+        let spriteInfoId = oniItem.id + '_group_sprite';
+        let textureName = oniItem.id + '_group_sprite'
 
-          try {
-            let modifierId = oniItem.id + '_group_modifier';
-            let spriteInfoId = oniItem.id + '_group_sprite';
-            let textureName = oniItem.id + '_group_sprite';
+        let indexDrawPart = 0;
+        for (let spriteModifier of oniItem.spriteGroup.spriteModifiers) {
 
-            // Draw sprites into container
-            let indexDrawPart = 0;
-            for (let spriteModifier of spritesToGroup) {
-              // Get sprite info and create sprite
-              let spriteInfo = SpriteInfo.getSpriteInfo(spriteModifier.spriteModifierId);
-              let texture = spriteInfo.getTexture(pixiNodeUtil);
-              if (!texture) continue;
+          if (spriteModifier.tags.indexOf(SpriteTag.solid) == -1 ||
+            spriteModifier.tags.indexOf(SpriteTag.tileable) != -1 ||
+            spriteModifier.tags.indexOf(SpriteTag.connection) != -1) continue;
 
-              let sprite = pixiNodeUtil.getSpriteFrom(texture);
-              if (!sprite) continue;
+          // Remove from the database building sprite list
+          let indexToRemove = buildingInDatabase.sprites.spriteNames.indexOf(spriteModifier.spriteModifierId);
+          buildingInDatabase.sprites.spriteNames.splice(indexToRemove, 1);
 
-              // Set sprite properties
-              sprite.position.set(
-                spriteModifier.translation.x,
-                spriteModifier.translation.y
-              );
-              sprite.scale.set(
-                spriteModifier.scale.x,
-                spriteModifier.scale.y
-              );
-              sprite.rotation = spriteModifier.rotation;
-              sprite.zIndex = indexDrawPart++;
-              container.addChild(sprite);
-
-              // Remove from database entries
-              let indexToRemove = buildingInDatabase.sprites.spriteNames.indexOf(spriteModifier.spriteModifierId);
-              buildingInDatabase.sprites.spriteNames.splice(indexToRemove, 1);
-
-              let spriteModifierToRemove = database.spriteModifiers.find(s => s.name == spriteModifier.spriteModifierId);
-              if (spriteModifierToRemove) {
-                indexToRemove = database.spriteModifiers.indexOf(spriteModifierToRemove);
-                database.spriteModifiers.splice(indexToRemove, 1);
-              }
-            }
-
-            // Save the grouped sprite
-            const bounds = container.getBounds();
-            baseRenderTexture = pixiNodeUtil.getNewBaseRenderTexture({
-              width: Math.ceil(bounds.width),
-              height: Math.ceil(bounds.height)
-            });
-            if (!baseRenderTexture) throw new Error('Failed to create base render texture');
-
-            renderTexture = pixiNodeUtil.getNewRenderTexture(baseRenderTexture);
-            if (!renderTexture) throw new Error('Failed to create render texture');
-
-            // Position container
-            container.position.x = -bounds.x;
-            container.position.y = -bounds.y;
-
-            // Render to texture
-            pixiNodeUtil.pixiApp.renderer.render(container, renderTexture);
-
-            try {
-              // Create a new node-canvas with the same dimensions
-              const nodeCanvas = new Canvas(Math.ceil(bounds.width), Math.ceil(bounds.height));
-              const ctx = nodeCanvas.getContext('2d');
-
-              // Get the pixel data from the PIXI renderer
-              const pixels = pixiNodeUtil.pixiApp.renderer.plugins.extract.pixels(renderTexture);
-              const imageData = ctx.createImageData(Math.ceil(bounds.width), Math.ceil(bounds.height));
-              
-              // Copy pixel data
-              for (let i = 0; i < pixels.length; i++) {
-                imageData.data[i] = pixels[i];
-              }
-              
-              // Put the image data on the canvas
-              ctx.putImageData(imageData, 0, 0);
-              
-              // Save to file
-              const buffer = nodeCanvas.toBuffer('image/png');
-              fs.writeFileSync(`./assets/images/${textureName}.png`, buffer);
-            } catch (error) {
-              console.error('Error saving grouped sprite:', error);
-              // Continue with database updates even if image save fails
-            }
-
-            // Add group entries to database
-            buildingInDatabase.sprites.spriteNames.push(modifierId);
-
-            let newSpriteModifier = new BSpriteModifier();
-            newSpriteModifier.name = modifierId;
-            newSpriteModifier.tags = [SpriteTag.solid];
-            database.spriteModifiers.push(newSpriteModifier);
-
-          } finally {
-            // Cleanup resources
-            if (container) {
-              container.destroy?.({ children: true });
-            }
-            if (renderTexture) {
-              renderTexture.destroy?.();
-            }
-            if (baseRenderTexture) {
-              baseRenderTexture.destroy?.();
-            }
+          // Then from the sprite modifiers
+          let spriteModifierToRemove = database.spriteModifiers.find((s) => { return s.name == spriteModifier.spriteModifierId; })
+          if (spriteModifierToRemove != null) {
+            indexToRemove = database.spriteModifiers.indexOf(spriteModifierToRemove);
+            database.spriteModifiers.splice(indexToRemove, 1);
           }
-        } catch (error) {
-          console.error(`Error processing ${oniItem.id}:`, error);
-          continue;
+
+          let spriteInfoToRemove = database.uiSprites.find((s) => { return s.name == spriteModifier.spriteInfoName });
+          if (spriteInfoToRemove != null) {
+            indexToRemove = database.uiSprites.indexOf(spriteInfoToRemove);
+            database.uiSprites.splice(indexToRemove, 1);
+          }
+
+          let spriteInfo = SpriteInfo.getSpriteInfo(spriteModifier.spriteInfoName);
+
+          let texture = spriteInfo.getTexture(pixiNodeUtil);
+          let sprite = pixiNodeUtil.getSpriteFrom(texture);
+          sprite.anchor.set(spriteInfo.pivot.x, 1 - spriteInfo.pivot.y);
+          sprite.x = 0 + (spriteModifier.translation.x);
+          sprite.y = 0 - (spriteModifier.translation.y);
+          sprite.width = spriteInfo.realSize.x;
+          sprite.height = spriteInfo.realSize.y;
+          sprite.scale.x = spriteModifier.scale.x;
+          sprite.scale.y = spriteModifier.scale.y;
+          sprite.angle = -spriteModifier.rotation;
+          sprite.zIndex -= (indexDrawPart / 50)
+
+          container.addChild(sprite);
+
+          indexDrawPart++;
         }
+
+        buildingInDatabase.sprites.spriteNames.push(modifierId);
+
+        container.calculateBounds();
+        let bounds = container.getBounds();
+        bounds.x = Math.floor(bounds.x);
+        bounds.y = Math.floor(bounds.y);
+        bounds.width = Math.ceil(bounds.width);
+        bounds.height = Math.ceil(bounds.height);
+
+        let diff = new Vector2(bounds.x, bounds.y);
+        for (let child of container.children) {
+          child.x -= diff.x;
+          child.y -= diff.y
+        }
+
+        let pivot = new Vector2(1 - ((bounds.width + bounds.x) / bounds.width), ((bounds.height + bounds.y) / bounds.height));
+        //console.log(pivot);
+
+        // Create and add the new sprite modifier to replace the group
+        let newSpriteModifier = new BSpriteModifier();
+        newSpriteModifier.name = modifierId;
+        newSpriteModifier.spriteInfoName = spriteInfoId;
+        newSpriteModifier.rotation = 0;
+        newSpriteModifier.scale = new Vector2(1, 1);
+        newSpriteModifier.translation = new Vector2(0, 0);
+        newSpriteModifier.tags = [SpriteTag.solid];
+        database.spriteModifiers.push(newSpriteModifier);
+
+        // Create and add the new spriteInfo
+        let newSpriteInfo = new BSpriteInfo();
+        newSpriteInfo.name = spriteInfoId;
+        newSpriteInfo.textureName = textureName;
+        newSpriteInfo.pivot = pivot;
+        newSpriteInfo.uvMin = new Vector2(0, 0);
+        newSpriteInfo.realSize = new Vector2(bounds.width, bounds.height);
+        newSpriteInfo.uvSize = new Vector2(bounds.width, bounds.height);
+        database.uiSprites.push(newSpriteInfo);
+
+        let brt = pixiNodeUtil.getNewBaseRenderTexture({ width: bounds.width, height: bounds.height });
+        let rt = pixiNodeUtil.getNewRenderTexture(brt);
+
+        pixiNodeUtil.pixiApp.renderer.render(container, rt);
+        let base64: string = pixiNodeUtil.pixiApp.renderer.plugins.extract.canvas(rt).toDataURL();
+
+        let group = await jimp.read(Buffer.from(base64.replace(/^data:image\/png;base64,/, ""), 'base64'));
+        let groupePath = './assets/images/' + textureName + '.png';
+        console.log('saving group to ' + groupePath);
+        group.write(groupePath);
+
+        // Free memory
+        brt.destroy();
+        brt = null;
+        rt.destroy();
+        rt = null;
+        container.destroy({ children: true });
+        container = null;
+        global.gc && global.gc();
       }
+      else console.log(oniItem.id + ' should not be grouped')
+
     }
 
-    try {
-      // Final cleanup
-      if (pixiNodeUtil.pixiApp?.ticker) {
-        pixiNodeUtil.pixiApp.ticker.stop();
-      }
-      pixiNodeUtil.pixiApp?.destroy?.(true, { children: true });
-    } catch (e) {
-      console.warn('Error during final cleanup:', e);
-    }
-
-    // Write updated database
-    fs.writeFileSync('./assets/database/database-groups.json', JSON.stringify(database, null, 2));
+    let data = JSON.stringify(database, null, 2);
+    fs.writeFileSync('./assets/database/database-groups.json', data);
     console.log('done generating groups');
   }
+
 }
 
 // Only execute this script if loaded directly with node
 if (require.main === module) {
-    // Run with garbage collection enabled
-    if (!global.gc) {
-        console.log('Garbage collection is not exposed. Run with --expose-gc flag');
-        process.exit(1);
-    }
-    
-    try {
-        new GenerateGroupsLegacy('./assets/database/database.json');
-    } catch (error) {
-        console.error('Failed to generate groups:', error);
-        process.exit(1);
-    }
+  new GenerateGroups('./assets/database/database.json');
 }

@@ -1,0 +1,829 @@
+ELEMENT EXTRACTION LOG - Started at 2025-07-01 00:14:35
+=================================================================
+[2025-07-01 00:14:35] ==========================================
+[2025-07-01 00:14:35] PROCESSING ELEMENT: <link="CRUSHEDICE">Crushed Ice</link> (ID: CrushedIce)
+[2025-07-01 00:14:35] PROCESSING ELEMENT UI SPRITE: CrushedIce_ui for element: <link="CRUSHEDICE">Crushed Ice</link>
+[2025-07-01 00:14:35] TEXTURE NAMING: Unity name='crushed_ice_0' -> Sprite name='CrushedIce_ui_0' for element: <link="CRUSHEDICE">Crushed Ice</link>
+[2025-07-01 00:14:35] TEXTURE SAVED: CrushedIce_ui_0.png for element: <link="CRUSHEDICE">Crushed Ice</link>
+[2025-07-01 00:14:35] SUCCESS: Created UI sprite for element: <link="CRUSHEDICE">Crushed Ice</link> -> CrushedIce_ui_0
+[2025-07-01 00:14:35] ==========================================
+[2025-07-01 00:14:35] PROCESSING ELEMENT: <link="DIAMOND">Diamond</link> (ID: Diamond)
+[2025-07-01 00:14:35] PROCESSING ELEMENT UI SPRITE: Diamond_ui for element: <link="DIAMOND">Diamond</link>
+[2025-07-01 00:14:35] TEXTURE NAMING: Unity name='diamond_0' -> Sprite name='Diamond_ui_0' for element: <link="DIAMOND">Diamond</link>
+[2025-07-01 00:14:35] TEXTURE SAVED: Diamond_ui_0.png for element: <link="DIAMOND">Diamond</link>
+[2025-07-01 00:14:35] SUCCESS: Created UI sprite for element: <link="DIAMOND">Diamond</link> -> Diamond_ui_0
+[2025-07-01 00:14:35] ==========================================
+[2025-07-01 00:14:35] PROCESSING ELEMENT: <link="AEROGEL">Aerogel</link> (ID: Aerogel)
+[2025-07-01 00:14:35] PROCESSING ELEMENT UI SPRITE: Aerogel_ui for element: <link="AEROGEL">Aerogel</link>
+[2025-07-01 00:14:35] TEXTURE NAMING: Unity name='algae_0' -> Sprite name='Aerogel_ui_0' for element: <link="AEROGEL">Aerogel</link>
+[2025-07-01 00:14:36] TEXTURE SAVED: Aerogel_ui_0.png for element: <link="AEROGEL">Aerogel</link>
+[2025-07-01 00:14:36] SUCCESS: Created UI sprite for element: <link="AEROGEL">Aerogel</link> -> Aerogel_ui_0
+[2025-07-01 00:14:36] ==========================================
+[2025-07-01 00:14:36] PROCESSING ELEMENT: <link="ISORESIN">Isosap</link> (ID: Isoresin)
+[2025-07-01 00:14:36] PROCESSING ELEMENT UI SPRITE: Isoresin_ui for element: <link="ISORESIN">Isosap</link>
+[2025-07-01 00:14:36] TEXTURE NAMING: Unity name='isoresin_0' -> Sprite name='Isoresin_ui_0' for element: <link="ISORESIN">Isosap</link>
+[2025-07-01 00:14:36] TEXTURE SAVED: Isoresin_ui_0.png for element: <link="ISORESIN">Isosap</link>
+[2025-07-01 00:14:36] SUCCESS: Created UI sprite for element: <link="ISORESIN">Isosap</link> -> Isoresin_ui_0
+[2025-07-01 00:14:36] ==========================================
+[2025-07-01 00:14:36] PROCESSING ELEMENT: <link="SUCROSE">Sucrose</link> (ID: Sucrose)
+[2025-07-01 00:14:36] PROCESSING ELEMENT UI SPRITE: Sucrose_ui for element: <link="SUCROSE">Sucrose</link>
+[2025-07-01 00:14:36] TEXTURE NAMING: Unity name='sucrose_0' -> Sprite name='Sucrose_ui_0' for element: <link="SUCROSE">Sucrose</link>
+[2025-07-01 00:14:36] TEXTURE SAVED: Sucrose_ui_0.png for element: <link="SUCROSE">Sucrose</link>
+[2025-07-01 00:14:36] SUCCESS: Created UI sprite for element: <link="SUCROSE">Sucrose</link> -> Sucrose_ui_0
+[2025-07-01 00:14:36] ==========================================
+[2025-07-01 00:14:36] PROCESSING ELEMENT: <link="PEAT">Peat</link> (ID: Peat)
+[2025-07-01 00:14:36] PROCESSING ELEMENT UI SPRITE: Peat_ui for element: <link="PEAT">Peat</link>
+[2025-07-01 00:14:36] TEXTURE NAMING: Unity name='peat_0' -> Sprite name='Peat_ui_0' for element: <link="PEAT">Peat</link>
+[2025-07-01 00:14:36] TEXTURE SAVED: Peat_ui_0.png for element: <link="PEAT">Peat</link>
+[2025-07-01 00:14:36] SUCCESS: Created UI sprite for element: <link="PEAT">Peat</link> -> Peat_ui_0
+[2025-07-01 00:14:36] ==========================================
+[2025-07-01 00:14:36] PROCESSING ELEMENT: <link="PHOSPHATENODULES">Phosphate Nodules</link> (ID: PhosphateNodules)
+[2025-07-01 00:14:36] PROCESSING ELEMENT UI SPRITE: PhosphateNodules_ui for element: <link="PHOSPHATENODULES">Phosphate Nodules</link>
+[2025-07-01 00:14:36] TEXTURE NAMING: Unity name='phosphate_nodules_0' -> Sprite name='PhosphateNodules_ui_0' for element: <link="PHOSPHATENODULES">Phosphate Nodules</link>
+[2025-07-01 00:14:36] TEXTURE SAVED: PhosphateNodules_ui_0.png for element: <link="PHOSPHATENODULES">Phosphate Nodules</link>
+[2025-07-01 00:14:36] SUCCESS: Created UI sprite for element: <link="PHOSPHATENODULES">Phosphate Nodules</link> -> PhosphateNodules_ui_0
+[2025-07-01 00:14:36] ==========================================
+[2025-07-01 00:14:36] PROCESSING ELEMENT: <link="ALGAE">Algae</link> (ID: Algae)
+[2025-07-01 00:14:36] PROCESSING ELEMENT UI SPRITE: Algae_ui for element: <link="ALGAE">Algae</link>
+[2025-07-01 00:14:36] TEXTURE NAMING: Unity name='algae_0' -> Sprite name='Algae_ui_0' for element: <link="ALGAE">Algae</link>
+[2025-07-01 00:14:36] TEXTURE SAVED: Algae_ui_0.png for element: <link="ALGAE">Algae</link>
+[2025-07-01 00:14:36] SUCCESS: Created UI sprite for element: <link="ALGAE">Algae</link> -> Algae_ui_0
+[2025-07-01 00:14:36] ==========================================
+[2025-07-01 00:14:36] PROCESSING ELEMENT: <link="MILKFAT">Brackwax</link> (ID: MilkFat)
+[2025-07-01 00:14:36] PROCESSING ELEMENT UI SPRITE: MilkFat_ui for element: <link="MILKFAT">Brackwax</link>
+[2025-07-01 00:14:36] TEXTURE NAMING: Unity name='milkfat_0' -> Sprite name='MilkFat_ui_0' for element: <link="MILKFAT">Brackwax</link>
+[2025-07-01 00:14:36] TEXTURE SAVED: MilkFat_ui_0.png for element: <link="MILKFAT">Brackwax</link>
+[2025-07-01 00:14:36] SUCCESS: Created UI sprite for element: <link="MILKFAT">Brackwax</link> -> MilkFat_ui_0
+[2025-07-01 00:14:36] ==========================================
+[2025-07-01 00:14:36] PROCESSING ELEMENT: <link="NIOBIUM">Niobium</link> (ID: Niobium)
+[2025-07-01 00:14:36] PROCESSING ELEMENT UI SPRITE: Niobium_ui for element: <link="NIOBIUM">Niobium</link>
+[2025-07-01 00:14:36] TEXTURE NAMING: Unity name='niobium_0' -> Sprite name='Niobium_ui_0' for element: <link="NIOBIUM">Niobium</link>
+[2025-07-01 00:14:36] TEXTURE SAVED: Niobium_ui_0.png for element: <link="NIOBIUM">Niobium</link>
+[2025-07-01 00:14:36] SUCCESS: Created UI sprite for element: <link="NIOBIUM">Niobium</link> -> Niobium_ui_0
+[2025-07-01 00:14:36] ==========================================
+[2025-07-01 00:14:36] PROCESSING ELEMENT: <link="NICKEL">Nickel</link> (ID: Nickel)
+[2025-07-01 00:14:36] PROCESSING ELEMENT UI SPRITE: Nickel_ui for element: <link="NICKEL">Nickel</link>
+[2025-07-01 00:14:36] TEXTURE NAMING: Unity name='nickel_0' -> Sprite name='Nickel_ui_0' for element: <link="NICKEL">Nickel</link>
+[2025-07-01 00:14:36] TEXTURE SAVED: Nickel_ui_0.png for element: <link="NICKEL">Nickel</link>
+[2025-07-01 00:14:36] SUCCESS: Created UI sprite for element: <link="NICKEL">Nickel</link> -> Nickel_ui_0
+[2025-07-01 00:14:36] ==========================================
+[2025-07-01 00:14:36] PROCESSING ELEMENT: <link="MILKICE">Frozen Brackene</link> (ID: MilkIce)
+[2025-07-01 00:14:36] PROCESSING ELEMENT UI SPRITE: MilkIce_ui for element: <link="MILKICE">Frozen Brackene</link>
+[2025-07-01 00:14:36] TEXTURE NAMING: Unity name='milk_0' -> Sprite name='MilkIce_ui_0' for element: <link="MILKICE">Frozen Brackene</link>
+[2025-07-01 00:14:36] TEXTURE SAVED: MilkIce_ui_0.png for element: <link="MILKICE">Frozen Brackene</link>
+[2025-07-01 00:14:36] SUCCESS: Created UI sprite for element: <link="MILKICE">Frozen Brackene</link> -> MilkIce_ui_0
+[2025-07-01 00:14:36] ==========================================
+[2025-07-01 00:14:36] PROCESSING ELEMENT: <link="CUPRITE">Copper Ore</link> (ID: Cuprite)
+[2025-07-01 00:14:36] PROCESSING ELEMENT UI SPRITE: Cuprite_ui for element: <link="CUPRITE">Copper Ore</link>
+[2025-07-01 00:14:36] TEXTURE NAMING: Unity name='cuprite_0' -> Sprite name='Cuprite_ui_0' for element: <link="CUPRITE">Copper Ore</link>
+[2025-07-01 00:14:36] TEXTURE SAVED: Cuprite_ui_0.png for element: <link="CUPRITE">Copper Ore</link>
+[2025-07-01 00:14:36] SUCCESS: Created UI sprite for element: <link="CUPRITE">Copper Ore</link> -> Cuprite_ui_0
+[2025-07-01 00:14:36] ==========================================
+[2025-07-01 00:14:36] PROCESSING ELEMENT: <link="COPPER">Copper</link> (ID: Copper)
+[2025-07-01 00:14:36] PROCESSING ELEMENT UI SPRITE: Copper_ui for element: <link="COPPER">Copper</link>
+[2025-07-01 00:14:36] TEXTURE NAMING: Unity name='copper_refined_0' -> Sprite name='Copper_ui_0' for element: <link="COPPER">Copper</link>
+[2025-07-01 00:14:36] TEXTURE SAVED: Copper_ui_0.png for element: <link="COPPER">Copper</link>
+[2025-07-01 00:14:36] SUCCESS: Created UI sprite for element: <link="COPPER">Copper</link> -> Copper_ui_0
+[2025-07-01 00:14:36] ==========================================
+[2025-07-01 00:14:36] PROCESSING ELEMENT: <link="CRUSHEDROCK">Crushed Rock</link> (ID: CrushedRock)
+[2025-07-01 00:14:36] PROCESSING ELEMENT UI SPRITE: CrushedRock_ui for element: <link="CRUSHEDROCK">Crushed Rock</link>
+[2025-07-01 00:14:36] TEXTURE NAMING: Unity name='crushed_rock_0' -> Sprite name='CrushedRock_ui_0' for element: <link="CRUSHEDROCK">Crushed Rock</link>
+[2025-07-01 00:14:36] TEXTURE SAVED: CrushedRock_ui_0.png for element: <link="CRUSHEDROCK">Crushed Rock</link>
+[2025-07-01 00:14:36] SUCCESS: Created UI sprite for element: <link="CRUSHEDROCK">Crushed Rock</link> -> CrushedRock_ui_0
+[2025-07-01 00:14:36] ==========================================
+[2025-07-01 00:14:36] PROCESSING ELEMENT: <link="SUPERINSULATOR">Insulite</link> (ID: SuperInsulator)
+[2025-07-01 00:14:36] PROCESSING ELEMENT UI SPRITE: SuperInsulator_ui for element: <link="SUPERINSULATOR">Insulite</link>
+[2025-07-01 00:14:36] TEXTURE NAMING: Unity name='super_insulator_0' -> Sprite name='SuperInsulator_ui_0' for element: <link="SUPERINSULATOR">Insulite</link>
+[2025-07-01 00:14:36] TEXTURE SAVED: SuperInsulator_ui_0.png for element: <link="SUPERINSULATOR">Insulite</link>
+[2025-07-01 00:14:36] SUCCESS: Created UI sprite for element: <link="SUPERINSULATOR">Insulite</link> -> SuperInsulator_ui_0
+[2025-07-01 00:14:36] ==========================================
+[2025-07-01 00:14:36] PROCESSING ELEMENT: <link="SHALE">Shale</link> (ID: Shale)
+[2025-07-01 00:14:36] PROCESSING ELEMENT UI SPRITE: Shale_ui for element: <link="SHALE">Shale</link>
+[2025-07-01 00:14:36] TEXTURE NAMING: Unity name='shale_0' -> Sprite name='Shale_ui_0' for element: <link="SHALE">Shale</link>
+[2025-07-01 00:14:36] TEXTURE SAVED: Shale_ui_0.png for element: <link="SHALE">Shale</link>
+[2025-07-01 00:14:36] SUCCESS: Created UI sprite for element: <link="SHALE">Shale</link> -> Shale_ui_0
+[2025-07-01 00:14:36] ==========================================
+[2025-07-01 00:14:36] PROCESSING ELEMENT: <link="TALLOW">Tallow</link> (ID: Tallow)
+[2025-07-01 00:14:36] PROCESSING ELEMENT UI SPRITE: Tallow_ui for element: <link="TALLOW">Tallow</link>
+[2025-07-01 00:14:36] TEXTURE NAMING: Unity name='tallow_0' -> Sprite name='Tallow_ui_0' for element: <link="TALLOW">Tallow</link>
+[2025-07-01 00:14:36] TEXTURE SAVED: Tallow_ui_0.png for element: <link="TALLOW">Tallow</link>
+[2025-07-01 00:14:36] SUCCESS: Created UI sprite for element: <link="TALLOW">Tallow</link> -> Tallow_ui_0
+[2025-07-01 00:14:36] ==========================================
+[2025-07-01 00:14:36] PROCESSING ELEMENT: <link="YELLOWCAKE">Yellowcake</link> (ID: Yellowcake)
+[2025-07-01 00:14:36] PROCESSING ELEMENT UI SPRITE: Yellowcake_ui for element: <link="YELLOWCAKE">Yellowcake</link>
+[2025-07-01 00:14:36] TEXTURE NAMING: Unity name='yellowcake_0' -> Sprite name='Yellowcake_ui_0' for element: <link="YELLOWCAKE">Yellowcake</link>
+[2025-07-01 00:14:36] TEXTURE SAVED: Yellowcake_ui_0.png for element: <link="YELLOWCAKE">Yellowcake</link>
+[2025-07-01 00:14:36] SUCCESS: Created UI sprite for element: <link="YELLOWCAKE">Yellowcake</link> -> Yellowcake_ui_0
+[2025-07-01 00:14:36] ==========================================
+[2025-07-01 00:14:36] PROCESSING ELEMENT: <link="BRINEICE">Brine Ice</link> (ID: BrineIce)
+[2025-07-01 00:14:36] PROCESSING ELEMENT UI SPRITE: BrineIce_ui for element: <link="BRINEICE">Brine Ice</link>
+[2025-07-01 00:14:36] TEXTURE NAMING: Unity name='frozen_brine_0' -> Sprite name='BrineIce_ui_0' for element: <link="BRINEICE">Brine Ice</link>
+[2025-07-01 00:14:36] TEXTURE SAVED: BrineIce_ui_0.png for element: <link="BRINEICE">Brine Ice</link>
+[2025-07-01 00:14:36] SUCCESS: Created UI sprite for element: <link="BRINEICE">Brine Ice</link> -> BrineIce_ui_0
+[2025-07-01 00:14:36] ==========================================
+[2025-07-01 00:14:36] PROCESSING ELEMENT: <link="SOLIDVISCOGEL">Solid Visco-Gel</link> (ID: SolidViscoGel)
+[2025-07-01 00:14:36] PROCESSING ELEMENT UI SPRITE: SolidViscoGel_ui for element: <link="SOLIDVISCOGEL">Solid Visco-Gel</link>
+[2025-07-01 00:14:36] TEXTURE NAMING: Unity name='viscogel_0' -> Sprite name='SolidViscoGel_ui_0' for element: <link="SOLIDVISCOGEL">Solid Visco-Gel</link>
+[2025-07-01 00:14:36] TEXTURE SAVED: SolidViscoGel_ui_0.png for element: <link="SOLIDVISCOGEL">Solid Visco-Gel</link>
+[2025-07-01 00:14:36] SUCCESS: Created UI sprite for element: <link="SOLIDVISCOGEL">Solid Visco-Gel</link> -> SolidViscoGel_ui_0
+[2025-07-01 00:14:36] ==========================================
+[2025-07-01 00:14:36] PROCESSING ELEMENT: <link="CERAMIC">Ceramic</link> (ID: Ceramic)
+[2025-07-01 00:14:36] PROCESSING ELEMENT UI SPRITE: Ceramic_ui for element: <link="CERAMIC">Ceramic</link>
+[2025-07-01 00:14:36] TEXTURE NAMING: Unity name='ceramic_0' -> Sprite name='Ceramic_ui_0' for element: <link="CERAMIC">Ceramic</link>
+[2025-07-01 00:14:36] TEXTURE SAVED: Ceramic_ui_0.png for element: <link="CERAMIC">Ceramic</link>
+[2025-07-01 00:14:36] SUCCESS: Created UI sprite for element: <link="CERAMIC">Ceramic</link> -> Ceramic_ui_0
+[2025-07-01 00:14:36] ==========================================
+[2025-07-01 00:14:36] PROCESSING ELEMENT: <link="COBALTITE">Cobalt Ore</link> (ID: Cobaltite)
+[2025-07-01 00:14:36] PROCESSING ELEMENT UI SPRITE: Cobaltite_ui for element: <link="COBALTITE">Cobalt Ore</link>
+[2025-07-01 00:14:36] TEXTURE NAMING: Unity name='cobalt_ore_0' -> Sprite name='Cobaltite_ui_0' for element: <link="COBALTITE">Cobalt Ore</link>
+[2025-07-01 00:14:36] TEXTURE SAVED: Cobaltite_ui_0.png for element: <link="COBALTITE">Cobalt Ore</link>
+[2025-07-01 00:14:36] SUCCESS: Created UI sprite for element: <link="COBALTITE">Cobalt Ore</link> -> Cobaltite_ui_0
+[2025-07-01 00:14:36] ==========================================
+[2025-07-01 00:14:36] PROCESSING ELEMENT: <link="FERTILIZER">Fertilizer</link> (ID: Fertilizer)
+[2025-07-01 00:14:36] PROCESSING ELEMENT UI SPRITE: Fertilizer_ui for element: <link="FERTILIZER">Fertilizer</link>
+[2025-07-01 00:14:36] TEXTURE NAMING: Unity name='fertilizer_0' -> Sprite name='Fertilizer_ui_0' for element: <link="FERTILIZER">Fertilizer</link>
+[2025-07-01 00:14:36] TEXTURE SAVED: Fertilizer_ui_0.png for element: <link="FERTILIZER">Fertilizer</link>
+[2025-07-01 00:14:36] SUCCESS: Created UI sprite for element: <link="FERTILIZER">Fertilizer</link> -> Fertilizer_ui_0
+[2025-07-01 00:14:36] ==========================================
+[2025-07-01 00:14:36] PROCESSING ELEMENT: <link="SOLIDCRUDEOIL">Solid Crude Oil</link> (ID: SolidCrudeOil)
+[2025-07-01 00:14:36] PROCESSING ELEMENT UI SPRITE: SolidCrudeOil_ui for element: <link="SOLIDCRUDEOIL">Solid Crude Oil</link>
+[2025-07-01 00:14:36] TEXTURE NAMING: Unity name='frozen_crude_oil_0' -> Sprite name='SolidCrudeOil_ui_0' for element: <link="SOLIDCRUDEOIL">Solid Crude Oil</link>
+[2025-07-01 00:14:36] TEXTURE SAVED: SolidCrudeOil_ui_0.png for element: <link="SOLIDCRUDEOIL">Solid Crude Oil</link>
+[2025-07-01 00:14:36] SUCCESS: Created UI sprite for element: <link="SOLIDCRUDEOIL">Solid Crude Oil</link> -> SolidCrudeOil_ui_0
+[2025-07-01 00:14:36] ==========================================
+[2025-07-01 00:14:36] PROCESSING ELEMENT: <link="WOLFRAMITE">Wolframite</link> (ID: Wolframite)
+[2025-07-01 00:14:36] PROCESSING ELEMENT UI SPRITE: Wolframite_ui for element: <link="WOLFRAMITE">Wolframite</link>
+[2025-07-01 00:14:36] TEXTURE NAMING: Unity name='wolframite_0' -> Sprite name='Wolframite_ui_0' for element: <link="WOLFRAMITE">Wolframite</link>
+[2025-07-01 00:14:36] TEXTURE SAVED: Wolframite_ui_0.png for element: <link="WOLFRAMITE">Wolframite</link>
+[2025-07-01 00:14:36] SUCCESS: Created UI sprite for element: <link="WOLFRAMITE">Wolframite</link> -> Wolframite_ui_0
+[2025-07-01 00:14:36] ==========================================
+[2025-07-01 00:14:36] PROCESSING ELEMENT: <link="SLIMEMOLD">Slime</link> (ID: SlimeMold)
+[2025-07-01 00:14:36] PROCESSING ELEMENT UI SPRITE: SlimeMold_ui for element: <link="SLIMEMOLD">Slime</link>
+[2025-07-01 00:14:36] TEXTURE NAMING: Unity name='slime_mold_0' -> Sprite name='SlimeMold_ui_0' for element: <link="SLIMEMOLD">Slime</link>
+[2025-07-01 00:14:36] TEXTURE SAVED: SlimeMold_ui_0.png for element: <link="SLIMEMOLD">Slime</link>
+[2025-07-01 00:14:36] SUCCESS: Created UI sprite for element: <link="SLIMEMOLD">Slime</link> -> SlimeMold_ui_0
+[2025-07-01 00:14:36] ==========================================
+[2025-07-01 00:14:36] PROCESSING ELEMENT: <link="POLYPROPYLENE">Plastic</link> (ID: Polypropylene)
+[2025-07-01 00:14:36] PROCESSING ELEMENT UI SPRITE: Polypropylene_ui for element: <link="POLYPROPYLENE">Plastic</link>
+[2025-07-01 00:14:36] TEXTURE NAMING: Unity name='polypropylene_0' -> Sprite name='Polypropylene_ui_0' for element: <link="POLYPROPYLENE">Plastic</link>
+[2025-07-01 00:14:36] TEXTURE SAVED: Polypropylene_ui_0.png for element: <link="POLYPROPYLENE">Plastic</link>
+[2025-07-01 00:14:36] SUCCESS: Created UI sprite for element: <link="POLYPROPYLENE">Plastic</link> -> Polypropylene_ui_0
+[2025-07-01 00:14:36] ==========================================
+[2025-07-01 00:14:36] PROCESSING ELEMENT: <link="AMBER">Amber</link> (ID: Amber)
+[2025-07-01 00:14:36] PROCESSING ELEMENT UI SPRITE: Amber_ui for element: <link="AMBER">Amber</link>
+[2025-07-01 00:14:36] TEXTURE NAMING: Unity name='amber_0' -> Sprite name='Amber_ui_0' for element: <link="AMBER">Amber</link>
+[2025-07-01 00:14:36] TEXTURE SAVED: Amber_ui_0.png for element: <link="AMBER">Amber</link>
+[2025-07-01 00:14:36] SUCCESS: Created UI sprite for element: <link="AMBER">Amber</link> -> Amber_ui_0
+[2025-07-01 00:14:36] ==========================================
+[2025-07-01 00:14:36] PROCESSING ELEMENT: <link="SOLIDNAPHTHA">Solid Naphtha</link> (ID: SolidNaphtha)
+[2025-07-01 00:14:36] PROCESSING ELEMENT UI SPRITE: SolidNaphtha_ui for element: <link="SOLIDNAPHTHA">Solid Naphtha</link>
+[2025-07-01 00:14:36] TEXTURE NAMING: Unity name='wolframite_0' -> Sprite name='SolidNaphtha_ui_0' for element: <link="SOLIDNAPHTHA">Solid Naphtha</link>
+[2025-07-01 00:14:36] TEXTURE SAVED: SolidNaphtha_ui_0.png for element: <link="SOLIDNAPHTHA">Solid Naphtha</link>
+[2025-07-01 00:14:36] SUCCESS: Created UI sprite for element: <link="SOLIDNAPHTHA">Solid Naphtha</link> -> SolidNaphtha_ui_0
+[2025-07-01 00:14:36] ==========================================
+[2025-07-01 00:14:36] PROCESSING ELEMENT: <link="TUNGSTEN">Tungsten</link> (ID: Tungsten)
+[2025-07-01 00:14:36] PROCESSING ELEMENT UI SPRITE: Tungsten_ui for element: <link="TUNGSTEN">Tungsten</link>
+[2025-07-01 00:14:36] TEXTURE NAMING: Unity name='tungsten_refined_0' -> Sprite name='Tungsten_ui_0' for element: <link="TUNGSTEN">Tungsten</link>
+[2025-07-01 00:14:36] TEXTURE SAVED: Tungsten_ui_0.png for element: <link="TUNGSTEN">Tungsten</link>
+[2025-07-01 00:14:36] SUCCESS: Created UI sprite for element: <link="TUNGSTEN">Tungsten</link> -> Tungsten_ui_0
+[2025-07-01 00:14:36] ==========================================
+[2025-07-01 00:14:36] PROCESSING ELEMENT: <link="SANDCEMENT">Sand Cement</link> (ID: SandCement)
+[2025-07-01 00:14:36] PROCESSING ELEMENT UI SPRITE: SandCement_ui for element: <link="SANDCEMENT">Sand Cement</link>
+[2025-07-01 00:14:36] TEXTURE NAMING: Unity name='granite_0' -> Sprite name='SandCement_ui_0' for element: <link="SANDCEMENT">Sand Cement</link>
+[2025-07-01 00:14:36] TEXTURE SAVED: SandCement_ui_0.png for element: <link="SANDCEMENT">Sand Cement</link>
+[2025-07-01 00:14:36] SUCCESS: Created UI sprite for element: <link="SANDCEMENT">Sand Cement</link> -> SandCement_ui_0
+[2025-07-01 00:14:36] ==========================================
+[2025-07-01 00:14:36] PROCESSING ELEMENT: <link="REFINEDCARBON">Refined Carbon</link> (ID: RefinedCarbon)
+[2025-07-01 00:14:36] PROCESSING ELEMENT UI SPRITE: RefinedCarbon_ui for element: <link="REFINEDCARBON">Refined Carbon</link>
+[2025-07-01 00:14:36] TEXTURE NAMING: Unity name='carbon_0' -> Sprite name='RefinedCarbon_ui_0' for element: <link="REFINEDCARBON">Refined Carbon</link>
+[2025-07-01 00:14:36] TEXTURE SAVED: RefinedCarbon_ui_0.png for element: <link="REFINEDCARBON">Refined Carbon</link>
+[2025-07-01 00:14:36] SUCCESS: Created UI sprite for element: <link="REFINEDCARBON">Refined Carbon</link> -> RefinedCarbon_ui_0
+[2025-07-01 00:14:36] ==========================================
+[2025-07-01 00:14:36] PROCESSING ELEMENT: <link="STEEL">Steel</link> (ID: Steel)
+[2025-07-01 00:14:36] PROCESSING ELEMENT UI SPRITE: Steel_ui for element: <link="STEEL">Steel</link>
+[2025-07-01 00:14:36] TEXTURE NAMING: Unity name='steel_0' -> Sprite name='Steel_ui_0' for element: <link="STEEL">Steel</link>
+[2025-07-01 00:14:36] TEXTURE SAVED: Steel_ui_0.png for element: <link="STEEL">Steel</link>
+[2025-07-01 00:14:36] SUCCESS: Created UI sprite for element: <link="STEEL">Steel</link> -> Steel_ui_0
+[2025-07-01 00:14:36] ==========================================
+[2025-07-01 00:14:36] PROCESSING ELEMENT: <link="PHOSPHORITE">Phosphorite</link> (ID: Phosphorite)
+[2025-07-01 00:14:36] PROCESSING ELEMENT UI SPRITE: Phosphorite_ui for element: <link="PHOSPHORITE">Phosphorite</link>
+[2025-07-01 00:14:36] TEXTURE NAMING: Unity name='phosphorite_0' -> Sprite name='Phosphorite_ui_0' for element: <link="PHOSPHORITE">Phosphorite</link>
+[2025-07-01 00:14:36] TEXTURE SAVED: Phosphorite_ui_0.png for element: <link="PHOSPHORITE">Phosphorite</link>
+[2025-07-01 00:14:36] SUCCESS: Created UI sprite for element: <link="PHOSPHORITE">Phosphorite</link> -> Phosphorite_ui_0
+[2025-07-01 00:14:36] ==========================================
+[2025-07-01 00:14:36] PROCESSING ELEMENT: <link="SOLIDHYDROGEN">Solid Hydrogen</link> (ID: SolidHydrogen)
+[2025-07-01 00:14:36] PROCESSING ELEMENT UI SPRITE: SolidHydrogen_ui for element: <link="SOLIDHYDROGEN">Solid Hydrogen</link>
+[2025-07-01 00:14:36] TEXTURE NAMING: Unity name='solid_hydrogen_0' -> Sprite name='SolidHydrogen_ui_0' for element: <link="SOLIDHYDROGEN">Solid Hydrogen</link>
+[2025-07-01 00:14:36] TEXTURE SAVED: SolidHydrogen_ui_0.png for element: <link="SOLIDHYDROGEN">Solid Hydrogen</link>
+[2025-07-01 00:14:36] SUCCESS: Created UI sprite for element: <link="SOLIDHYDROGEN">Solid Hydrogen</link> -> SolidHydrogen_ui_0
+[2025-07-01 00:14:36] ==========================================
+[2025-07-01 00:14:36] PROCESSING ELEMENT: <link="BLEACHSTONE">Bleach Stone</link> (ID: BleachStone)
+[2025-07-01 00:14:36] PROCESSING ELEMENT UI SPRITE: BleachStone_ui for element: <link="BLEACHSTONE">Bleach Stone</link>
+[2025-07-01 00:14:36] TEXTURE NAMING: Unity name='bleach_stone_0' -> Sprite name='BleachStone_ui_0' for element: <link="BLEACHSTONE">Bleach Stone</link>
+[2025-07-01 00:14:36] TEXTURE SAVED: BleachStone_ui_0.png for element: <link="BLEACHSTONE">Bleach Stone</link>
+[2025-07-01 00:14:36] SUCCESS: Created UI sprite for element: <link="BLEACHSTONE">Bleach Stone</link> -> BleachStone_ui_0
+[2025-07-01 00:14:36] ==========================================
+[2025-07-01 00:14:36] PROCESSING ELEMENT: <link="LEAD">Lead</link> (ID: Lead)
+[2025-07-01 00:14:36] PROCESSING ELEMENT UI SPRITE: Lead_ui for element: <link="LEAD">Lead</link>
+[2025-07-01 00:14:36] TEXTURE NAMING: Unity name='lead_0' -> Sprite name='Lead_ui_0' for element: <link="LEAD">Lead</link>
+[2025-07-01 00:14:36] TEXTURE SAVED: Lead_ui_0.png for element: <link="LEAD">Lead</link>
+[2025-07-01 00:14:36] SUCCESS: Created UI sprite for element: <link="LEAD">Lead</link> -> Lead_ui_0
+[2025-07-01 00:14:36] ==========================================
+[2025-07-01 00:14:36] PROCESSING ELEMENT: <link="SULFUR">Sulfur</link> (ID: Sulfur)
+[2025-07-01 00:14:36] PROCESSING ELEMENT UI SPRITE: Sulfur_ui for element: <link="SULFUR">Sulfur</link>
+[2025-07-01 00:14:36] TEXTURE NAMING: Unity name='sulfur_0' -> Sprite name='Sulfur_ui_0' for element: <link="SULFUR">Sulfur</link>
+[2025-07-01 00:14:36] TEXTURE SAVED: Sulfur_ui_0.png for element: <link="SULFUR">Sulfur</link>
+[2025-07-01 00:14:36] SUCCESS: Created UI sprite for element: <link="SULFUR">Sulfur</link> -> Sulfur_ui_0
+[2025-07-01 00:14:36] ==========================================
+[2025-07-01 00:14:36] PROCESSING ELEMENT: <link="LIME">Lime</link> (ID: Lime)
+[2025-07-01 00:14:36] PROCESSING ELEMENT UI SPRITE: Lime_ui for element: <link="LIME">Lime</link>
+[2025-07-01 00:14:36] TEXTURE NAMING: Unity name='limestone_0' -> Sprite name='Lime_ui_0' for element: <link="LIME">Lime</link>
+[2025-07-01 00:14:36] TEXTURE SAVED: Lime_ui_0.png for element: <link="LIME">Lime</link>
+[2025-07-01 00:14:36] SUCCESS: Created UI sprite for element: <link="LIME">Lime</link> -> Lime_ui_0
+[2025-07-01 00:14:36] ==========================================
+[2025-07-01 00:14:36] PROCESSING ELEMENT: <link="SYNGAS">Solid Synthesis Gas</link> (ID: SolidSyngas)
+[2025-07-01 00:14:36] PROCESSING ELEMENT UI SPRITE: SolidSyngas_ui for element: <link="SYNGAS">Solid Synthesis Gas</link>
+[2025-07-01 00:14:36] TEXTURE NAMING: Unity name='solid_hydrogen_0' -> Sprite name='SolidSyngas_ui_0' for element: <link="SYNGAS">Solid Synthesis Gas</link>
+[2025-07-01 00:14:36] TEXTURE SAVED: SolidSyngas_ui_0.png for element: <link="SYNGAS">Solid Synthesis Gas</link>
+[2025-07-01 00:14:36] SUCCESS: Created UI sprite for element: <link="SYNGAS">Solid Synthesis Gas</link> -> SolidSyngas_ui_0
+[2025-07-01 00:14:36] ==========================================
+[2025-07-01 00:14:36] PROCESSING ELEMENT: <link="SOLIDCHLORINE">Solid Chlorine</link> (ID: SolidChlorine)
+[2025-07-01 00:14:36] PROCESSING ELEMENT UI SPRITE: SolidChlorine_ui for element: <link="SOLIDCHLORINE">Solid Chlorine</link>
+[2025-07-01 00:14:36] TEXTURE NAMING: Unity name='solid_chlorine_0' -> Sprite name='SolidChlorine_ui_0' for element: <link="SOLIDCHLORINE">Solid Chlorine</link>
+[2025-07-01 00:14:36] TEXTURE SAVED: SolidChlorine_ui_0.png for element: <link="SOLIDCHLORINE">Solid Chlorine</link>
+[2025-07-01 00:14:36] SUCCESS: Created UI sprite for element: <link="SOLIDCHLORINE">Solid Chlorine</link> -> SolidChlorine_ui_0
+[2025-07-01 00:14:36] ==========================================
+[2025-07-01 00:14:36] PROCESSING ELEMENT: <link="SOLIDMERCURY">Mercury</link> (ID: SolidMercury)
+[2025-07-01 00:14:36] PROCESSING ELEMENT UI SPRITE: SolidMercury_ui for element: <link="SOLIDMERCURY">Mercury</link>
+[2025-07-01 00:14:36] TEXTURE NAMING: Unity name='mercury_refined_0' -> Sprite name='SolidMercury_ui_0' for element: <link="SOLIDMERCURY">Mercury</link>
+[2025-07-01 00:14:36] TEXTURE SAVED: SolidMercury_ui_0.png for element: <link="SOLIDMERCURY">Mercury</link>
+[2025-07-01 00:14:36] SUCCESS: Created UI sprite for element: <link="SOLIDMERCURY">Mercury</link> -> SolidMercury_ui_0
+[2025-07-01 00:14:36] ==========================================
+[2025-07-01 00:14:36] PROCESSING ELEMENT: <link="SOLIDNUCLEARWASTE">Solid Nuclear Waste</link> (ID: SolidNuclearWaste)
+[2025-07-01 00:14:36] PROCESSING ELEMENT UI SPRITE: SolidNuclearWaste_ui for element: <link="SOLIDNUCLEARWASTE">Solid Nuclear Waste</link>
+[2025-07-01 00:14:36] TEXTURE NAMING: Unity name='radium_0' -> Sprite name='SolidNuclearWaste_ui_0' for element: <link="SOLIDNUCLEARWASTE">Solid Nuclear Waste</link>
+[2025-07-01 00:14:36] TEXTURE SAVED: SolidNuclearWaste_ui_0.png for element: <link="SOLIDNUCLEARWASTE">Solid Nuclear Waste</link>
+[2025-07-01 00:14:36] SUCCESS: Created UI sprite for element: <link="SOLIDNUCLEARWASTE">Solid Nuclear Waste</link> -> SolidNuclearWaste_ui_0
+[2025-07-01 00:14:36] ==========================================
+[2025-07-01 00:14:36] PROCESSING ELEMENT: <link="OBSIDIAN">Obsidian</link> (ID: Obsidian)
+[2025-07-01 00:14:36] PROCESSING ELEMENT UI SPRITE: Obsidian_ui for element: <link="OBSIDIAN">Obsidian</link>
+[2025-07-01 00:14:36] TEXTURE NAMING: Unity name='obsidian_0' -> Sprite name='Obsidian_ui_0' for element: <link="OBSIDIAN">Obsidian</link>
+[2025-07-01 00:14:36] TEXTURE SAVED: Obsidian_ui_0.png for element: <link="OBSIDIAN">Obsidian</link>
+[2025-07-01 00:14:36] SUCCESS: Created UI sprite for element: <link="OBSIDIAN">Obsidian</link> -> Obsidian_ui_0
+[2025-07-01 00:14:36] ==========================================
+[2025-07-01 00:14:36] PROCESSING ELEMENT: <link="SOLIDPETROLEUM">Solid Petroleum</link> (ID: SolidPetroleum)
+[2025-07-01 00:14:36] PROCESSING ELEMENT UI SPRITE: SolidPetroleum_ui for element: <link="SOLIDPETROLEUM">Solid Petroleum</link>
+[2025-07-01 00:14:36] TEXTURE NAMING: Unity name='wolframite_0' -> Sprite name='SolidPetroleum_ui_0' for element: <link="SOLIDPETROLEUM">Solid Petroleum</link>
+[2025-07-01 00:14:36] TEXTURE SAVED: SolidPetroleum_ui_0.png for element: <link="SOLIDPETROLEUM">Solid Petroleum</link>
+[2025-07-01 00:14:36] SUCCESS: Created UI sprite for element: <link="SOLIDPETROLEUM">Solid Petroleum</link> -> SolidPetroleum_ui_0
+[2025-07-01 00:14:36] ==========================================
+[2025-07-01 00:14:36] PROCESSING ELEMENT: <link="SOLIDSUPERCOOLANT">Solid Super Coolant</link> (ID: SolidSuperCoolant)
+[2025-07-01 00:14:36] PROCESSING ELEMENT UI SPRITE: SolidSuperCoolant_ui for element: <link="SOLIDSUPERCOOLANT">Solid Super Coolant</link>
+[2025-07-01 00:14:36] TEXTURE NAMING: Unity name='super_coolant_0' -> Sprite name='SolidSuperCoolant_ui_0' for element: <link="SOLIDSUPERCOOLANT">Solid Super Coolant</link>
+[2025-07-01 00:14:36] TEXTURE SAVED: SolidSuperCoolant_ui_0.png for element: <link="SOLIDSUPERCOOLANT">Solid Super Coolant</link>
+[2025-07-01 00:14:36] SUCCESS: Created UI sprite for element: <link="SOLIDSUPERCOOLANT">Solid Super Coolant</link> -> SolidSuperCoolant_ui_0
+[2025-07-01 00:14:36] ==========================================
+[2025-07-01 00:14:36] PROCESSING ELEMENT: <link="IGNEOUSROCK">Igneous Rock</link> (ID: IgneousRock)
+[2025-07-01 00:14:36] PROCESSING ELEMENT UI SPRITE: IgneousRock_ui for element: <link="IGNEOUSROCK">Igneous Rock</link>
+[2025-07-01 00:14:36] TEXTURE NAMING: Unity name='igneous_rock_0' -> Sprite name='IgneousRock_ui_0' for element: <link="IGNEOUSROCK">Igneous Rock</link>
+[2025-07-01 00:14:36] TEXTURE SAVED: IgneousRock_ui_0.png for element: <link="IGNEOUSROCK">Igneous Rock</link>
+[2025-07-01 00:14:36] SUCCESS: Created UI sprite for element: <link="IGNEOUSROCK">Igneous Rock</link> -> IgneousRock_ui_0
+[2025-07-01 00:14:36] ==========================================
+[2025-07-01 00:14:36] PROCESSING ELEMENT: <link="ENRICHEDURANIUM">Enriched Uranium</link> (ID: EnrichedUranium)
+[2025-07-01 00:14:36] PROCESSING ELEMENT UI SPRITE: EnrichedUranium_ui for element: <link="ENRICHEDURANIUM">Enriched Uranium</link>
+[2025-07-01 00:14:36] TEXTURE NAMING: Unity name='enriched_uranium_0' -> Sprite name='EnrichedUranium_ui_0' for element: <link="ENRICHEDURANIUM">Enriched Uranium</link>
+[2025-07-01 00:14:36] TEXTURE SAVED: EnrichedUranium_ui_0.png for element: <link="ENRICHEDURANIUM">Enriched Uranium</link>
+[2025-07-01 00:14:36] SUCCESS: Created UI sprite for element: <link="ENRICHEDURANIUM">Enriched Uranium</link> -> EnrichedUranium_ui_0
+[2025-07-01 00:14:36] ==========================================
+[2025-07-01 00:14:36] PROCESSING ELEMENT: <link="BRICK">Brick</link> (ID: Brick)
+[2025-07-01 00:14:36] PROCESSING ELEMENT UI SPRITE: Brick_ui for element: <link="BRICK">Brick</link>
+[2025-07-01 00:14:36] TEXTURE NAMING: Unity name='granite_0' -> Sprite name='Brick_ui_0' for element: <link="BRICK">Brick</link>
+[2025-07-01 00:14:36] TEXTURE SAVED: Brick_ui_0.png for element: <link="BRICK">Brick</link>
+[2025-07-01 00:14:36] SUCCESS: Created UI sprite for element: <link="BRICK">Brick</link> -> Brick_ui_0
+[2025-07-01 00:14:36] ==========================================
+[2025-07-01 00:14:36] PROCESSING ELEMENT: <link="GOLD">Gold</link> (ID: Gold)
+[2025-07-01 00:14:36] PROCESSING ELEMENT UI SPRITE: Gold_ui for element: <link="GOLD">Gold</link>
+[2025-07-01 00:14:36] TEXTURE NAMING: Unity name='gold_refined_0' -> Sprite name='Gold_ui_0' for element: <link="GOLD">Gold</link>
+[2025-07-01 00:14:36] TEXTURE SAVED: Gold_ui_0.png for element: <link="GOLD">Gold</link>
+[2025-07-01 00:14:36] SUCCESS: Created UI sprite for element: <link="GOLD">Gold</link> -> Gold_ui_0
+[2025-07-01 00:14:36] ==========================================
+[2025-07-01 00:14:36] PROCESSING ELEMENT: <link="RUST">Rust</link> (ID: Rust)
+[2025-07-01 00:14:36] PROCESSING ELEMENT UI SPRITE: Rust_ui for element: <link="RUST">Rust</link>
+[2025-07-01 00:14:36] TEXTURE NAMING: Unity name='iron_oxide_0' -> Sprite name='Rust_ui_0' for element: <link="RUST">Rust</link>
+[2025-07-01 00:14:36] TEXTURE SAVED: Rust_ui_0.png for element: <link="RUST">Rust</link>
+[2025-07-01 00:14:36] SUCCESS: Created UI sprite for element: <link="RUST">Rust</link> -> Rust_ui_0
+[2025-07-01 00:14:36] ==========================================
+[2025-07-01 00:14:36] PROCESSING ELEMENT: <link="GUNK">Solid Gunk</link> (ID: Gunk)
+[2025-07-01 00:14:36] PROCESSING ELEMENT UI SPRITE: Gunk_ui for element: <link="GUNK">Solid Gunk</link>
+[2025-07-01 00:14:36] TEXTURE NAMING: Unity name='gunk_0' -> Sprite name='Gunk_ui_0' for element: <link="GUNK">Solid Gunk</link>
+[2025-07-01 00:14:36] TEXTURE SAVED: Gunk_ui_0.png for element: <link="GUNK">Solid Gunk</link>
+[2025-07-01 00:14:36] SUCCESS: Created UI sprite for element: <link="GUNK">Solid Gunk</link> -> Gunk_ui_0
+[2025-07-01 00:14:36] ==========================================
+[2025-07-01 00:14:36] PROCESSING ELEMENT: <link="FROZENPHYTOOIL">Frozen Phyto Oil</link> (ID: FrozenPhytoOil)
+[2025-07-01 00:14:36] PROCESSING ELEMENT UI SPRITE: FrozenPhytoOil_ui for element: <link="FROZENPHYTOOIL">Frozen Phyto Oil</link>
+[2025-07-01 00:14:36] TEXTURE NAMING: Unity name='frozen_brine_0' -> Sprite name='FrozenPhytoOil_ui_0' for element: <link="FROZENPHYTOOIL">Frozen Phyto Oil</link>
+[2025-07-01 00:14:36] TEXTURE SAVED: FrozenPhytoOil_ui_0.png for element: <link="FROZENPHYTOOIL">Frozen Phyto Oil</link>
+[2025-07-01 00:14:36] SUCCESS: Created UI sprite for element: <link="FROZENPHYTOOIL">Frozen Phyto Oil</link> -> FrozenPhytoOil_ui_0
+[2025-07-01 00:14:36] ==========================================
+[2025-07-01 00:14:36] PROCESSING ELEMENT: <link="CORIUM">Corium</link> (ID: Corium)
+[2025-07-01 00:14:36] PROCESSING ELEMENT UI SPRITE: Corium_ui for element: <link="CORIUM">Corium</link>
+[2025-07-01 00:14:36] TEXTURE NAMING: Unity name='radium_0' -> Sprite name='Corium_ui_0' for element: <link="CORIUM">Corium</link>
+[2025-07-01 00:14:36] TEXTURE SAVED: Corium_ui_0.png for element: <link="CORIUM">Corium</link>
+[2025-07-01 00:14:36] SUCCESS: Created UI sprite for element: <link="CORIUM">Corium</link> -> Corium_ui_0
+[2025-07-01 00:14:36] ==========================================
+[2025-07-01 00:14:36] PROCESSING ELEMENT: <link="PHOSPHORUS">Refined Phosphorus</link> (ID: Phosphorus)
+[2025-07-01 00:14:36] PROCESSING ELEMENT UI SPRITE: Phosphorus_ui for element: <link="PHOSPHORUS">Refined Phosphorus</link>
+[2025-07-01 00:14:36] TEXTURE NAMING: Unity name='phosphorus_0' -> Sprite name='Phosphorus_ui_0' for element: <link="PHOSPHORUS">Refined Phosphorus</link>
+[2025-07-01 00:14:36] TEXTURE SAVED: Phosphorus_ui_0.png for element: <link="PHOSPHORUS">Refined Phosphorus</link>
+[2025-07-01 00:14:36] SUCCESS: Created UI sprite for element: <link="PHOSPHORUS">Refined Phosphorus</link> -> Phosphorus_ui_0
+[2025-07-01 00:14:36] ==========================================
+[2025-07-01 00:14:36] PROCESSING ELEMENT: <link="IRIDIUM">Iridium</link> (ID: Iridium)
+[2025-07-01 00:14:36] PROCESSING ELEMENT UI SPRITE: Iridium_ui for element: <link="IRIDIUM">Iridium</link>
+[2025-07-01 00:14:36] TEXTURE NAMING: Unity name='iridium_0' -> Sprite name='Iridium_ui_0' for element: <link="IRIDIUM">Iridium</link>
+[2025-07-01 00:14:36] TEXTURE SAVED: Iridium_ui_0.png for element: <link="IRIDIUM">Iridium</link>
+[2025-07-01 00:14:36] SUCCESS: Created UI sprite for element: <link="IRIDIUM">Iridium</link> -> Iridium_ui_0
+[2025-07-01 00:14:36] ==========================================
+[2025-07-01 00:14:36] PROCESSING ELEMENT: <link="GRANITE">Granite</link> (ID: Granite)
+[2025-07-01 00:14:36] PROCESSING ELEMENT UI SPRITE: Granite_ui for element: <link="GRANITE">Granite</link>
+[2025-07-01 00:14:36] TEXTURE NAMING: Unity name='granite_0' -> Sprite name='Granite_ui_0' for element: <link="GRANITE">Granite</link>
+[2025-07-01 00:14:36] TEXTURE SAVED: Granite_ui_0.png for element: <link="GRANITE">Granite</link>
+[2025-07-01 00:14:36] SUCCESS: Created UI sprite for element: <link="GRANITE">Granite</link> -> Granite_ui_0
+[2025-07-01 00:14:36] ==========================================
+[2025-07-01 00:14:36] PROCESSING ELEMENT: <link="RADIUM">Radium</link> (ID: Radium)
+[2025-07-01 00:14:36] PROCESSING ELEMENT UI SPRITE: Radium_ui for element: <link="RADIUM">Radium</link>
+[2025-07-01 00:14:36] TEXTURE NAMING: Unity name='radium_0' -> Sprite name='Radium_ui_0' for element: <link="RADIUM">Radium</link>
+[2025-07-01 00:14:36] TEXTURE SAVED: Radium_ui_0.png for element: <link="RADIUM">Radium</link>
+[2025-07-01 00:14:36] SUCCESS: Created UI sprite for element: <link="RADIUM">Radium</link> -> Radium_ui_0
+[2025-07-01 00:14:36] ==========================================
+[2025-07-01 00:14:36] PROCESSING ELEMENT: <link="WOOD">Wood</link> (ID: WoodLog)
+[2025-07-01 00:14:36] PROCESSING ELEMENT UI SPRITE: WoodLog_ui for element: <link="WOOD">Wood</link>
+[2025-07-01 00:14:36] TEXTURE NAMING: Unity name='wood_0' -> Sprite name='WoodLog_ui_0' for element: <link="WOOD">Wood</link>
+[2025-07-01 00:14:36] TEXTURE SAVED: WoodLog_ui_0.png for element: <link="WOOD">Wood</link>
+[2025-07-01 00:14:36] SUCCESS: Created UI sprite for element: <link="WOOD">Wood</link> -> WoodLog_ui_0
+[2025-07-01 00:14:36] ==========================================
+[2025-07-01 00:14:36] PROCESSING ELEMENT: <link="ELECTRUM">Electrum</link> (ID: Electrum)
+[2025-07-01 00:14:36] PROCESSING ELEMENT UI SPRITE: Electrum_ui for element: <link="ELECTRUM">Electrum</link>
+[2025-07-01 00:14:36] TEXTURE NAMING: Unity name='electrum_0' -> Sprite name='Electrum_ui_0' for element: <link="ELECTRUM">Electrum</link>
+[2025-07-01 00:14:36] TEXTURE SAVED: Electrum_ui_0.png for element: <link="ELECTRUM">Electrum</link>
+[2025-07-01 00:14:36] SUCCESS: Created UI sprite for element: <link="ELECTRUM">Electrum</link> -> Electrum_ui_0
+[2025-07-01 00:14:36] ==========================================
+[2025-07-01 00:14:36] PROCESSING ELEMENT: <link="SOLIDCARBONDIOXIDE">Solid Carbon Dioxide</link> (ID: SolidCarbonDioxide)
+[2025-07-01 00:14:36] PROCESSING ELEMENT UI SPRITE: SolidCarbonDioxide_ui for element: <link="SOLIDCARBONDIOXIDE">Solid Carbon Dioxide</link>
+[2025-07-01 00:14:36] TEXTURE NAMING: Unity name='solid_carbon_dioxide_0' -> Sprite name='SolidCarbonDioxide_ui_0' for element: <link="SOLIDCARBONDIOXIDE">Solid Carbon Dioxide</link>
+[2025-07-01 00:14:36] TEXTURE SAVED: SolidCarbonDioxide_ui_0.png for element: <link="SOLIDCARBONDIOXIDE">Solid Carbon Dioxide</link>
+[2025-07-01 00:14:36] SUCCESS: Created UI sprite for element: <link="SOLIDCARBONDIOXIDE">Solid Carbon Dioxide</link> -> SolidCarbonDioxide_ui_0
+[2025-07-01 00:14:36] ==========================================
+[2025-07-01 00:14:36] PROCESSING ELEMENT: <link="COBALT">Cobalt</link> (ID: Cobalt)
+[2025-07-01 00:14:36] PROCESSING ELEMENT UI SPRITE: Cobalt_ui for element: <link="COBALT">Cobalt</link>
+[2025-07-01 00:14:36] TEXTURE NAMING: Unity name='cobalt_refined_0' -> Sprite name='Cobalt_ui_0' for element: <link="COBALT">Cobalt</link>
+[2025-07-01 00:14:36] TEXTURE SAVED: Cobalt_ui_0.png for element: <link="COBALT">Cobalt</link>
+[2025-07-01 00:14:36] SUCCESS: Created UI sprite for element: <link="COBALT">Cobalt</link> -> Cobalt_ui_0
+[2025-07-01 00:14:36] ==========================================
+[2025-07-01 00:14:36] PROCESSING ELEMENT: <link="CARBONFIBRE">Carbon Fiber</link> (ID: CarbonFibre)
+[2025-07-01 00:14:36] PROCESSING ELEMENT UI SPRITE: CarbonFibre_ui for element: <link="CARBONFIBRE">Carbon Fiber</link>
+[2025-07-01 00:14:36] TEXTURE NAMING: Unity name='algae_0' -> Sprite name='CarbonFibre_ui_0' for element: <link="CARBONFIBRE">Carbon Fiber</link>
+[2025-07-01 00:14:36] TEXTURE SAVED: CarbonFibre_ui_0.png for element: <link="CARBONFIBRE">Carbon Fiber</link>
+[2025-07-01 00:14:36] SUCCESS: Created UI sprite for element: <link="CARBONFIBRE">Carbon Fiber</link> -> CarbonFibre_ui_0
+[2025-07-01 00:14:36] ==========================================
+[2025-07-01 00:14:36] PROCESSING ELEMENT: <link="URANIUMORE">Uranium Ore</link> (ID: UraniumOre)
+[2025-07-01 00:14:36] PROCESSING ELEMENT UI SPRITE: UraniumOre_ui for element: <link="URANIUMORE">Uranium Ore</link>
+[2025-07-01 00:14:36] TEXTURE NAMING: Unity name='radium_0' -> Sprite name='UraniumOre_ui_0' for element: <link="URANIUMORE">Uranium Ore</link>
+[2025-07-01 00:14:36] TEXTURE SAVED: UraniumOre_ui_0.png for element: <link="URANIUMORE">Uranium Ore</link>
+[2025-07-01 00:14:36] SUCCESS: Created UI sprite for element: <link="URANIUMORE">Uranium Ore</link> -> UraniumOre_ui_0
+[2025-07-01 00:14:36] ==========================================
+[2025-07-01 00:14:36] PROCESSING ELEMENT: <link="SOLIDPROPANE">Solid Propane</link> (ID: SolidPropane)
+[2025-07-01 00:14:36] PROCESSING ELEMENT UI SPRITE: SolidPropane_ui for element: <link="SOLIDPROPANE">Solid Propane</link>
+[2025-07-01 00:14:36] TEXTURE NAMING: Unity name='solid_propane_0' -> Sprite name='SolidPropane_ui_0' for element: <link="SOLIDPROPANE">Solid Propane</link>
+[2025-07-01 00:14:36] TEXTURE SAVED: SolidPropane_ui_0.png for element: <link="SOLIDPROPANE">Solid Propane</link>
+[2025-07-01 00:14:36] SUCCESS: Created UI sprite for element: <link="SOLIDPROPANE">Solid Propane</link> -> SolidPropane_ui_0
+[2025-07-01 00:14:36] ==========================================
+[2025-07-01 00:14:36] PROCESSING ELEMENT: <link="ALUMINUMORE">Aluminum Ore</link> (ID: AluminumOre)
+[2025-07-01 00:14:36] PROCESSING ELEMENT UI SPRITE: AluminumOre_ui for element: <link="ALUMINUMORE">Aluminum Ore</link>
+[2025-07-01 00:14:36] TEXTURE NAMING: Unity name='aluminum_ore_0' -> Sprite name='AluminumOre_ui_0' for element: <link="ALUMINUMORE">Aluminum Ore</link>
+[2025-07-01 00:14:36] TEXTURE SAVED: AluminumOre_ui_0.png for element: <link="ALUMINUMORE">Aluminum Ore</link>
+[2025-07-01 00:14:36] SUCCESS: Created UI sprite for element: <link="ALUMINUMORE">Aluminum Ore</link> -> AluminumOre_ui_0
+[2025-07-01 00:14:36] ==========================================
+[2025-07-01 00:14:36] PROCESSING ELEMENT: <link="SEDIMENTARYROCK">Sedimentary Rock</link> (ID: SedimentaryRock)
+[2025-07-01 00:14:36] PROCESSING ELEMENT UI SPRITE: SedimentaryRock_ui for element: <link="SEDIMENTARYROCK">Sedimentary Rock</link>
+[2025-07-01 00:14:36] TEXTURE NAMING: Unity name='sedimentary_rock_0' -> Sprite name='SedimentaryRock_ui_0' for element: <link="SEDIMENTARYROCK">Sedimentary Rock</link>
+[2025-07-01 00:14:36] TEXTURE SAVED: SedimentaryRock_ui_0.png for element: <link="SEDIMENTARYROCK">Sedimentary Rock</link>
+[2025-07-01 00:14:36] SUCCESS: Created UI sprite for element: <link="SEDIMENTARYROCK">Sedimentary Rock</link> -> SedimentaryRock_ui_0
+[2025-07-01 00:14:36] ==========================================
+[2025-07-01 00:14:36] PROCESSING ELEMENT: <link="FULLERENE">Fullerene</link> (ID: Fullerene)
+[2025-07-01 00:14:36] PROCESSING ELEMENT UI SPRITE: Fullerene_ui for element: <link="FULLERENE">Fullerene</link>
+[2025-07-01 00:14:36] TEXTURE NAMING: Unity name='fullerene_0' -> Sprite name='Fullerene_ui_0' for element: <link="FULLERENE">Fullerene</link>
+[2025-07-01 00:14:36] TEXTURE SAVED: Fullerene_ui_0.png for element: <link="FULLERENE">Fullerene</link>
+[2025-07-01 00:14:36] SUCCESS: Created UI sprite for element: <link="FULLERENE">Fullerene</link> -> Fullerene_ui_0
+[2025-07-01 00:14:36] ==========================================
+[2025-07-01 00:14:36] PROCESSING ELEMENT: <link="GOLDAMALGAM">Gold Amalgam</link> (ID: GoldAmalgam)
+[2025-07-01 00:14:36] PROCESSING ELEMENT UI SPRITE: GoldAmalgam_ui for element: <link="GOLDAMALGAM">Gold Amalgam</link>
+[2025-07-01 00:14:36] TEXTURE NAMING: Unity name='gold_amalgam_0' -> Sprite name='GoldAmalgam_ui_0' for element: <link="GOLDAMALGAM">Gold Amalgam</link>
+[2025-07-01 00:14:36] TEXTURE SAVED: GoldAmalgam_ui_0.png for element: <link="GOLDAMALGAM">Gold Amalgam</link>
+[2025-07-01 00:14:36] SUCCESS: Created UI sprite for element: <link="GOLDAMALGAM">Gold Amalgam</link> -> GoldAmalgam_ui_0
+[2025-07-01 00:14:36] ==========================================
+[2025-07-01 00:14:36] PROCESSING ELEMENT: <link="SALT">Salt</link> (ID: Salt)
+[2025-07-01 00:14:36] PROCESSING ELEMENT UI SPRITE: Salt_ui for element: <link="SALT">Salt</link>
+[2025-07-01 00:14:36] TEXTURE NAMING: Unity name='salt_0' -> Sprite name='Salt_ui_0' for element: <link="SALT">Salt</link>
+[2025-07-01 00:14:36] TEXTURE SAVED: Salt_ui_0.png for element: <link="SALT">Salt</link>
+[2025-07-01 00:14:36] SUCCESS: Created UI sprite for element: <link="SALT">Salt</link> -> Salt_ui_0
+[2025-07-01 00:14:36] ==========================================
+[2025-07-01 00:14:36] PROCESSING ELEMENT: <link="SAND">Sand</link> (ID: Sand)
+[2025-07-01 00:14:36] PROCESSING ELEMENT UI SPRITE: Sand_ui for element: <link="SAND">Sand</link>
+[2025-07-01 00:14:36] TEXTURE NAMING: Unity name='sand_0' -> Sprite name='Sand_ui_0' for element: <link="SAND">Sand</link>
+[2025-07-01 00:14:36] TEXTURE SAVED: Sand_ui_0.png for element: <link="SAND">Sand</link>
+[2025-07-01 00:14:36] SUCCESS: Created UI sprite for element: <link="SAND">Sand</link> -> Sand_ui_0
+[2025-07-01 00:14:36] ==========================================
+[2025-07-01 00:14:36] PROCESSING ELEMENT: <link="SNOW">Snow</link> (ID: Snow)
+[2025-07-01 00:14:36] PROCESSING ELEMENT UI SPRITE: Snow_ui for element: <link="SNOW">Snow</link>
+[2025-07-01 00:14:36] TEXTURE NAMING: Unity name='snow_0' -> Sprite name='Snow_ui_0' for element: <link="SNOW">Snow</link>
+[2025-07-01 00:14:36] TEXTURE SAVED: Snow_ui_0.png for element: <link="SNOW">Snow</link>
+[2025-07-01 00:14:36] SUCCESS: Created UI sprite for element: <link="SNOW">Snow</link> -> Snow_ui_0
+[2025-07-01 00:14:36] ==========================================
+[2025-07-01 00:14:36] PROCESSING ELEMENT: <link="SANDSTONE">Sandstone</link> (ID: SandStone)
+[2025-07-01 00:14:36] PROCESSING ELEMENT UI SPRITE: SandStone_ui for element: <link="SANDSTONE">Sandstone</link>
+[2025-07-01 00:14:36] TEXTURE NAMING: Unity name='sand_stone_0' -> Sprite name='SandStone_ui_0' for element: <link="SANDSTONE">Sandstone</link>
+[2025-07-01 00:14:36] TEXTURE SAVED: SandStone_ui_0.png for element: <link="SANDSTONE">Sandstone</link>
+[2025-07-01 00:14:36] SUCCESS: Created UI sprite for element: <link="SANDSTONE">Sandstone</link> -> SandStone_ui_0
+[2025-07-01 00:14:36] ==========================================
+[2025-07-01 00:14:36] PROCESSING ELEMENT: <link="GLASS">Glass</link> (ID: Glass)
+[2025-07-01 00:14:36] PROCESSING ELEMENT UI SPRITE: Glass_ui for element: <link="GLASS">Glass</link>
+[2025-07-01 00:14:36] TEXTURE NAMING: Unity name='glass_0' -> Sprite name='Glass_ui_0' for element: <link="GLASS">Glass</link>
+[2025-07-01 00:14:36] TEXTURE SAVED: Glass_ui_0.png for element: <link="GLASS">Glass</link>
+[2025-07-01 00:14:36] SUCCESS: Created UI sprite for element: <link="GLASS">Glass</link> -> Glass_ui_0
+[2025-07-01 00:14:36] ==========================================
+[2025-07-01 00:14:36] PROCESSING ELEMENT: <link="CLAY">Clay</link> (ID: Clay)
+[2025-07-01 00:14:36] PROCESSING ELEMENT UI SPRITE: Clay_ui for element: <link="CLAY">Clay</link>
+[2025-07-01 00:14:36] TEXTURE NAMING: Unity name='clay_0' -> Sprite name='Clay_ui_0' for element: <link="CLAY">Clay</link>
+[2025-07-01 00:14:36] TEXTURE SAVED: Clay_ui_0.png for element: <link="CLAY">Clay</link>
+[2025-07-01 00:14:36] SUCCESS: Created UI sprite for element: <link="CLAY">Clay</link> -> Clay_ui_0
+[2025-07-01 00:14:36] ==========================================
+[2025-07-01 00:14:36] PROCESSING ELEMENT: <link="TOXICSAND">Polluted Dirt</link> (ID: ToxicSand)
+[2025-07-01 00:14:36] PROCESSING ELEMENT UI SPRITE: ToxicSand_ui for element: <link="TOXICSAND">Polluted Dirt</link>
+[2025-07-01 00:14:36] TEXTURE NAMING: Unity name='toxic_sand_0' -> Sprite name='ToxicSand_ui_0' for element: <link="TOXICSAND">Polluted Dirt</link>
+[2025-07-01 00:14:36] TEXTURE SAVED: ToxicSand_ui_0.png for element: <link="TOXICSAND">Polluted Dirt</link>
+[2025-07-01 00:14:36] SUCCESS: Created UI sprite for element: <link="TOXICSAND">Polluted Dirt</link> -> ToxicSand_ui_0
+[2025-07-01 00:14:36] ==========================================
+[2025-07-01 00:14:36] PROCESSING ELEMENT: <link="ICE">Ice</link> (ID: Ice)
+[2025-07-01 00:14:36] PROCESSING ELEMENT UI SPRITE: Ice_ui for element: <link="ICE">Ice</link>
+[2025-07-01 00:14:36] TEXTURE NAMING: Unity name='ice_0' -> Sprite name='Ice_ui_0' for element: <link="ICE">Ice</link>
+[2025-07-01 00:14:36] TEXTURE SAVED: Ice_ui_0.png for element: <link="ICE">Ice</link>
+[2025-07-01 00:14:36] SUCCESS: Created UI sprite for element: <link="ICE">Ice</link> -> Ice_ui_0
+[2025-07-01 00:14:36] ==========================================
+[2025-07-01 00:14:36] PROCESSING ELEMENT: <link="GRAPHITE">Graphite</link> (ID: Graphite)
+[2025-07-01 00:14:36] PROCESSING ELEMENT UI SPRITE: Graphite_ui for element: <link="GRAPHITE">Graphite</link>
+[2025-07-01 00:14:36] TEXTURE NAMING: Unity name='graphite_0' -> Sprite name='Graphite_ui_0' for element: <link="GRAPHITE">Graphite</link>
+[2025-07-01 00:14:36] TEXTURE SAVED: Graphite_ui_0.png for element: <link="GRAPHITE">Graphite</link>
+[2025-07-01 00:14:36] SUCCESS: Created UI sprite for element: <link="GRAPHITE">Graphite</link> -> Graphite_ui_0
+[2025-07-01 00:14:36] ==========================================
+[2025-07-01 00:14:36] PROCESSING ELEMENT: <link="TOXICMUD">Polluted Mud</link> (ID: ToxicMud)
+[2025-07-01 00:14:36] PROCESSING ELEMENT UI SPRITE: ToxicMud_ui for element: <link="TOXICMUD">Polluted Mud</link>
+[2025-07-01 00:14:36] TEXTURE NAMING: Unity name='polluted_sludge_0' -> Sprite name='ToxicMud_ui_0' for element: <link="TOXICMUD">Polluted Mud</link>
+[2025-07-01 00:14:36] TEXTURE SAVED: ToxicMud_ui_0.png for element: <link="TOXICMUD">Polluted Mud</link>
+[2025-07-01 00:14:36] SUCCESS: Created UI sprite for element: <link="TOXICMUD">Polluted Mud</link> -> ToxicMud_ui_0
+[2025-07-01 00:14:36] ==========================================
+[2025-07-01 00:14:36] PROCESSING ELEMENT: <link="MUD">Mud</link> (ID: Mud)
+[2025-07-01 00:14:36] PROCESSING ELEMENT UI SPRITE: Mud_ui for element: <link="MUD">Mud</link>
+[2025-07-01 00:14:36] TEXTURE NAMING: Unity name='sludge_0' -> Sprite name='Mud_ui_0' for element: <link="MUD">Mud</link>
+[2025-07-01 00:14:36] TEXTURE SAVED: Mud_ui_0.png for element: <link="MUD">Mud</link>
+[2025-07-01 00:14:36] SUCCESS: Created UI sprite for element: <link="MUD">Mud</link> -> Mud_ui_0
+[2025-07-01 00:14:36] ==========================================
+[2025-07-01 00:14:36] PROCESSING ELEMENT: <link="CARBON">Coal</link> (ID: Carbon)
+[2025-07-01 00:14:36] PROCESSING ELEMENT UI SPRITE: Carbon_ui for element: <link="CARBON">Coal</link>
+[2025-07-01 00:14:36] TEXTURE NAMING: Unity name='carbon_0' -> Sprite name='Carbon_ui_0' for element: <link="CARBON">Coal</link>
+[2025-07-01 00:14:36] TEXTURE SAVED: Carbon_ui_0.png for element: <link="CARBON">Coal</link>
+[2025-07-01 00:14:36] SUCCESS: Created UI sprite for element: <link="CARBON">Coal</link> -> Carbon_ui_0
+[2025-07-01 00:14:36] ==========================================
+[2025-07-01 00:14:36] PROCESSING ELEMENT: <link="SOLIDOXYGEN">Solid Oxygen</link> (ID: SolidOxygen)
+[2025-07-01 00:14:36] PROCESSING ELEMENT UI SPRITE: SolidOxygen_ui for element: <link="SOLIDOXYGEN">Solid Oxygen</link>
+[2025-07-01 00:14:36] TEXTURE NAMING: Unity name='solid_oxygen_0' -> Sprite name='SolidOxygen_ui_0' for element: <link="SOLIDOXYGEN">Solid Oxygen</link>
+[2025-07-01 00:14:36] TEXTURE SAVED: SolidOxygen_ui_0.png for element: <link="SOLIDOXYGEN">Solid Oxygen</link>
+[2025-07-01 00:14:36] SUCCESS: Created UI sprite for element: <link="SOLIDOXYGEN">Solid Oxygen</link> -> SolidOxygen_ui_0
+[2025-07-01 00:14:36] ==========================================
+[2025-07-01 00:14:36] PROCESSING ELEMENT: <link="CREATURE">Genetic Ooze</link> (ID: Creature)
+[2025-07-01 00:14:36] PROCESSING ELEMENT UI SPRITE: Creature_ui for element: <link="CREATURE">Genetic Ooze</link>
+[2025-07-01 00:14:36] TEXTURE NAMING: Unity name='algae_0' -> Sprite name='Creature_ui_0' for element: <link="CREATURE">Genetic Ooze</link>
+[2025-07-01 00:14:36] TEXTURE SAVED: Creature_ui_0.png for element: <link="CREATURE">Genetic Ooze</link>
+[2025-07-01 00:14:36] SUCCESS: Created UI sprite for element: <link="CREATURE">Genetic Ooze</link> -> Creature_ui_0
+[2025-07-01 00:14:36] ==========================================
+[2025-07-01 00:14:36] PROCESSING ELEMENT: <link="DEPLETEDURANIUM">Depleted Uranium</link> (ID: DepletedUranium)
+[2025-07-01 00:14:36] PROCESSING ELEMENT UI SPRITE: DepletedUranium_ui for element: <link="DEPLETEDURANIUM">Depleted Uranium</link>
+[2025-07-01 00:14:36] TEXTURE NAMING: Unity name='depleted_uranium_0' -> Sprite name='DepletedUranium_ui_0' for element: <link="DEPLETEDURANIUM">Depleted Uranium</link>
+[2025-07-01 00:14:36] TEXTURE SAVED: DepletedUranium_ui_0.png for element: <link="DEPLETEDURANIUM">Depleted Uranium</link>
+[2025-07-01 00:14:36] SUCCESS: Created UI sprite for element: <link="DEPLETEDURANIUM">Depleted Uranium</link> -> DepletedUranium_ui_0
+[2025-07-01 00:14:36] ==========================================
+[2025-07-01 00:14:36] PROCESSING ELEMENT: <link="KATAIRITE">Abyssalite</link> (ID: Katairite)
+[2025-07-01 00:14:36] PROCESSING ELEMENT UI SPRITE: Katairite_ui for element: <link="KATAIRITE">Abyssalite</link>
+[2025-07-01 00:14:36] TEXTURE NAMING: Unity name='katairite_0' -> Sprite name='Katairite_ui_0' for element: <link="KATAIRITE">Abyssalite</link>
+[2025-07-01 00:14:36] TEXTURE SAVED: Katairite_ui_0.png for element: <link="KATAIRITE">Abyssalite</link>
+[2025-07-01 00:14:36] SUCCESS: Created UI sprite for element: <link="KATAIRITE">Abyssalite</link> -> Katairite_ui_0
+[2025-07-01 00:14:36] ==========================================
+[2025-07-01 00:14:36] PROCESSING ELEMENT: <link="SOLIDMETHANE">Solid Methane</link> (ID: SolidMethane)
+[2025-07-01 00:14:36] PROCESSING ELEMENT UI SPRITE: SolidMethane_ui for element: <link="SOLIDMETHANE">Solid Methane</link>
+[2025-07-01 00:14:36] TEXTURE NAMING: Unity name='solid_methane_0' -> Sprite name='SolidMethane_ui_0' for element: <link="SOLIDMETHANE">Solid Methane</link>
+[2025-07-01 00:14:36] TEXTURE SAVED: SolidMethane_ui_0.png for element: <link="SOLIDMETHANE">Solid Methane</link>
+[2025-07-01 00:14:36] SUCCESS: Created UI sprite for element: <link="SOLIDMETHANE">Solid Methane</link> -> SolidMethane_ui_0
+[2025-07-01 00:14:36] ==========================================
+[2025-07-01 00:14:36] PROCESSING ELEMENT: <link="HARDPOLYPROPYLENE">Plastium</link> (ID: HardPolypropylene)
+[2025-07-01 00:14:36] PROCESSING ELEMENT UI SPRITE: HardPolypropylene_ui for element: <link="HARDPOLYPROPYLENE">Plastium</link>
+[2025-07-01 00:14:36] TEXTURE NAMING: Unity name='hardplastic_0' -> Sprite name='HardPolypropylene_ui_0' for element: <link="HARDPOLYPROPYLENE">Plastium</link>
+[2025-07-01 00:14:36] TEXTURE SAVED: HardPolypropylene_ui_0.png for element: <link="HARDPOLYPROPYLENE">Plastium</link>
+[2025-07-01 00:14:36] SUCCESS: Created UI sprite for element: <link="HARDPOLYPROPYLENE">Plastium</link> -> HardPolypropylene_ui_0
+[2025-07-01 00:14:36] ==========================================
+[2025-07-01 00:14:36] PROCESSING ELEMENT: <link="NATURALSOLIDRESIN">Solid Resin</link> (ID: NaturalSolidResin)
+[2025-07-01 00:14:36] PROCESSING ELEMENT UI SPRITE: NaturalSolidResin_ui for element: <link="NATURALSOLIDRESIN">Solid Resin</link>
+[2025-07-01 00:14:36] TEXTURE NAMING: Unity name='resin_solid_0' -> Sprite name='NaturalSolidResin_ui_0' for element: <link="NATURALSOLIDRESIN">Solid Resin</link>
+[2025-07-01 00:14:36] TEXTURE SAVED: NaturalSolidResin_ui_0.png for element: <link="NATURALSOLIDRESIN">Solid Resin</link>
+[2025-07-01 00:14:36] SUCCESS: Created UI sprite for element: <link="NATURALSOLIDRESIN">Solid Resin</link> -> NaturalSolidResin_ui_0
+[2025-07-01 00:14:36] ==========================================
+[2025-07-01 00:14:36] PROCESSING ELEMENT: <link="OXYROCK">Oxylite</link> (ID: OxyRock)
+[2025-07-01 00:14:36] PROCESSING ELEMENT UI SPRITE: OxyRock_ui for element: <link="OXYROCK">Oxylite</link>
+[2025-07-01 00:14:36] TEXTURE NAMING: Unity name='oxyrock_0' -> Sprite name='OxyRock_ui_0' for element: <link="OXYROCK">Oxylite</link>
+[2025-07-01 00:14:36] TEXTURE SAVED: OxyRock_ui_0.png for element: <link="OXYROCK">Oxylite</link>
+[2025-07-01 00:14:36] SUCCESS: Created UI sprite for element: <link="OXYROCK">Oxylite</link> -> OxyRock_ui_0
+[2025-07-01 00:14:36] ==========================================
+[2025-07-01 00:14:36] PROCESSING ELEMENT: <link="MAFICROCK">Mafic Rock</link> (ID: MaficRock)
+[2025-07-01 00:14:36] PROCESSING ELEMENT UI SPRITE: MaficRock_ui for element: <link="MAFICROCK">Mafic Rock</link>
+[2025-07-01 00:14:36] TEXTURE NAMING: Unity name='igneous_rock_0' -> Sprite name='MaficRock_ui_0' for element: <link="MAFICROCK">Mafic Rock</link>
+[2025-07-01 00:14:36] TEXTURE SAVED: MaficRock_ui_0.png for element: <link="MAFICROCK">Mafic Rock</link>
+[2025-07-01 00:14:36] SUCCESS: Created UI sprite for element: <link="MAFICROCK">Mafic Rock</link> -> MaficRock_ui_0
+[2025-07-01 00:14:36] ==========================================
+[2025-07-01 00:14:36] PROCESSING ELEMENT: <link="IRON">Iron</link> (ID: Iron)
+[2025-07-01 00:14:36] PROCESSING ELEMENT UI SPRITE: Iron_ui for element: <link="IRON">Iron</link>
+[2025-07-01 00:14:36] TEXTURE NAMING: Unity name='iron_refined_0' -> Sprite name='Iron_ui_0' for element: <link="IRON">Iron</link>
+[2025-07-01 00:14:36] TEXTURE SAVED: Iron_ui_0.png for element: <link="IRON">Iron</link>
+[2025-07-01 00:14:36] SUCCESS: Created UI sprite for element: <link="IRON">Iron</link> -> Iron_ui_0
+[2025-07-01 00:14:36] ==========================================
+[2025-07-01 00:14:36] PROCESSING ELEMENT: <link="REGOLITH">Regolith</link> (ID: Regolith)
+[2025-07-01 00:14:36] PROCESSING ELEMENT UI SPRITE: Regolith_ui for element: <link="REGOLITH">Regolith</link>
+[2025-07-01 00:14:36] TEXTURE NAMING: Unity name='sand_0' -> Sprite name='Regolith_ui_0' for element: <link="REGOLITH">Regolith</link>
+[2025-07-01 00:14:36] TEXTURE SAVED: Regolith_ui_0.png for element: <link="REGOLITH">Regolith</link>
+[2025-07-01 00:14:36] SUCCESS: Created UI sprite for element: <link="REGOLITH">Regolith</link> -> Regolith_ui_0
+[2025-07-01 00:14:36] ==========================================
+[2025-07-01 00:14:36] PROCESSING ELEMENT: <link="SOLIDRESIN">Solid Sap</link> (ID: SolidResin)
+[2025-07-01 00:14:36] PROCESSING ELEMENT UI SPRITE: SolidResin_ui for element: <link="SOLIDRESIN">Solid Sap</link>
+[2025-07-01 00:14:36] TEXTURE NAMING: Unity name='resin_solid_0' -> Sprite name='SolidResin_ui_0' for element: <link="SOLIDRESIN">Solid Sap</link>
+[2025-07-01 00:14:36] TEXTURE SAVED: SolidResin_ui_0.png for element: <link="SOLIDRESIN">Solid Sap</link>
+[2025-07-01 00:14:36] SUCCESS: Created UI sprite for element: <link="SOLIDRESIN">Solid Sap</link> -> SolidResin_ui_0
+[2025-07-01 00:14:36] ==========================================
+[2025-07-01 00:14:36] PROCESSING ELEMENT: <link="NICKELORE">Nickel Ore</link> (ID: NickelOre)
+[2025-07-01 00:14:36] PROCESSING ELEMENT UI SPRITE: NickelOre_ui for element: <link="NICKELORE">Nickel Ore</link>
+[2025-07-01 00:14:36] TEXTURE NAMING: Unity name='nickel_ore_0' -> Sprite name='NickelOre_ui_0' for element: <link="NICKELORE">Nickel Ore</link>
+[2025-07-01 00:14:36] TEXTURE SAVED: NickelOre_ui_0.png for element: <link="NICKELORE">Nickel Ore</link>
+[2025-07-01 00:14:36] SUCCESS: Created UI sprite for element: <link="NICKELORE">Nickel Ore</link> -> NickelOre_ui_0
+[2025-07-01 00:14:36] ==========================================
+[2025-07-01 00:14:36] PROCESSING ELEMENT: <link="SLABS">Building Slab</link> (ID: Slabs)
+[2025-07-01 00:14:36] PROCESSING ELEMENT UI SPRITE: Slabs_ui for element: <link="SLABS">Building Slab</link>
+[2025-07-01 00:14:36] TEXTURE NAMING: Unity name='granite_0' -> Sprite name='Slabs_ui_0' for element: <link="SLABS">Building Slab</link>
+[2025-07-01 00:14:36] TEXTURE SAVED: Slabs_ui_0.png for element: <link="SLABS">Building Slab</link>
+[2025-07-01 00:14:36] SUCCESS: Created UI sprite for element: <link="SLABS">Building Slab</link> -> Slabs_ui_0
+[2025-07-01 00:14:36] ==========================================
+[2025-07-01 00:14:36] PROCESSING ELEMENT: <link="BITUMEN">Bitumen</link> (ID: Bitumen)
+[2025-07-01 00:14:36] PROCESSING ELEMENT UI SPRITE: Bitumen_ui for element: <link="BITUMEN">Bitumen</link>
+[2025-07-01 00:14:36] TEXTURE NAMING: Unity name='carbon_0' -> Sprite name='Bitumen_ui_0' for element: <link="BITUMEN">Bitumen</link>
+[2025-07-01 00:14:36] TEXTURE SAVED: Bitumen_ui_0.png for element: <link="BITUMEN">Bitumen</link>
+[2025-07-01 00:14:36] SUCCESS: Created UI sprite for element: <link="BITUMEN">Bitumen</link> -> Bitumen_ui_0
+[2025-07-01 00:14:36] ==========================================
+[2025-07-01 00:14:36] PROCESSING ELEMENT: Packed <link="SNOW">Snow</link> (ID: StableSnow)
+[2025-07-01 00:14:36] PROCESSING ELEMENT UI SPRITE: StableSnow_ui for element: Packed <link="SNOW">Snow</link>
+[2025-07-01 00:14:36] TEXTURE NAMING: Unity name='snow_0' -> Sprite name='StableSnow_ui_0' for element: Packed <link="SNOW">Snow</link>
+[2025-07-01 00:14:36] TEXTURE SAVED: StableSnow_ui_0.png for element: Packed <link="SNOW">Snow</link>
+[2025-07-01 00:14:36] SUCCESS: Created UI sprite for element: Packed <link="SNOW">Snow</link> -> StableSnow_ui_0
+[2025-07-01 00:14:36] ==========================================
+[2025-07-01 00:14:36] PROCESSING ELEMENT: <link="TEMPCONDUCTORSOLID">Thermium</link> (ID: TempConductorSolid)
+[2025-07-01 00:14:36] PROCESSING ELEMENT UI SPRITE: TempConductorSolid_ui for element: <link="TEMPCONDUCTORSOLID">Thermium</link>
+[2025-07-01 00:14:36] TEXTURE NAMING: Unity name='temp_conductor_0' -> Sprite name='TempConductorSolid_ui_0' for element: <link="TEMPCONDUCTORSOLID">Thermium</link>
+[2025-07-01 00:14:36] TEXTURE SAVED: TempConductorSolid_ui_0.png for element: <link="TEMPCONDUCTORSOLID">Thermium</link>
+[2025-07-01 00:14:36] SUCCESS: Created UI sprite for element: <link="TEMPCONDUCTORSOLID">Thermium</link> -> TempConductorSolid_ui_0
+[2025-07-01 00:14:36] ==========================================
+[2025-07-01 00:14:36] PROCESSING ELEMENT: <link="IRONORE">Iron Ore</link> (ID: IronOre)
+[2025-07-01 00:14:36] PROCESSING ELEMENT UI SPRITE: IronOre_ui for element: <link="IRONORE">Iron Ore</link>
+[2025-07-01 00:14:36] TEXTURE NAMING: Unity name='hematite_0' -> Sprite name='IronOre_ui_0' for element: <link="IRONORE">Iron Ore</link>
+[2025-07-01 00:14:36] TEXTURE SAVED: IronOre_ui_0.png for element: <link="IRONORE">Iron Ore</link>
+[2025-07-01 00:14:36] SUCCESS: Created UI sprite for element: <link="IRONORE">Iron Ore</link> -> IronOre_ui_0
+[2025-07-01 00:14:36] ==========================================
+[2025-07-01 00:14:36] PROCESSING ELEMENT: <link="DIRT">Dirt</link> (ID: Dirt)
+[2025-07-01 00:14:36] PROCESSING ELEMENT UI SPRITE: Dirt_ui for element: <link="DIRT">Dirt</link>
+[2025-07-01 00:14:36] TEXTURE NAMING: Unity name='dirt_0' -> Sprite name='Dirt_ui_0' for element: <link="DIRT">Dirt</link>
+[2025-07-01 00:14:36] TEXTURE SAVED: Dirt_ui_0.png for element: <link="DIRT">Dirt</link>
+[2025-07-01 00:14:36] SUCCESS: Created UI sprite for element: <link="DIRT">Dirt</link> -> Dirt_ui_0
+[2025-07-01 00:14:36] ==========================================
+[2025-07-01 00:14:36] PROCESSING ELEMENT: <link="CEMENT">Cement</link> (ID: Cement)
+[2025-07-01 00:14:36] PROCESSING ELEMENT UI SPRITE: Cement_ui for element: <link="CEMENT">Cement</link>
+[2025-07-01 00:14:36] TEXTURE NAMING: Unity name='granite_0' -> Sprite name='Cement_ui_0' for element: <link="CEMENT">Cement</link>
+[2025-07-01 00:14:36] TEXTURE SAVED: Cement_ui_0.png for element: <link="CEMENT">Cement</link>
+[2025-07-01 00:14:36] SUCCESS: Created UI sprite for element: <link="CEMENT">Cement</link> -> Cement_ui_0
+[2025-07-01 00:14:36] ==========================================
+[2025-07-01 00:14:36] PROCESSING ELEMENT: <link="DIRTYICE">Polluted Ice</link> (ID: DirtyIce)
+[2025-07-01 00:14:36] PROCESSING ELEMENT UI SPRITE: DirtyIce_ui for element: <link="DIRTYICE">Polluted Ice</link>
+[2025-07-01 00:14:36] TEXTURE NAMING: Unity name='dirty_ice_0' -> Sprite name='DirtyIce_ui_0' for element: <link="DIRTYICE">Polluted Ice</link>
+[2025-07-01 00:14:36] TEXTURE SAVED: DirtyIce_ui_0.png for element: <link="DIRTYICE">Polluted Ice</link>
+[2025-07-01 00:14:36] SUCCESS: Created UI sprite for element: <link="DIRTYICE">Polluted Ice</link> -> DirtyIce_ui_0
+[2025-07-01 00:14:36] ==========================================
+[2025-07-01 00:14:36] PROCESSING ELEMENT: <link="CEMENTMIX">Cement Mix</link> (ID: CementMix)
+[2025-07-01 00:14:36] PROCESSING ELEMENT UI SPRITE: CementMix_ui for element: <link="CEMENTMIX">Cement Mix</link>
+[2025-07-01 00:14:36] TEXTURE NAMING: Unity name='algae_0' -> Sprite name='CementMix_ui_0' for element: <link="CEMENTMIX">Cement Mix</link>
+[2025-07-01 00:14:36] TEXTURE SAVED: CementMix_ui_0.png for element: <link="CEMENTMIX">Cement Mix</link>
+[2025-07-01 00:14:36] SUCCESS: Created UI sprite for element: <link="CEMENTMIX">Cement Mix</link> -> CementMix_ui_0
+[2025-07-01 00:14:36] ==========================================
+[2025-07-01 00:14:36] PROCESSING ELEMENT: <link="FOSSIL">Fossil</link> (ID: Fossil)
+[2025-07-01 00:14:36] PROCESSING ELEMENT UI SPRITE: Fossil_ui for element: <link="FOSSIL">Fossil</link>
+[2025-07-01 00:14:36] TEXTURE NAMING: Unity name='fossil_0' -> Sprite name='Fossil_ui_0' for element: <link="FOSSIL">Fossil</link>
+[2025-07-01 00:14:36] TEXTURE SAVED: Fossil_ui_0.png for element: <link="FOSSIL">Fossil</link>
+[2025-07-01 00:14:36] SUCCESS: Created UI sprite for element: <link="FOSSIL">Fossil</link> -> Fossil_ui_0
+[2025-07-01 00:14:36] ==========================================
+[2025-07-01 00:14:36] PROCESSING ELEMENT: <link="UNOBTANIUM">Neutronium</link> (ID: Unobtanium)
+[2025-07-01 00:14:36] PROCESSING ELEMENT UI SPRITE: Unobtanium_ui for element: <link="UNOBTANIUM">Neutronium</link>
+[2025-07-01 00:14:36] TEXTURE NAMING: Unity name='neutronium_0' -> Sprite name='Unobtanium_ui_0' for element: <link="UNOBTANIUM">Neutronium</link>
+[2025-07-01 00:14:36] TEXTURE SAVED: Unobtanium_ui_0.png for element: <link="UNOBTANIUM">Neutronium</link>
+[2025-07-01 00:14:36] SUCCESS: Created UI sprite for element: <link="UNOBTANIUM">Neutronium</link> -> Unobtanium_ui_0
+[2025-07-01 00:14:36] ==========================================
+[2025-07-01 00:14:36] PROCESSING ELEMENT: <link="CINNABAR">Cinnabar Ore</link> (ID: Cinnabar)
+[2025-07-01 00:14:36] PROCESSING ELEMENT UI SPRITE: Cinnabar_ui for element: <link="CINNABAR">Cinnabar Ore</link>
+[2025-07-01 00:14:36] TEXTURE NAMING: Unity name='cinnabar_0' -> Sprite name='Cinnabar_ui_0' for element: <link="CINNABAR">Cinnabar Ore</link>
+[2025-07-01 00:14:36] TEXTURE SAVED: Cinnabar_ui_0.png for element: <link="CINNABAR">Cinnabar Ore</link>
+[2025-07-01 00:14:36] SUCCESS: Created UI sprite for element: <link="CINNABAR">Cinnabar Ore</link> -> Cinnabar_ui_0
+[2025-07-01 00:14:36] ==========================================
+[2025-07-01 00:14:36] PROCESSING ELEMENT: <link="SOLIDETHANOL">Solid Ethanol</link> (ID: SolidEthanol)
+[2025-07-01 00:14:36] PROCESSING ELEMENT UI SPRITE: SolidEthanol_ui for element: <link="SOLIDETHANOL">Solid Ethanol</link>
+[2025-07-01 00:14:36] TEXTURE NAMING: Unity name='ethanol_0' -> Sprite name='SolidEthanol_ui_0' for element: <link="SOLIDETHANOL">Solid Ethanol</link>
+[2025-07-01 00:14:36] TEXTURE SAVED: SolidEthanol_ui_0.png for element: <link="SOLIDETHANOL">Solid Ethanol</link>
+[2025-07-01 00:14:36] SUCCESS: Created UI sprite for element: <link="SOLIDETHANOL">Solid Ethanol</link> -> SolidEthanol_ui_0
+[2025-07-01 00:14:36] ==========================================
+[2025-07-01 00:14:36] PROCESSING ELEMENT: <link="FOOLSGOLD">Pyrite</link> (ID: FoolsGold)
+[2025-07-01 00:14:36] PROCESSING ELEMENT UI SPRITE: FoolsGold_ui for element: <link="FOOLSGOLD">Pyrite</link>
+[2025-07-01 00:14:36] TEXTURE NAMING: Unity name='fools_gold_0' -> Sprite name='FoolsGold_ui_0' for element: <link="FOOLSGOLD">Pyrite</link>
+[2025-07-01 00:14:36] TEXTURE SAVED: FoolsGold_ui_0.png for element: <link="FOOLSGOLD">Pyrite</link>
+[2025-07-01 00:14:36] SUCCESS: Created UI sprite for element: <link="FOOLSGOLD">Pyrite</link> -> FoolsGold_ui_0
+[2025-07-01 00:14:36] ==========================================
+[2025-07-01 00:14:36] PROCESSING ELEMENT: <link="ALUMINUM">Aluminum</link> (ID: Aluminum)
+[2025-07-01 00:14:36] PROCESSING ELEMENT UI SPRITE: Aluminum_ui for element: <link="ALUMINUM">Aluminum</link>
+[2025-07-01 00:14:36] TEXTURE NAMING: Unity name='aluminum_0' -> Sprite name='Aluminum_ui_0' for element: <link="ALUMINUM">Aluminum</link>
+[2025-07-01 00:14:36] TEXTURE SAVED: Aluminum_ui_0.png for element: <link="ALUMINUM">Aluminum</link>
+[2025-07-01 00:14:36] SUCCESS: Created UI sprite for element: <link="ALUMINUM">Aluminum</link> -> Aluminum_ui_0
+[2025-07-01 00:14:36] ==========================================
+[2025-07-01 00:14:36] PROCESSING ELEMENT: <link="LIQUIDHELIUM">Helium</link> (ID: LiquidHelium)
+[2025-07-01 00:14:36] ==========================================
+[2025-07-01 00:14:36] PROCESSING ELEMENT: <link="LIQUIDOXYGEN">Liquid Oxygen</link> (ID: LiquidOxygen)
+[2025-07-01 00:14:36] ==========================================
+[2025-07-01 00:14:36] PROCESSING ELEMENT: <link="VISCOGEL">Visco-Gel Fluid</link> (ID: ViscoGel)
+[2025-07-01 00:14:36] ==========================================
+[2025-07-01 00:14:36] PROCESSING ELEMENT: <link="MOLTENALUMINUM">Molten Aluminum</link> (ID: MoltenAluminum)
+[2025-07-01 00:14:36] ==========================================
+[2025-07-01 00:14:36] PROCESSING ELEMENT: <link="MOLTENLEAD">Molten Lead</link> (ID: MoltenLead)
+[2025-07-01 00:14:36] ==========================================
+[2025-07-01 00:14:36] PROCESSING ELEMENT: <link="LIQUIDCARBONDIOXIDE">Liquid Carbon Dioxide</link> (ID: LiquidCarbonDioxide)
+[2025-07-01 00:14:36] ==========================================
+[2025-07-01 00:14:36] PROCESSING ELEMENT: <link="CRUDEOIL">Crude Oil</link> (ID: CrudeOil)
+[2025-07-01 00:14:36] ==========================================
+[2025-07-01 00:14:36] PROCESSING ELEMENT: <link="MOLTENGLASS">Molten Glass</link> (ID: MoltenGlass)
+[2025-07-01 00:14:36] ==========================================
+[2025-07-01 00:14:36] PROCESSING ELEMENT: <link="MOLTENIRIDIUM">Molten Iridium</link> (ID: MoltenIridium)
+[2025-07-01 00:14:36] ==========================================
+[2025-07-01 00:14:36] PROCESSING ELEMENT: <link="REFINEDLIPID">Biodiesel</link> (ID: RefinedLipid)
+[2025-07-01 00:14:36] ==========================================
+[2025-07-01 00:14:36] PROCESSING ELEMENT: <link="LIQUIDSULFUR">Liquid Sulfur</link> (ID: LiquidSulfur)
+[2025-07-01 00:14:36] ==========================================
+[2025-07-01 00:14:36] PROCESSING ELEMENT: <link="MOLTENGOLD">Molten Gold</link> (ID: MoltenGold)
+[2025-07-01 00:14:36] ==========================================
+[2025-07-01 00:14:36] PROCESSING ELEMENT: <link="MAGMA">Magma</link> (ID: Magma)
+[2025-07-01 00:14:36] ==========================================
+[2025-07-01 00:14:36] PROCESSING ELEMENT: <link="CHLORINE">Liquid Chlorine</link> (ID: Chlorine)
+[2025-07-01 00:14:36] ==========================================
+[2025-07-01 00:14:36] PROCESSING ELEMENT: <link="LIQUIDHYDROGEN">Liquid Hydrogen</link> (ID: LiquidHydrogen)
+[2025-07-01 00:14:36] ==========================================
+[2025-07-01 00:14:36] PROCESSING ELEMENT: <link="RESIN">Sap</link> (ID: Resin)
+[2025-07-01 00:14:36] ==========================================
+[2025-07-01 00:14:36] PROCESSING ELEMENT: <link="LIQUIDGUNK">Gunk</link> (ID: LiquidGunk)
+[2025-07-01 00:14:36] ==========================================
+[2025-07-01 00:14:36] PROCESSING ELEMENT: <link="LIQUIDPROPANE">Liquid Propane</link> (ID: LiquidPropane)
+[2025-07-01 00:14:36] ==========================================
+[2025-07-01 00:14:36] PROCESSING ELEMENT: <link="MOLTENTUNGSTEN">Molten Tungsten</link> (ID: MoltenTungsten)
+[2025-07-01 00:14:36] ==========================================
+[2025-07-01 00:14:36] PROCESSING ELEMENT: <link="PETROLEUM">Petroleum</link> (ID: Petroleum)
+[2025-07-01 00:14:36] ==========================================
+[2025-07-01 00:14:36] PROCESSING ELEMENT: <link="MOLTENSALT">Molten Salt</link> (ID: MoltenSalt)
+[2025-07-01 00:14:36] ==========================================
+[2025-07-01 00:14:36] PROCESSING ELEMENT: <link="MOLTENCOBALT">Molten Cobalt</link> (ID: MoltenCobalt)
+[2025-07-01 00:14:36] ==========================================
+[2025-07-01 00:14:36] PROCESSING ELEMENT: <link="BRINE">Brine</link> (ID: Brine)
+[2025-07-01 00:14:36] ==========================================
+[2025-07-01 00:14:36] PROCESSING ELEMENT: <link="NUCLEARWASTE">Liquid Nuclear Waste</link> (ID: NuclearWaste)
+[2025-07-01 00:14:36] ==========================================
+[2025-07-01 00:14:36] PROCESSING ELEMENT: <link="SUPERCOOLANT">Super Coolant</link> (ID: SuperCoolant)
+[2025-07-01 00:14:36] ==========================================
+[2025-07-01 00:14:36] PROCESSING ELEMENT: <link="ETHANOL">Ethanol</link> (ID: Ethanol)
+[2025-07-01 00:14:36] ==========================================
+[2025-07-01 00:14:36] PROCESSING ELEMENT: <link="PHYTOOIL">Phyto Oil</link> (ID: PhytoOil)
+[2025-07-01 00:14:36] ==========================================
+[2025-07-01 00:14:36] PROCESSING ELEMENT: <link="MILK">Brackene</link> (ID: Milk)
+[2025-07-01 00:14:36] ==========================================
+[2025-07-01 00:14:36] PROCESSING ELEMENT: <link="LIQUIDMETHANE">Liquid Methane</link> (ID: LiquidMethane)
+[2025-07-01 00:14:36] ==========================================
+[2025-07-01 00:14:36] PROCESSING ELEMENT: <link="MOLTENIRON">Molten Iron</link> (ID: MoltenIron)
+[2025-07-01 00:14:36] ==========================================
+[2025-07-01 00:14:36] PROCESSING ELEMENT: <link="MOLTENCARBON">Liquid Carbon</link> (ID: MoltenCarbon)
+[2025-07-01 00:14:36] ==========================================
+[2025-07-01 00:14:36] PROCESSING ELEMENT: <link="SYNGAS">Molten Synthesis Gas</link> (ID: MoltenSyngas)
+[2025-07-01 00:14:36] ==========================================
+[2025-07-01 00:14:36] PROCESSING ELEMENT: <link="SUGARWATER">Nectar</link> (ID: SugarWater)
+[2025-07-01 00:14:36] ==========================================
+[2025-07-01 00:14:36] PROCESSING ELEMENT: <link="NAPHTHA">Liquid Naphtha</link> (ID: Naphtha)
+[2025-07-01 00:14:36] ==========================================
+[2025-07-01 00:14:36] PROCESSING ELEMENT: <link="NATURALRESIN">Resin</link> (ID: NaturalResin)
+[2025-07-01 00:14:36] ==========================================
+[2025-07-01 00:14:36] PROCESSING ELEMENT: <link="MOLTENSUCROSE">Liquid Sucrose</link> (ID: MoltenSucrose)
+[2025-07-01 00:14:36] ==========================================
+[2025-07-01 00:14:36] PROCESSING ELEMENT: <link="LIQUIDPHOSPHORUS">Liquid Phosphorus</link> (ID: LiquidPhosphorus)
+[2025-07-01 00:14:36] ==========================================
+[2025-07-01 00:14:36] PROCESSING ELEMENT: <link="MOLTENSTEEL">Molten Steel</link> (ID: MoltenSteel)
+[2025-07-01 00:14:36] ==========================================
+[2025-07-01 00:14:36] PROCESSING ELEMENT: <link="MOLTENNIOBIUM">Molten Niobium</link> (ID: MoltenNiobium)
+[2025-07-01 00:14:36] ==========================================
+[2025-07-01 00:14:36] PROCESSING ELEMENT: <link="MERCURY">Mercury</link> (ID: Mercury)
+[2025-07-01 00:14:36] ==========================================
+[2025-07-01 00:14:36] PROCESSING ELEMENT: <link="DIRTYWATER">Polluted Water</link> (ID: DirtyWater)
+[2025-07-01 00:14:36] ==========================================
+[2025-07-01 00:14:36] PROCESSING ELEMENT: <link="WATER">Water</link> (ID: Water)
+[2025-07-01 00:14:36] ==========================================
+[2025-07-01 00:14:36] PROCESSING ELEMENT: <link="SALTWATER">Salt Water</link> (ID: SaltWater)
+[2025-07-01 00:14:36] ==========================================
+[2025-07-01 00:14:36] PROCESSING ELEMENT: <link="MOLTENURANIUM">Liquid Uranium</link> (ID: MoltenUranium)
+[2025-07-01 00:14:36] ==========================================
+[2025-07-01 00:14:36] PROCESSING ELEMENT: <link="MOLTENNICKEL">Molten Nickel</link> (ID: MoltenNickel)
+[2025-07-01 00:14:36] ==========================================
+[2025-07-01 00:14:36] PROCESSING ELEMENT: <link="MOLTENCOPPER">Molten Copper</link> (ID: MoltenCopper)
+[2025-07-01 00:14:36] ==========================================
+[2025-07-01 00:14:36] PROCESSING ELEMENT: <link="SULFURGAS">Sulfur Gas</link> (ID: SulfurGas)
+[2025-07-01 00:14:36] ==========================================
+[2025-07-01 00:14:36] PROCESSING ELEMENT: <link="SALTGAS">Salt Gas</link> (ID: SaltGas)
+[2025-07-01 00:14:36] ==========================================
+[2025-07-01 00:14:36] PROCESSING ELEMENT: <link="PROPANE">Propane Gas</link> (ID: Propane)
+[2025-07-01 00:14:36] ==========================================
+[2025-07-01 00:14:36] PROCESSING ELEMENT: <link="NIOBIUMGAS">Niobium Gas</link> (ID: NiobiumGas)
+[2025-07-01 00:14:36] ==========================================
+[2025-07-01 00:14:36] PROCESSING ELEMENT: <link="HELIUM">Helium</link> (ID: Helium)
+[2025-07-01 00:14:36] ==========================================
+[2025-07-01 00:14:36] PROCESSING ELEMENT: <link="OXYGEN">Oxygen</link> (ID: Oxygen)
+[2025-07-01 00:14:36] ==========================================
+[2025-07-01 00:14:36] PROCESSING ELEMENT: <link="COBALTGAS">Cobalt Gas</link> (ID: CobaltGas)
+[2025-07-01 00:14:36] ==========================================
+[2025-07-01 00:14:36] PROCESSING ELEMENT: <link="STEELGAS">Steel Gas</link> (ID: SteelGas)
+[2025-07-01 00:14:36] ==========================================
+[2025-07-01 00:14:36] PROCESSING ELEMENT: <link="CHLORINEGAS">Chlorine Gas</link> (ID: ChlorineGas)
+[2025-07-01 00:14:36] ==========================================
+[2025-07-01 00:14:36] PROCESSING ELEMENT: <link="HYDROGEN">Hydrogen Gas</link> (ID: Hydrogen)
+[2025-07-01 00:14:36] ==========================================
+[2025-07-01 00:14:36] PROCESSING ELEMENT: <link="SOURGAS">Sour Gas</link> (ID: SourGas)
+[2025-07-01 00:14:36] ==========================================
+[2025-07-01 00:14:36] PROCESSING ELEMENT: <link="STEAM">Steam</link> (ID: Steam)
+[2025-07-01 00:14:36] ==========================================
+[2025-07-01 00:14:36] PROCESSING ELEMENT: <link="METHANE">Natural Gas</link> (ID: Methane)
+[2025-07-01 00:14:36] ==========================================
+[2025-07-01 00:14:36] PROCESSING ELEMENT: <link="MERCURYGAS">Mercury Gas</link> (ID: MercuryGas)
+[2025-07-01 00:14:36] ==========================================
+[2025-07-01 00:14:36] PROCESSING ELEMENT: <link="GOLDGAS">Gold Gas</link> (ID: GoldGas)
+[2025-07-01 00:14:36] ==========================================
+[2025-07-01 00:14:36] PROCESSING ELEMENT: <link="ETHANOLGAS">Ethanol Gas</link> (ID: EthanolGas)
+[2025-07-01 00:14:36] ==========================================
+[2025-07-01 00:14:36] PROCESSING ELEMENT: <link="ROCKGAS">Rock Gas</link> (ID: RockGas)
+[2025-07-01 00:14:36] ==========================================
+[2025-07-01 00:14:36] PROCESSING ELEMENT: <link="CARBONGAS">Carbon Gas</link> (ID: CarbonGas)
+[2025-07-01 00:14:36] ==========================================
+[2025-07-01 00:14:36] PROCESSING ELEMENT: <link="SUPERCOOLANTGAS">Super Coolant Gas</link> (ID: SuperCoolantGas)
+[2025-07-01 00:14:36] ==========================================
+[2025-07-01 00:14:36] PROCESSING ELEMENT: <link="ALUMINUMGAS">Aluminum Gas</link> (ID: AluminumGas)
+[2025-07-01 00:14:36] ==========================================
+[2025-07-01 00:14:36] PROCESSING ELEMENT: <link="TUNGSTENGAS">Tungsten Gas</link> (ID: TungstenGas)
+[2025-07-01 00:14:36] ==========================================
+[2025-07-01 00:14:36] PROCESSING ELEMENT: <link="CONTAMINATEDOXYGEN">Polluted Oxygen</link> (ID: ContaminatedOxygen)
+[2025-07-01 00:14:36] ==========================================
+[2025-07-01 00:14:36] PROCESSING ELEMENT: <link="LEADGAS">Lead Gas</link> (ID: LeadGas)
+[2025-07-01 00:14:36] ==========================================
+[2025-07-01 00:14:36] PROCESSING ELEMENT: <link="FALLOUT">Nuclear Fallout</link> (ID: Fallout)
+[2025-07-01 00:14:36] ==========================================
+[2025-07-01 00:14:36] PROCESSING ELEMENT: <link="SYNGAS">Synthesis Gas</link> (ID: Syngas)
+[2025-07-01 00:14:36] ==========================================
+[2025-07-01 00:14:36] PROCESSING ELEMENT: <link="NICKELGAS">Nickel Gas</link> (ID: NickelGas)
+[2025-07-01 00:14:36] ==========================================
+[2025-07-01 00:14:36] PROCESSING ELEMENT: <link="IRONGAS">Iron Gas</link> (ID: IronGas)
+[2025-07-01 00:14:36] ==========================================
+[2025-07-01 00:14:36] PROCESSING ELEMENT: <link="IRIDIUMGAS">Iridium Gas</link> (ID: IridiumGas)
+[2025-07-01 00:14:36] ==========================================
+[2025-07-01 00:14:36] PROCESSING ELEMENT: <link="PHOSPHORUSGAS">Phosphorus Gas</link> (ID: PhosphorusGas)
+[2025-07-01 00:14:36] ==========================================
+[2025-07-01 00:14:36] PROCESSING ELEMENT: <link="CARBONDIOXIDE">Carbon Dioxide</link> (ID: CarbonDioxide)
+[2025-07-01 00:14:36] ==========================================
+[2025-07-01 00:14:36] PROCESSING ELEMENT: <link="COPPERGAS">Copper Gas</link> (ID: CopperGas)
+[2025-07-01 00:14:36] ==========================================
+[2025-07-01 00:14:36] PROCESSING ELEMENT: <link="VOID">Void</link> (ID: Void)
+[2025-07-01 00:14:36] PROCESSING ELEMENT UI SPRITE: Void_ui for element: <link="VOID">Void</link>
+[2025-07-01 00:14:36] ==========================================
+[2025-07-01 00:14:36] PROCESSING ELEMENT: <link="COMPOSITION">Composition</link> (ID: COMPOSITION)
+[2025-07-01 00:14:36] PROCESSING ELEMENT UI SPRITE: COMPOSITION_ui for element: <link="COMPOSITION">Composition</link>
+[2025-07-01 00:14:36] ==========================================
+[2025-07-01 00:14:36] PROCESSING ELEMENT: <link="VACUUM">Vacuum</link> (ID: Vacuum)
+[2025-07-01 00:14:36] PROCESSING ELEMENT UI SPRITE: Vacuum_ui for element: <link="VACUUM">Vacuum</link>
+[2025-07-01 00:14:36] =================================================================
+[2025-07-01 00:14:36] EXTRACTION COMPLETE - Total elements processed: 190
+[2025-07-01 00:14:36] Total UI sprites extracted: 993
+[2025-07-01 00:14:36] =================================================================

@@ -75,7 +75,9 @@ export class SpriteInfo {
   }
 
   public copyFrom(original: BSpriteInfo) {
-    let imageUrl: string = DrawHelpers.createUrl(original.textureName, true);
+    // Handle grouped sprites correctly - they're in root images folder, not ui folder
+    const isGroupSprite = original.textureName.includes('_group_sprite');
+    let imageUrl: string = DrawHelpers.createUrl(original.textureName, !isGroupSprite);
     imageUrl = imageUrl.replace('0_solid.png', '0.png')
     ImageSource.AddImagePixi(original.textureName, imageUrl);
     this.imageId = original.textureName;

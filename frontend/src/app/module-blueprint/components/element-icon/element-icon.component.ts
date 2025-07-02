@@ -6,6 +6,7 @@
       [src]="getElementImagePath()"
       [width]="width"
       [height]="height"
+      (error)="handleImageError($event)"
     >
   `
 })
@@ -16,7 +17,13 @@ export class ElementIconComponent {
 
   getElementImagePath(): string {
     if (!this.element) return '';
-    // Remove the ui prefix and use direct path
-    return `assets/images/${this.element.id}_0.png`;
+    // Use the correct path for assets in the Docker container
+    return `/assets/images/${this.element.id}_0.png`;
+  }
+
+  handleImageError(event: any) {
+    console.warn(`Failed to load image for element: ${this.element?.id}`);
+    // Optionally set a fallback image
+    event.target.src = '/assets/images/fallback.png';
   }
 }

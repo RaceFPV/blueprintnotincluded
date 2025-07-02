@@ -1,67 +1,74 @@
-FROM --platform=amd64 node:16 as build-frontend
+# Build frontend
+FROM node:20 AS frontend-builder
 
 # Set the working directory
 WORKDIR /app
 
 # Add the source code to app
-COPY ./frontend /app/bpni
-COPY ./lib /app/lib
+COPY --chown=node:node ./frontend /app/bpni
+COPY --chown=node:node ./lib /app/lib
 
-# Generate the lib packages
+# Set permissions for npm
+USER root
+RUN mkdir -p /app/bpni/node_modules /app/lib/node_modules && \
+    chown -R node:node /app/bpni /app/lib
+
+# Switch to non-root user for builds
+USER node
+
+# Build lib
 WORKDIR /app/lib
 RUN npm install
 
+# Build frontend
 WORKDIR /app/bpni
+RUN npm install && npm run build
 
-# Install all the backend dependencies
-RUN npm install
+# Build backend
+FROM node:20
 
-# Generate the build of the application
-RUN npm run build
-
-# Copy the build output to replace the default nginx contents.
-
-# Stage 1: Compile and Build angular codebase
-
-# Use official node image as the base image
-FROM --platform=amd64 node:14 as build
-
-# Set the working directory
+# Set the working directory and create necessary directories
 WORKDIR /app
+# Set permissions and create directories
+USER root
+RUN mkdir -p /app/bpni/node_modules /app/bpni/assets /app/bpni/frontend/src/assets && \
+    chown -R node:node /app/bpni && \
+    chmod -R 755 /app/bpni
 
-# Add the source code to app
-COPY ./ /app/bpni
+# Copy backend files and frontend build
+COPY --chown=node:node ./ /app/bpni/
+COPY --from=frontend-builder --chown=node:node /app/bpni/dist/blueprintnotincluded /app/bpni/app/public
+# Copy source assets for backend scripts (but the built assets are already in app/public from Angular build)
+COPY --from=frontend-builder --chown=node:node /app/bpni/src/assets /app/bpni/frontend/src/assets
 
-# Set the new working dir
-WORKDIR /app/bpni
+# Ensure assets directory exists and has correct permissions
+USER root
+RUN mkdir -p /app/bpni/app/public/assets/images && \
+    chown -R node:node /app/bpni/app/public/assets && \
+    chmod -R 755 /app/bpni/app/public/assets
+USER node
 
-# Generate the lib packages
+# Install dependencies and build
 WORKDIR /app/bpni/lib
 RUN npm install
-
-# Install all the backend dependencies
-WORKDIR /app/bpni
+WORKDIR /app/bpni 
 RUN npm install
-
-# Generate the build of the application
 RUN npm run tsc
 
-# Copy over frontend
-COPY --from=build-frontend /app/bpni/dist/blueprintnotincluded /app/bpni/app/public
-
-# Add global polyfills for Node environment
+# Add global polyfills
 RUN echo "require('jsdom-global')();" > /app/bpni/app/global-polyfills.js
 
-# Expose port 3000
+# Set environment variables
+ENV SITE_URL=http://localhost:3000 \
+    ENV_NAME=development \
+    SMTP_HOST=localhost \
+    SMTP_PORT=25 \
+    SMTP_USER= \
+    SMTP_PASS= \
+    SMTP_FROM=help@blueprintnotincluded.org
+
+# Expose port
 EXPOSE 3000
 
-# Update entrypoint to use polyfills
-ENTRYPOINT node -r /app/bpni/app/global-polyfills.js /app/bpni/node_modules/.bin/ts-node-dev --respawn --transpile-only app/server.ts
-
-ENV SITE_URL=http://localhost:3000
-ENV ENV_NAME=development
-ENV SMTP_HOST=localhost
-ENV SMTP_PORT=25
-ENV SMTP_USER=
-ENV SMTP_PASS=
-ENV SMTP_FROM=help@blueprintnotincluded.org
+# Start the application
+CMD ["node", "-r", "/app/bpni/app/global-polyfills.js", "/app/bpni/node_modules/.bin/ts-node-dev", "--respawn", "--transpile-only", "app/server.ts"]
