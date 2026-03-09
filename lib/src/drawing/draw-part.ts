@@ -33,9 +33,28 @@ export class DrawPart
     this.zIndex_ = value; 
   }
   private visible_: boolean = false;
+  private lastLogTime: number = 0;
   get visible() { return this.visible_; }
   set visible(value: boolean) { 
-    if (this.sprite != null) this.sprite.visible = value;
+    // Force wires to always be visible (override any visibility logic)
+    if (this.spriteModifier?.spriteModifierId?.includes('Wire_')) {
+      if (this.sprite != null) {
+        this.sprite.visible = true;
+      }
+      this.visible_ = true;
+      
+      // Throttled logging - only log once per second per sprite
+      const now = Date.now();
+      if (now - this.lastLogTime > 1000) {
+        console.log(`[WIRE FORCE] Forced wire visibility to true for ${this.spriteModifier?.spriteModifierId}`);
+        this.lastLogTime = now;
+      }
+      return;
+    }
+    
+    if (this.sprite != null) {
+      this.sprite.visible = value;
+    }
     this.visible_ = value; 
   }
 
@@ -75,6 +94,13 @@ export class DrawPart
         this.sprite.tint = this.tint;
         this.sprite.zIndex = this.zIndex;
         this.sprite.visible = this.visible;
+        
+        // Force wires to be visible (override any visibility logic issues)
+        if (oniItem.id.includes('Wire')) {
+          this.sprite.visible = true;
+          this.visible_ = true;
+          console.log(`[WIRE CREATE] Created PIXI sprite for "${oniItem.id}" - FORCED visible=true`);
+        }
 
 
         let tileOffset: Vector2 = new Vector2(
@@ -108,10 +134,27 @@ export class DrawPart
 
   prepareVisibilityBasedOnDisplay(newDisplay: Display) {
     let tagFilter = newDisplay == Display.blueprint ? SpriteTag.place : SpriteTag.solid;
-
-    if (this.spriteModifier == null) this.visible = false;
-    else if (!this.hasTag(tagFilter)) this.visible = false;
-    else this.visible = true;
+    
+    // Only log for wire sprites to reduce spam
+    const isWire = this.spriteModifier?.spriteModifierId?.includes('Wire_');
+    
+    // FORCE: Wires are always visible regardless of display mode or tags
+    if (isWire) {
+      // Removed logging to prevent infinite spam - wire visibility is handled by setter
+      this.visible = true;
+      return;
+    }
+    
+    if (this.spriteModifier == null) {
+      this.visible = false;
+    } else if (this.hasTag(tagFilter)) {
+      this.visible = true;
+    } else if (tagFilter === SpriteTag.solid && this.hasTag(SpriteTag.place)) {
+      // Fallback: If no solid sprites exist (like wires), use place sprites
+      this.visible = true;
+    } else {
+      this.visible = false;
+    }
   } 
 
   makeEverythingButThisTagInvisible(tagFilter: SpriteTag) {

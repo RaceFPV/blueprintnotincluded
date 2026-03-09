@@ -492,10 +492,8 @@ export class BlueprintItem
           drawPart.alpha = 0.7;
         }
         
-        if (camera.display == Display.blueprint) {
-          drawPart.makeInvisibileIfHasTag(SpriteTag.place);
-          drawPart.makeVisibileIfHasTag(SpriteTag.solid);
-        }
+        // Don't override place/solid visibility - let prepareVisibilityBasedOnDisplay() handle it
+        // with proper fallback logic for wires that only have place sprites
       }
 
       if (camera.visualization == Visualization.temperature) {

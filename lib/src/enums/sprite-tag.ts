@@ -31,5 +31,19 @@ export enum SpriteTag {
   element_liquid_front,
   element_vacuum_front,
   info_back,
-  info_front
+  info_front,
+  // New utility tags for enhanced sprite organization (matches C# enum)
+  utility_electric,
+  utility_gas,
+  utility_liquid,
+  utility_automation,
+  utility_solid,
+  utility_conveyor,
+  wire_solid,
+  wire_place,
+  conduit_solid,
+  conduit_place,
+  // Legacy compatibility tags
+  element_gas_back,
+  element_liquid_back
 }

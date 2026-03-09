@@ -18,6 +18,7 @@ export declare class DrawPart {
     get zIndex(): number;
     set zIndex(value: number);
     private visible_;
+    private lastLogTime;
     get visible(): boolean;
     set visible(value: boolean);
     isReady: boolean;
